@@ -29,7 +29,7 @@ export default function Preferences() {
 					<div className="flex flex-col gap-2">
 						<h3>Support Banner</h3>
 						<h6 className="text-muted-foreground">Show Your Support for Important Causes.</h6>
-						<SupportBannerForm />
+						<SupportBannerForm settings={settings} />
 						<hr />
 					</div>
 

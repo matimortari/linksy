@@ -1,14 +1,22 @@
 "use client"
 
+import { useUpdateUserBanner } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export default function SupportBannerForm() {
+export default function SupportBannerForm({ settings }) {
 	const [selectedOption, setSelectedOption] = useState("NONE")
-	const [isUpdating, setIsUpdating] = useState(false)
+	const { mutate: updateBannerMutation, isPending } = useUpdateUserBanner()
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	useEffect(() => {
+		if (settings) {
+			setSelectedOption(settings.supportBanner || "NONE")
+		}
+	}, [settings])
+
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
+		updateBannerMutation(selectedOption)
 	}
 
 	return (
@@ -37,9 +45,9 @@ export default function SupportBannerForm() {
 				</select>
 
 				<div>
-					<button type="submit" disabled={isUpdating} className="btn bg-primary">
+					<button type="submit" disabled={isPending} className="btn bg-primary">
 						<Icon icon="material-symbols:volunteer-activism-outline" className="icon text-xl" />
-						{isUpdating ? "Updating..." : "Update Banner"}
+						{isPending ? "Updating..." : "Update Banner"}
 					</button>
 				</div>
 			</form>
