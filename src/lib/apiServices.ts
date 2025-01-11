@@ -122,7 +122,7 @@ export const updateLink = async (updatedLink: UserLink) => {
 }
 
 // Delete an existing link by ID
-export const deleteLink = async (id: string): Promise<string> => {
+export const deleteLink = async (id: number): Promise<number> => {
 	await fetch(`/api/links?id=${id}`, { method: "DELETE" })
 	return id
 }
@@ -144,7 +144,7 @@ export const addButton = async (newButton: UserButton) => {
 }
 
 // Delete an existing social button by ID
-export const deleteButton = async (id: string): Promise<string> => {
+export const deleteButton = async (id: number): Promise<number> => {
 	await fetch(`/api/buttons?id=${id}`, { method: "DELETE" })
 	return id
 }

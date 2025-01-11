@@ -42,7 +42,7 @@ export function useUpdateDescription() {
 	})
 }
 
-export function useAddLink({ onClose }) {
+export function useAddLink() {
 	const queryClient = useQueryClient()
 
 	return useMutation({
@@ -50,7 +50,6 @@ export function useAddLink({ onClose }) {
 		mutationFn: addLink,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["links"] })
-			if (onClose) onClose()
 		},
 		onError: (error) => {
 			console.error("Error adding link:", error)
@@ -58,7 +57,7 @@ export function useAddLink({ onClose }) {
 	})
 }
 
-export function useUpdateLink({ onClose }) {
+export function useUpdateLink() {
 	const queryClient = useQueryClient()
 
 	return useMutation({
@@ -66,7 +65,6 @@ export function useUpdateLink({ onClose }) {
 		mutationFn: updateLink,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["links"] })
-			if (onClose) onClose()
 		},
 		onError: (error) => {
 			console.error("Error updating link:", error)
@@ -79,7 +77,7 @@ export function useDeleteLink() {
 
 	return useMutation({
 		mutationKey: ["deleteLink"],
-		mutationFn: (id: string) => deleteLink(id),
+		mutationFn: (id: number) => deleteLink(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["links"] })
 		},
@@ -89,7 +87,7 @@ export function useDeleteLink() {
 	})
 }
 
-export function useAddButton({ onClose }) {
+export function useAddButton() {
 	const queryClient = useQueryClient()
 
 	return useMutation({
@@ -97,7 +95,6 @@ export function useAddButton({ onClose }) {
 		mutationFn: addButton,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buttons"] })
-			if (onClose) onClose()
 		},
 		onError: (error) => {
 			console.error("Error adding button:", error)
@@ -110,7 +107,7 @@ export function useDeleteButton() {
 
 	return useMutation({
 		mutationKey: ["deleteButton"],
-		mutationFn: (id: string) => deleteButton(id),
+		mutationFn: (id: number) => deleteButton(id),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["buttons"] })
 		},

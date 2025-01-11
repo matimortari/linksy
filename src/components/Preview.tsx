@@ -39,13 +39,13 @@ export default function Preview({ slug, description, image, settings, links, but
 
 				{buttons && buttons.length > 0 ? (
 					<ul className="my-2 flex flex-row justify-center gap-2">
-						{buttons.map((button: Button) => (
+						{buttons.map((b: Button) => (
 							<UserButton
-								key={button.id}
-								url={button.url}
-								icon={button.icon}
+								key={b.id}
+								url={b.url}
+								icon={b.icon}
+								buttonId={b.id}
 								settings={settings}
-								buttonId={button.id}
 								userId={session.user.id}
 							/>
 						))}
@@ -56,13 +56,13 @@ export default function Preview({ slug, description, image, settings, links, but
 
 				{links && links.length > 0 ? (
 					<ul className="space-y-4">
-						{links.map((link: Link) => (
+						{links.map((l: Link) => (
 							<UserLink
-								key={link.id}
-								url={link.url}
-								title={link.title}
+								key={l.id}
+								url={l.url}
+								title={l.title}
+								linkId={l.id}
 								settings={settings}
-								linkId={link.id}
 								userId={session.user.id}
 							/>
 						))}
