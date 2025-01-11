@@ -5,8 +5,8 @@ import { useState } from "react"
 import Dialog from "../Dialog"
 
 export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
-	const [selectedPlatform, setSelectedPlatform] = useState("")
-	const [url, setUrl] = useState("")
+	const [selectedPlatform, setSelectedPlatform] = useState<string>("")
+	const [url, setUrl] = useState<string>("")
 	const icon = selectedPlatform ? SOCIAL_ICONS[selectedPlatform] : ""
 
 	const { mutate: addButton, isPending } = useAddButton()
@@ -14,15 +14,17 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 
-		addButton(
-			{ platform: selectedPlatform, icon, url },
-			{
-				onSuccess: () => {
-					onAddButton()
-					onClose()
+		if (selectedPlatform && url) {
+			addButton(
+				{ platform: selectedPlatform, icon, url },
+				{
+					onSuccess: () => {
+						onAddButton({ platform: selectedPlatform, icon, url })
+						onClose()
+					}
 				}
-			}
-		)
+			)
+		}
 	}
 
 	return (
@@ -50,7 +52,15 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					<label htmlFor="url" className="block text-sm font-medium text-muted-foreground">
 						URL
 					</label>
-					<input type="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Button URL" required />
+					<input
+						type="url"
+						id="url"
+						value={url}
+						onChange={(e) => setUrl(e.target.value)}
+						placeholder="Button URL"
+						className="input-field"
+						required
+					/>
 				</div>
 
 				<div className="flex justify-between gap-4">

@@ -1,4 +1,4 @@
-import { useAddLink, useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
+import { useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
@@ -6,28 +6,24 @@ import { useState } from "react"
 import AddLinkDialog from "../dialogs/AddLinkDialog"
 import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 
-export default function LinkList() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function LinkList({ links, setLinks }) {
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
 	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
 	const [currentLink, setCurrentLink] = useState<Link | null>(null)
 
 	const { data: userLinks, refetch: refetchLinks } = useGetLinks()
-	const { mutate: addLink } = useAddLink()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
 
 	const handleAddLink = (newLink: Link) => {
-		addLink(newLink, {
-			onSuccess: () => {
-				refetchLinks()
-				setIsAddDialogOpen(false)
-			}
-		})
+		setLinks((prevLinks: Link[]) => [...prevLinks, newLink])
 	}
 
 	const handleUpdateLink = (updatedLink: Link) => {
 		updateLink(updatedLink, {
 			onSuccess: () => {
+				setLinks((prevLinks: Link[]) => prevLinks.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
 				refetchLinks()
 				setIsUpdateDialogOpen(false)
 			}
@@ -37,6 +33,7 @@ export default function LinkList() {
 	const handleDeleteLink = (id: number) => {
 		deleteLink(id, {
 			onSuccess: () => {
+				setLinks((prevLinks: Link[]) => prevLinks.filter((l: Link) => l.id !== id))
 				refetchLinks()
 			}
 		})
