@@ -7,8 +7,7 @@ import Preview from "@/src/components/Preview"
 import useAuth from "@/src/hooks/useAuth"
 
 export default function Profile() {
-	const { slug, setSlug, description, setDescription, image, settings, links, setLinks, buttons, setButtons } =
-		useAuth()
+	const { slug, setSlug, description, setDescription, image, settings, links, buttons } = useAuth()
 
 	return (
 		<div className="flex flex-row gap-4">
@@ -42,14 +41,14 @@ export default function Profile() {
 					<div className="flex flex-col gap-2">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>
-						<LinkList links={links} setLinks={setLinks} />
+						<LinkList />
 						<hr />
 					</div>
 
 					<div className="flex flex-col gap-2">
 						<h3>My Social Buttons</h3>
 						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
-						<ButtonList buttons={buttons} setButtons={setButtons} />
+						<ButtonList />
 						<hr />
 					</div>
 				</main>

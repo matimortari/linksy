@@ -1,22 +1,26 @@
 import { useAddLink, useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
+import { useGetLinks } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
 import AddLinkDialog from "../dialogs/AddLinkDialog"
 import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 
-export default function LinkList({ links, setLinks }) {
+export default function LinkList() {
+	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
+	const [currentLink, setCurrentLink] = useState<Link | null>(null)
+
+	const { data: userLinks, refetch: refetchLinks } = useGetLinks()
 	const { mutate: addLink } = useAddLink()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
-	const [currentLink, setCurrentLink] = useState<Link | null>(null)
-	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
 
 	const handleAddLink = (newLink: Link) => {
 		addLink(newLink, {
-			onSuccess: (addedLink) => {
-				setLinks((prevLinks: Link[]) => [...prevLinks, addedLink])
+			onSuccess: () => {
+				refetchLinks()
+				setIsAddDialogOpen(false)
 			}
 		})
 	}
@@ -24,7 +28,8 @@ export default function LinkList({ links, setLinks }) {
 	const handleUpdateLink = (updatedLink: Link) => {
 		updateLink(updatedLink, {
 			onSuccess: () => {
-				setLinks((prevLinks: Link[]) => prevLinks.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
+				refetchLinks()
+				setIsUpdateDialogOpen(false)
 			}
 		})
 	}
@@ -32,7 +37,7 @@ export default function LinkList({ links, setLinks }) {
 	const handleDeleteLink = (id: number) => {
 		deleteLink(id, {
 			onSuccess: () => {
-				setLinks(links.filter((l: Link) => l.id !== id))
+				refetchLinks()
 			}
 		})
 	}
@@ -40,7 +45,7 @@ export default function LinkList({ links, setLinks }) {
 	return (
 		<>
 			<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
-				{links.map((l: Link) => (
+				{userLinks?.map((l: Link) => (
 					<li key={l.id} className="card flex flex-col gap-2">
 						<div className="flex flex-col">
 							<div className="flex flex-row gap-1">
