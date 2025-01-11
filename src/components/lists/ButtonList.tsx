@@ -1,10 +1,18 @@
 import { Icon } from "@iconify/react"
 import Link from "next/link"
+import { useState } from "react"
+import AddButtonDialog from "../dialogs/AddButtonDialog"
 
-export default function LinkList({ buttons, setButtons }) {
-	// TODO - Add Social Button
+export default function ButtonList({ buttons, setButtons }) {
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
-	// TODO - Delete Social Button
+	const handleAddButton = (newButton: Button) => {
+		setButtons((prevButtons: Button[]) => [...prevButtons, newButton])
+	}
+
+	const handleDeleteButton = (id: number) => {
+		setButtons(buttons.filter((b: Button) => b.id !== id))
+	}
 
 	return (
 		<>
@@ -14,7 +22,7 @@ export default function LinkList({ buttons, setButtons }) {
 						<Link href={b.url} target="_blank" rel="noopener noreferrer">
 							<Icon icon={b.icon} />
 						</Link>
-						<button className="absolute bottom-0 right-0 p-1 text-danger">
+						<button onClick={() => handleDeleteButton(b.id)} className="absolute bottom-0 right-0 p-1 text-danger">
 							<Icon icon="mdi:remove-circle-outline" className="icon size-5" />
 						</button>
 					</li>
@@ -22,8 +30,12 @@ export default function LinkList({ buttons, setButtons }) {
 			</ul>
 
 			<div>
-				<button className="btn bg-primary">Add Social Button</button>
+				<button onClick={() => setIsModalOpen(true)} className="btn bg-primary">
+					Add Social Button
+				</button>
 			</div>
+
+			<AddButtonDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAddButton={handleAddButton} />
 		</>
 	)
 }
