@@ -124,7 +124,7 @@ export function useUpdateSettings() {
 		mutationKey: ["updateSettings"],
 		mutationFn: updateSettings,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["userSettings"] })
+			queryClient.invalidateQueries({ queryKey: ["settings"] })
 		},
 		onError: (error) => {
 			console.error("Error updating settings:", error)
@@ -139,7 +139,7 @@ export function useResetSettings() {
 		mutationKey: ["resetSettings"],
 		mutationFn: resetSettings,
 		onSuccess: (data) => {
-			queryClient.invalidateQueries({ queryKey: ["userSettings"] })
+			queryClient.invalidateQueries({ queryKey: ["settings"] })
 			return data.settings
 		},
 		onError: (error) => {
@@ -155,7 +155,7 @@ export function useUpdateUserBanner() {
 		mutationKey: ["updateSupportBanner"],
 		mutationFn: updateSupportBanner,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["userSettings"] })
+			queryClient.invalidateQueries({ queryKey: ["settings"] })
 		},
 		onError: (error) => {
 			console.error("Error updating support banner:", error)

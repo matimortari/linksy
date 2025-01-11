@@ -1,14 +1,25 @@
+import { useAddLink } from "@/src/hooks/useMutations"
 import { useState } from "react"
 import Dialog from "../Dialog"
 
 export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
-	const [newLink, setNewLink] = useState({ title: "", url: "" })
+	const [title, setTitle] = useState("")
+	const [url, setUrl] = useState("")
+
+	const { mutate: addLink, isPending } = useAddLink()
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
-		onAddLink(newLink)
-		setNewLink({ title: "", url: "" })
-		onClose()
+
+		addLink(
+			{ title, url },
+			{
+				onSuccess: () => {
+					onAddLink()
+					onClose()
+				}
+			}
+		)
 	}
 
 	return (
@@ -21,8 +32,8 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 					<input
 						type="text"
 						id="title"
-						value={newLink.title}
-						onChange={(e) => setNewLink({ ...newLink, title: e.target.value })}
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
 						className="input-field"
 						placeholder="e.g. My Portfolio"
 						required
@@ -35,9 +46,10 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 					<input
 						type="url"
 						id="url"
-						value={newLink.url}
-						onChange={(e) => setNewLink({ ...newLink, url: e.target.value })}
+						value={url}
+						onChange={(e) => setUrl(e.target.value)}
 						className="input-field"
+						placeholder="Link URL"
 						required
 					/>
 				</div>
@@ -45,8 +57,8 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 					<button type="button" onClick={onClose} className="btn bg-secondary">
 						Cancel
 					</button>
-					<button type="submit" className="btn bg-primary">
-						Add Link
+					<button type="submit" className="btn bg-primary" disabled={isPending}>
+						{isPending ? "Adding..." : "Add Link"}
 					</button>
 				</div>
 			</form>

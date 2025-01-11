@@ -3,28 +3,28 @@ import { getButtons, getLinks, getSettings, getUserData } from "../lib/apiServic
 
 export function useGetUserData() {
 	return useQuery({
-		queryKey: ["getUserData"],
+		queryKey: ["user"],
 		queryFn: getUserData
 	})
 }
 
 export function useGetLinks() {
 	return useQuery({
-		queryKey: ["getLinks"],
+		queryKey: ["links"],
 		queryFn: getLinks
 	})
 }
 
 export function useGetButtons() {
 	return useQuery({
-		queryKey: ["getButtons"],
+		queryKey: ["buttons"],
 		queryFn: getButtons
 	})
 }
 
 export function useGetSettings() {
 	return useQuery({
-		queryKey: ["getSettings"],
+		queryKey: ["settings"],
 		queryFn: getSettings
 	})
 }

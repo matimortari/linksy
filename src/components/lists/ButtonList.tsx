@@ -1,23 +1,38 @@
+import { useAddButton, useDeleteButton } from "@/src/hooks/useMutations"
+import { useGetButtons } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
 import AddButtonDialog from "../dialogs/AddButtonDialog"
 
-export default function ButtonList({ buttons, setButtons }) {
-	const [isModalOpen, setIsModalOpen] = useState(false)
+export default function ButtonList() {
+	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+
+	const { data: userButtons, refetch: refetchButtons } = useGetButtons()
+	const { mutate: addButton } = useAddButton()
+	const { mutate: deleteButton } = useDeleteButton()
 
 	const handleAddButton = (newButton: Button) => {
-		setButtons((prevButtons: Button[]) => [...prevButtons, newButton])
+		addButton(newButton, {
+			onSuccess: () => {
+				refetchButtons()
+				setIsAddDialogOpen(false)
+			}
+		})
 	}
 
 	const handleDeleteButton = (id: number) => {
-		setButtons(buttons.filter((b: Button) => b.id !== id))
+		deleteButton(id, {
+			onSuccess: () => {
+				refetchButtons()
+			}
+		})
 	}
 
 	return (
 		<>
 			<ul className="flex flex-row gap-2">
-				{buttons.map((b: Button) => (
+				{userButtons?.map((b: Button) => (
 					<li key={b.id} className="card relative flex flex-col gap-2">
 						<Link href={b.url} target="_blank" rel="noopener noreferrer">
 							<Icon icon={b.icon} />
@@ -30,12 +45,16 @@ export default function ButtonList({ buttons, setButtons }) {
 			</ul>
 
 			<div>
-				<button onClick={() => setIsModalOpen(true)} className="btn bg-primary">
+				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
 					Add Social Button
 				</button>
 			</div>
 
-			<AddButtonDialog isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAddButton={handleAddButton} />
+			<AddButtonDialog
+				isOpen={isAddDialogOpen}
+				onClose={() => setIsAddDialogOpen(false)}
+				onAddButton={handleAddButton}
+			/>
 		</>
 	)
 }
