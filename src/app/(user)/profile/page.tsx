@@ -1,6 +1,6 @@
 "use client"
 
-import UpdateHeaderForm from "@/src/components/forms/UpdateHeaderForm"
+import HeaderForm from "@/src/components/forms/HeaderForm"
 import ButtonList from "@/src/components/lists/ButtonList"
 import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
@@ -35,7 +35,7 @@ export default function Profile() {
 					<div className="flex flex-col gap-2">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change the display name and description for your header.</h6>
-						<UpdateHeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
+						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
 						<hr />
 					</div>
 
