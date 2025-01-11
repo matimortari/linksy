@@ -1,5 +1,3 @@
-"use client"
-
 import { useUpdateUserBanner } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
