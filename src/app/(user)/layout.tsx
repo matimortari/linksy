@@ -33,18 +33,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 						<aside className="p-4 md:w-2/12">
 							<Navbar slug={slug} image={image} />
 						</aside>
-						<main className="card md:w-7/12">{children}</main>
-						<aside className="p-4 md:w-3/12">
-							<h2>Preview</h2>
-							{/* <Preview
-					slug={slug}
-					description={description}
-					image={image}
-					settings={settings}
-					links={links}
-					buttons={buttons}
-				/> */}
-						</aside>
+						<main className="md:w-full">{children}</main>
 					</div>
 					<Footer />
 				</Providers>
