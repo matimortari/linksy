@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum SupportBanner {
+  NONE
+  LGBTQ_RIGHTS
+  ANTI_RACISM
+  MENTAL_HEALTH
+  CLIMATE_ACTION
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  name          String?
+  email         String?       @unique
+  emailVerified DateTime?
+  image         String?
+  description   String?
+  accounts      Account[]
+  sessions      Session[]
+  userLinks     UserLink[]
+  userButtons   UserButton[]
+  settings      UserSettings?
+  userStats     UserStats[]
+}
+
+model UserLink {
+  id         Int         @id @default(autoincrement())
+  userId     String
+  url        String
+  title      String
+  clicks     Int         @default(0)
+  createdAt  DateTime    @default(now())
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  linkClicks LinkClick[] // Relationship for daily link clicks tracking
+}
+
+model UserButton {
+  id           Int           @id @default(autoincrement())
+  userId       String
+  url          String
+  platform     String
+  icon         String
+  clicks       Int           @default(0)
+  createdAt    DateTime      @default(now())
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  buttonClicks ButtonClick[] // Relationship for daily button clicks tracking
+}
+
+model UserSettings {
+  id                         Int           @id @default(autoincrement())
+  userId                     String        @unique
+  backgroundColor            String        @default("#e7e5e5")
+  slugTextColor              String        @default("#1e1e1e")
+  slugTextWeight             String        @default("500")
+  slugTextSize               String        @default("1rem")
+  headerTextColor            String        @default("#1e1e1e")
+  linkBackgroundColor        String        @default("#ffffff")
+  linkTextColor              String        @default("#1e1e1e")
+  linkShadowColor            String        @default("#e7e5e5")
+  isLinkShadow               Boolean       @default(false)
+  linkHoverBackgroundColor   String        @default("#eeeeee")
+  linkBorderRadius           String        @default("0.5rem")
+  linkPadding                String        @default("0.5rem")
+  buttonBackgroundColor      String        @default("#ffffff")
+  buttonShadowColor          String        @default("#e7e5e5")
+  isButtonShadow             Boolean       @default(false)
+  buttonIconColor            String        @default("#1e1e1e")
+  buttonHoverBackgroundColor String        @default("#eeeeee")
+  supportBanner              SupportBanner @default(NONE)
+  user                       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserStats {
+  id           Int      @id @default(autoincrement())
+  userId       String
+  date         DateTime @default(now()) // Track stats by date
+  views        Int      @default(0) // Number of profile views on a given date
+  linkClicks   Int      @default(0) // Total link clicks on a given date
+  buttonClicks Int      @default(0) // Total button clicks on a given date
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, date]) // Index for faster queries by user and date
+}
+
+model LinkClick {
+  id         Int      @id @default(autoincrement())
+  userLinkId Int
+  date       DateTime @default(now())
+  count      Int      @default(1) // Number of clicks on this link for the day
+  userLink   UserLink @relation(fields: [userLinkId], references: [id], onDelete: Cascade)
+
+  @@index([userLinkId, date])
+}
+
+model ButtonClick {
+  id           Int        @id @default(autoincrement())
+  userButtonId Int
+  date         DateTime   @default(now())
+  count        Int        @default(1) // Number of clicks on this button for the day
+  userButton   UserButton @relation(fields: [userButtonId], references: [id], onDelete: Cascade)
+
+  @@index([userButtonId, date])
+}
