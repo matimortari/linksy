@@ -1,5 +1,5 @@
 import { useAddLink } from "@/src/hooks/useMutations"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Dialog from "../Dialog"
 
 export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
@@ -8,14 +8,21 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 
 	const { mutate: addLink, isPending } = useAddLink()
 
+	// Reset form fields when dialog is opened
+	useEffect(() => {
+		setTitle("")
+		setUrl("")
+	}, [isOpen])
+
+	// Handle form submission by calling the addLink mutation and closing the dialog
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 
 		addLink(
 			{ title, url },
 			{
-				onSuccess: () => {
-					onAddLink()
+				onSuccess: (newLink) => {
+					onAddLink(newLink)
 					onClose()
 				}
 			}

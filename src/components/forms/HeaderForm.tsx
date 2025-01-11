@@ -61,8 +61,9 @@ function UpdateSlugForm({ setSlug, slug }) {
 
 function UpdateDescriptionForm({ setDescription, description }) {
 	const [localDescription, setLocalDescription] = useState("")
-	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
 	const [isClearingDescription, setIsClearingDescription] = useState(false)
+
+	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
 
 	const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalDescription(e.target.value)

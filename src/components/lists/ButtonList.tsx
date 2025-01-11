@@ -1,30 +1,21 @@
-import { useAddButton, useDeleteButton } from "@/src/hooks/useMutations"
+import { useDeleteButton } from "@/src/hooks/useMutations"
 import { useGetButtons } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
 import AddButtonDialog from "../dialogs/AddButtonDialog"
 
-export default function ButtonList() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function ButtonList({ buttons, setButtons }) {
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
 
-	const { data: userButtons, refetch: refetchButtons } = useGetButtons()
-	const { mutate: addButton } = useAddButton()
+	const { data: userButtons } = useGetButtons()
 	const { mutate: deleteButton } = useDeleteButton()
-
-	const handleAddButton = (newButton: Button) => {
-		addButton(newButton, {
-			onSuccess: () => {
-				refetchButtons()
-				setIsAddDialogOpen(false)
-			}
-		})
-	}
 
 	const handleDeleteButton = (id: number) => {
 		deleteButton(id, {
 			onSuccess: () => {
-				refetchButtons()
+				setButtons((prevButtons: Button[]) => prevButtons.filter((b: Button) => b.id !== id))
 			}
 		})
 	}
@@ -53,7 +44,7 @@ export default function ButtonList() {
 			<AddButtonDialog
 				isOpen={isAddDialogOpen}
 				onClose={() => setIsAddDialogOpen(false)}
-				onAddButton={handleAddButton}
+				onAddButton={(newButton) => setButtons((prev) => [...prev, newButton])} // Update button list here
 			/>
 		</>
 	)

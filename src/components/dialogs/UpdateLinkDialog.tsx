@@ -4,14 +4,17 @@ import Dialog from "../Dialog"
 export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdateLink }) {
 	const [updatedLink, setUpdatedLink] = useState<Link | null>(null)
 
+	// Set the form fields to the selected link values when dialog is opened
 	useEffect(() => {
 		if (currentLink) {
 			setUpdatedLink(currentLink)
 		}
 	}, [currentLink])
 
+	// Handle form submission by calling the onUpdateLink function and closing the dialog
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
+
 		if (updatedLink) {
 			onUpdateLink(updatedLink)
 			onClose()
