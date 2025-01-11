@@ -1,11 +1,33 @@
 import { PADDING_OPTIONS, RADIUS_OPTIONS, SLUG_FONT_SIZES, SLUG_FONT_WEIGHTS } from "@/src/data/formConfig"
+import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
+import { useGetSettings } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
-import { useState } from "react"
+import { useEffect } from "react"
 import { CheckboxInput, ColorInput, RadioOptions } from "./Inputs"
 
 export default function AppearanceForm({ settings, setSettings }) {
-	const [pendingUpdate, setPendingUpdate] = useState(false)
-	const [pendingReset, setPendingReset] = useState(false)
+	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
+	const { mutate: resetSettingsMutation, isSuccess: successReset, isPending: pendingReset } = useResetSettings()
+	const { mutate: updateSettingsMutation, isSuccess: successUpdate, isPending: pendingUpdate } = useUpdateSettings()
+
+	useEffect(() => {
+		if (userSettings) {
+			setSettings(userSettings)
+		}
+	}, [userSettings])
+
+	useEffect(() => {
+		if (successReset) {
+			setSettings(userSettings)
+			refetchSettings()
+		}
+	}, [successReset])
+
+	useEffect(() => {
+		if (successUpdate) {
+			refetchSettings()
+		}
+	}, [successUpdate, refetchSettings])
 
 	const handleColorChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSettings((prev: any) => ({ ...prev, [key]: e.target.value }))
@@ -19,16 +41,14 @@ export default function AppearanceForm({ settings, setSettings }) {
 		setSettings((prev: any) => ({ ...prev, [key]: e.target.checked }))
 	}
 
-	// Handle form submission
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleReset = (e: { preventDefault: () => void }) => {
 		e.preventDefault()
-		// TODO - Implement submit logic
+		resetSettingsMutation()
 	}
 
-	// TODO - Handle reset to default appearance
-	const handleReset = () => {
-		setSettings({})
-		// TODO - Add mutation logic for resetting to default
+	const handleSubmit = (e: { preventDefault: () => void }) => {
+		e.preventDefault()
+		updateSettingsMutation(settings)
 	}
 
 	return (
