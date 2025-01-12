@@ -121,7 +121,6 @@ model LinkClick {
   id         Int      @id @default(autoincrement())
   userLinkId Int
   date       DateTime @default(now())
-  count      Int      @default(1) // Number of clicks on this link for the day
   userLink   UserLink @relation(fields: [userLinkId], references: [id], onDelete: Cascade)
 
   @@index([userLinkId, date])
@@ -131,7 +130,6 @@ model ButtonClick {
   id           Int        @id @default(autoincrement())
   userButtonId Int
   date         DateTime   @default(now())
-  count        Int        @default(1) // Number of clicks on this button for the day
   userButton   UserButton @relation(fields: [userButtonId], references: [id], onDelete: Cascade)
 
   @@index([userButtonId, date])

@@ -1,12 +1,20 @@
+"use client"
+
 import { Icon } from "@iconify/react"
+import Link from "next/link"
 import { useState } from "react"
+import { trackClick } from "../services/analyticsService"
 
 export default function UserButton({ url, icon, settings, buttonId, userId }) {
 	const [isHovered, setIsHovered] = useState(false)
 
+	const handleClick = async () => {
+		await trackClick(buttonId, "button", userId)
+	}
+
 	return (
 		<li className="flex flex-row items-center justify-center">
-			<a href={url} target="_blank" rel="noopener noreferrer">
+			<Link href={url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
 				<div
 					className="flex size-10 items-center justify-center rounded-full"
 					style={{
@@ -19,7 +27,7 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 				>
 					{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
 				</div>
-			</a>
+			</Link>
 		</li>
 	)
 }
