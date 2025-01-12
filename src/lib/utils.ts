@@ -4,6 +4,40 @@ import { NextResponse } from "next/server"
 import { authOptions } from "./auth"
 import { db } from "./db"
 
+// Default settings for new accounts
+export const defaultSettings = {
+	backgroundColor: "#e7e5e5",
+	slugTextColor: "#1e1e1e",
+	slugTextWeight: "500",
+	slugTextSize: "1rem",
+	headerTextColor: "#1e1e1e",
+	linkBackgroundColor: "#ffffff",
+	linkTextColor: "#1e1e1e",
+	linkShadowColor: "#e7e5e5",
+	isLinkShadow: false,
+	linkHoverBackgroundColor: "#eeeeee",
+	linkBorderRadius: "0.5rem",
+	linkPadding: "0.5rem",
+	buttonBackgroundColor: "#ffffff",
+	buttonShadowColor: "#e7e5e5",
+	isButtonShadow: false,
+	buttonIconColor: "#1e1e1e",
+	buttonHoverBackgroundColor: "#eeeeee",
+	supportBanner: SupportBanner.NONE
+}
+
+// Helper function to format a date string
+export function formatDate(dateString: Date) {
+	const date = new Date(dateString)
+	const formattedDate = date.toLocaleDateString("en-US", {
+		year: "2-digit",
+		month: "short",
+		day: "numeric"
+	})
+
+	return formattedDate.charAt(0).toLowerCase() + formattedDate.slice(1)
+}
+
 // Helper function to generate a random slug
 export function generateSlug(base: string = "", isInitial: boolean = false, length: number = 6) {
 	const randomString = () =>
@@ -27,28 +61,6 @@ export async function getSessionOrUnauthorized() {
 	}
 
 	return { error: false, session }
-}
-
-// Default settings for new accounts
-export const defaultSettings = {
-	backgroundColor: "#e7e5e5",
-	slugTextColor: "#1e1e1e",
-	slugTextWeight: "500",
-	slugTextSize: "1rem",
-	headerTextColor: "#1e1e1e",
-	linkBackgroundColor: "#ffffff",
-	linkTextColor: "#1e1e1e",
-	linkShadowColor: "#e7e5e5",
-	isLinkShadow: false,
-	linkHoverBackgroundColor: "#eeeeee",
-	linkBorderRadius: "0.5rem",
-	linkPadding: "0.5rem",
-	buttonBackgroundColor: "#ffffff",
-	buttonShadowColor: "#e7e5e5",
-	isButtonShadow: false,
-	buttonIconColor: "#1e1e1e",
-	buttonHoverBackgroundColor: "#eeeeee",
-	supportBanner: SupportBanner.NONE
 }
 
 // Track page visits and update UserStats table
