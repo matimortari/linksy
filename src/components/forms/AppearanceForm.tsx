@@ -3,7 +3,7 @@ import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
 import { useGetSettings } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
-import { CheckboxInput, ColorInput, RadioOptions } from "./Inputs"
+import { CheckboxInput, ColorInput, RadioOptions } from "../Inputs"
 
 export default function AppearanceForm({ settings, setSettings }) {
 	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
@@ -179,7 +179,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 				/>
 			</div>
 
-			<div className="button-group">
+			<div className="input-group">
 				<button type="submit" disabled={pendingUpdate} className="btn bg-primary">
 					<Icon icon="material-symbols:update" className="icon text-xl" />
 					{pendingUpdate ? "Updating..." : "Update Appearance"}

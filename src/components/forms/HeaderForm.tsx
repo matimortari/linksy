@@ -32,14 +32,8 @@ function UpdateSlugForm({ setSlug, slug }) {
 				<label htmlFor="slug" className="text-right text-sm font-semibold text-muted-foreground">
 					Slug
 				</label>
-				<input
-					type="text"
-					value={localSlug}
-					onChange={handleSlugChange}
-					placeholder={slug || "Enter slug"}
-					className="flex-1 bg-transparent p-2 text-sm text-muted-foreground"
-				/>
-				<div className="button-group">
+				<input type="text" value={localSlug} onChange={handleSlugChange} placeholder={slug || "Enter slug"} />
+				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={pendingSlug}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
 						{pendingSlug ? "Updating..." : "Update"}
@@ -94,9 +88,8 @@ function UpdateDescriptionForm({ setDescription, description }) {
 					value={localDescription}
 					onChange={handleDescriptionChange}
 					placeholder={description || "Enter header description"}
-					className="flex-1 bg-transparent p-2 text-sm text-muted-foreground"
 				/>
-				<div className="button-group">
+				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={pendingDescription}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
 						{pendingDescription ? "Updating..." : "Update"}
