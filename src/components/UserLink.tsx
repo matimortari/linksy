@@ -1,11 +1,19 @@
+"use client"
+
+import Link from "next/link"
 import { useState } from "react"
+import { trackClick } from "../services/analyticsService"
 
 export default function UserLink({ url, title, settings, linkId, userId }) {
 	const [isHovered, setIsHovered] = useState(false)
 
+	const handleClick = async () => {
+		await trackClick(linkId, "link", userId)
+	}
+
 	return (
 		<li className="flex flex-col items-center justify-center">
-			<a href={url} target="_blank" rel="noopener noreferrer">
+			<Link href={url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
 				<div
 					className="min-w-32 max-w-72 text-center"
 					style={{
@@ -22,7 +30,7 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 						{title}
 					</p>
 				</div>
-			</a>
+			</Link>
 		</li>
 	)
 }
