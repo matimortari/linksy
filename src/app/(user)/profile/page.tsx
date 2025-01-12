@@ -14,7 +14,7 @@ export default function Profile() {
 		<div className="flex flex-row gap-4">
 			<div className="card md:w-8/12">
 				<header>
-					<h1>Profile</h1>
+					<h1>My Profile</h1>
 					<h5>
 						Welcome back, <span className="font-bold text-primary">{slug}</span>!
 					</h5>
@@ -32,21 +32,21 @@ export default function Profile() {
 					</div>
 					<hr />
 
-					<div className="flex flex-col gap-2">
+					<div className="section-container">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change the display name and description for your header.</h6>
 						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
 						<hr />
 					</div>
 
-					<div className="flex flex-col gap-2">
+					<div className="section-container">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>
 						<LinkList links={links} setLinks={setLinks} />
 						<hr />
 					</div>
 
-					<div className="flex flex-col gap-2">
+					<div className="section-container">
 						<h3>My Social Buttons</h3>
 						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
 						<ButtonList buttons={buttons} setButtons={setButtons} />
