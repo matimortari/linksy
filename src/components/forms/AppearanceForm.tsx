@@ -179,7 +179,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 				/>
 			</div>
 
-			<div className="flex flex-row items-center gap-2">
+			<div className="button-group">
 				<button type="submit" disabled={pendingUpdate} className="btn bg-primary">
 					<Icon icon="material-symbols:update" className="icon text-xl" />
 					{pendingUpdate ? "Updating..." : "Update Appearance"}

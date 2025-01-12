@@ -168,6 +168,21 @@ h6 {
 	opacity: 60;
 }
 
+/* Section container styles */
+.section-container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+/* Button group container styles */
+.button-group {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.25rem;
+}
+
 /* Button class styles */
 .btn {
 	display: inline-flex;

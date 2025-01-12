@@ -39,7 +39,7 @@ function UpdateSlugForm({ setSlug, slug }) {
 					placeholder={slug || "Enter slug"}
 					className="flex-1 bg-transparent p-2 text-sm text-muted-foreground"
 				/>
-				<div className="flex flex-row gap-2">
+				<div className="button-group">
 					<button type="submit" className="btn bg-primary" disabled={pendingSlug}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
 						{pendingSlug ? "Updating..." : "Update"}
@@ -96,7 +96,7 @@ function UpdateDescriptionForm({ setDescription, description }) {
 					placeholder={description || "Enter header description"}
 					className="flex-1 bg-transparent p-2 text-sm text-muted-foreground"
 				/>
-				<div className="flex flex-row gap-2">
+				<div className="button-group">
 					<button type="submit" className="btn bg-primary" disabled={pendingDescription}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
 						{pendingDescription ? "Updating..." : "Update"}
