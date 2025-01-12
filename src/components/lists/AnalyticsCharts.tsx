@@ -49,13 +49,14 @@ export default function AnalyticsCharts() {
 					</LineChart>
 				</ResponsiveContainer>
 			</div>
+
 			<hr />
 
 			<div className="flex flex-col justify-between gap-2 md:flex-row">
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Link Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your links over time.</h6>
-					<ResponsiveContainer width="100%" height={200} className="rounded-xl border border-muted">
+					<ResponsiveContainer width="100%" height={200} className="rounded-xl border border-border">
 						<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
 							<XAxis dataKey="date" className="text-xs" />
 							<YAxis />
@@ -68,7 +69,7 @@ export default function AnalyticsCharts() {
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Button Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your social buttons over time.</h6>
-					<ResponsiveContainer width="100%" height={200} className="rounded-xl border border-muted">
+					<ResponsiveContainer width="100%" height={200} className="rounded-xl border border-border">
 						<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
 							<XAxis dataKey="date" className="text-xs" />
 							<YAxis />

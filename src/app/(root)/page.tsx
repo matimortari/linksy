@@ -59,7 +59,7 @@ export default function Home() {
 						</p>
 					</div>
 
-					<form className="my-8 inline-flex items-center rounded-2xl border border-muted bg-card p-1 pl-3">
+					<form className="my-8 inline-flex items-center rounded-2xl border border-border bg-card p-1 pl-3">
 						<span className="hidden text-muted-foreground md:block">linksy-live.vercel.app/</span>
 						<span className="block text-muted-foreground md:hidden">@</span>
 						<input type="text" placeholder="your_name" />

@@ -35,6 +35,7 @@ input:checked + .slider:before {
 
 /* Text input & select element styling */
 input[type="text"],
+input[type="url"],
 select {
 	appearance: none;
 	background-color: transparent;
@@ -47,7 +48,7 @@ select {
 }
 
 /* URL input styling */
-input[type="url"] {
+/* input[type="url"] {
 	appearance: none;
 	background-color: transparent;
 	color: var(--muted-foreground);
@@ -58,7 +59,7 @@ input[type="url"] {
 	padding: 0.5rem;
 	font-size: 0.875rem;
 	line-height: 1.25rem;
-}
+} */
 
 /* Color picker input styling */
 input[type="color"] {

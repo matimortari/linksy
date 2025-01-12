@@ -1,15 +1,19 @@
-import { useGetButtons, useGetLinks } from "@/src/hooks/useQueries"
+"use client"
+
+import { getButtons } from "@/src/services/buttonsService"
+import { getLinks } from "@/src/services/linksService"
 import { Icon } from "@iconify/react"
 import { useQuery } from "@tanstack/react-query"
 
+// Combine links and buttons data and fetch them together
 async function getClicksByLink() {
-	const { data: userLinks } = useGetLinks()
-	const { data: userButtons } = useGetButtons()
+	const links = await getLinks()
+	const buttons = await getButtons()
 
-	// Combine links & buttons into a single array with a type identifier
+	// Combine both the links and buttons into a single array with a type identifier
 	const combinedItems = [
-		...userLinks.map((link: Link) => ({ ...link, type: "link" })),
-		...userButtons.map((button: Button) => ({ ...button, type: "button" }))
+		...links.map((link: Link) => ({ ...link, type: "link" })),
+		...buttons.map((button: Button) => ({ ...button, type: "button" }))
 	]
 
 	return combinedItems
@@ -19,24 +23,25 @@ export default function ClicksByLink() {
 	const { data } = useQuery({ queryKey: ["getClicksByLink"], queryFn: getClicksByLink })
 
 	return (
-		<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
+		<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
 			{data?.map((item) => (
-				<li key={item.url} className="card">
+				<li key={item.url} className="card gap-2">
 					{item.type === "link" ? (
-						<div className="flex flex-row items-center gap-1 pb-2">
+						<div className="flex flex-row items-center gap-1">
 							<p className="font-semibold text-muted-foreground">{item.title}</p>
 							<p className="font-semibold"> - {item.clicks} clicks</p>
 						</div>
 					) : (
-						<div className="flex flex-row items-center gap-1 pb-2">
+						<div className="flex flex-row items-center gap-1">
 							{item.icon && <Icon icon={item.icon} className="size-5 text-muted-foreground" />}
 							<p className="font-semibold text-muted-foreground">{item.platform}</p>
 							<p className="font-semibold"> - {item.clicks} clicks</p>
 						</div>
 					)}
-					<div className="flex flex-col">
-						<p className="text-xs text-muted-foreground">{item.url}</p>
-						<p className="text-xs text-muted-foreground">Created at {item.createdAt}</p>
+
+					<div className="flex flex-col gap-1">
+						<span className="text-xs text-muted-foreground">{item.url}</span>
+						<span className="text-xs text-muted-foreground">Created at {item.createdAt}</span>
 					</div>
 				</li>
 			))}
