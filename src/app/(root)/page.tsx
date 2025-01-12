@@ -1,5 +1,6 @@
 "use client"
 
+import { Carousel } from "@/src/components/carousel/Carousel"
 import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
@@ -70,10 +71,10 @@ export default function Home() {
 				</div>
 
 				<div className="order-1 md:order-2">
-					<img
-						src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-						className="mx-auto mb-24 rounded-2xl shadow-2xl"
-					/>
+					<div className="animate-expand animate-float z-50 flex w-full max-w-xl flex-col items-center justify-center">
+						<Carousel />
+					</div>
+
 					<div className="grid grid-cols-1 gap-2 px-4 md:grid-cols-2">
 						{features.map((feature, index) => (
 							<div key={index} className="card flex flex-col items-start gap-2">
