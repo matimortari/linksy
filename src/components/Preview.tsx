@@ -5,20 +5,12 @@ import Image from "next/image"
 import UserButton from "./UserButton"
 import UserLink from "./UserLink"
 
-// TODO - Update styling
 export default function Preview({ slug, description, image, settings, links, buttons }) {
 	const { data: session } = useSession()
 
-	if (!session) {
-		return <p className="text-sm text-muted-foreground">Loading...</p>
-	}
-
 	return (
-		<div
-			className="card mx-auto my-2 min-h-96 w-full overflow-hidden"
-			style={{ backgroundColor: settings?.backgroundColor }}
-		>
-			<div className="flex flex-col items-center justify-center gap-2 py-5 text-center">
+		<div className="card m-2 min-h-96 overflow-hidden" style={{ backgroundColor: settings?.backgroundColor }}>
+			<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
 				{image && <Image src={image} alt={slug} width={80} height={80} className="icon rounded-full" />}
 				<p
 					className="text-center"
@@ -46,7 +38,7 @@ export default function Preview({ slug, description, image, settings, links, but
 								icon={b.icon}
 								buttonId={b.id}
 								settings={settings}
-								userId={session.user.id}
+								userId={session?.user.id}
 							/>
 						))}
 					</ul>
@@ -63,7 +55,7 @@ export default function Preview({ slug, description, image, settings, links, but
 								title={l.title}
 								linkId={l.id}
 								settings={settings}
-								userId={session.user.id}
+								userId={session?.user.id}
 							/>
 						))}
 					</ul>

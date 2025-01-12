@@ -44,7 +44,7 @@ export default function Preferences() {
 				</main>
 			</div>
 
-			<aside className="p-4 md:w-3/12">
+			<aside className="p-4 md:w-4/12">
 				<h2>Preview</h2>
 				<Preview
 					slug={slug}

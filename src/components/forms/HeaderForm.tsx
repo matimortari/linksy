@@ -30,9 +30,9 @@ function UpdateSlugForm({ setSlug, slug }) {
 		<form className="flex max-w-xl flex-col gap-2" onSubmit={handleSlugSubmit}>
 			<div className="flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 				<label htmlFor="slug" className="text-right text-sm font-semibold text-muted-foreground">
-					Slug
+					Slug:
 				</label>
-				<input type="text" value={localSlug} onChange={handleSlugChange} placeholder={slug || "Enter slug"} />
+				<input type="text" value={localSlug} onChange={handleSlugChange} placeholder={slug} />
 				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={pendingSlug}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
@@ -81,7 +81,7 @@ function UpdateDescriptionForm({ setDescription, description }) {
 		<form className="flex max-w-xl flex-col gap-2" onSubmit={handleDescriptionSubmit}>
 			<div className="flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 				<label htmlFor="description" className="text-right text-sm font-semibold text-muted-foreground">
-					Description
+					Description:
 				</label>
 				<input
 					type="text"
@@ -111,7 +111,7 @@ function UpdateDescriptionForm({ setDescription, description }) {
 
 export default function HeaderForm({ setDescription, setSlug, slug, description }) {
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flex flex-col gap-2">
 			<UpdateSlugForm setSlug={setSlug} slug={slug} />
 			<UpdateDescriptionForm setDescription={setDescription} description={description} />
 		</div>

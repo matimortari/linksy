@@ -26,22 +26,22 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Update Link">
 			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
-				<div className="input-group">
+				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
-						Title
+						Title:
 					</label>
 					<input
 						id="title"
 						type="text"
 						value={updatedLink.title}
 						onChange={(e) => setUpdatedLink({ ...updatedLink, title: e.target.value })}
-						className="border border-border"
 						required
 					/>
 				</div>
-				<div className="input-group">
+
+				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
-						URL
+						URL:
 					</label>
 					<input
 						id="url"
