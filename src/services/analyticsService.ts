@@ -1,7 +1,17 @@
+import { formatDate } from "@/src/lib/utils"
+
 // Get user analytics data
 export const getAnalytics = async () => {
 	const res = await fetch("/api/analytics", { method: "GET" })
-	return res.json()
+	const data = await res.json()
+
+	// Format the date in each data entry
+	const formattedData = data.map((entry: { date: any }) => ({
+		...entry,
+		date: formatDate(entry.date)
+	}))
+
+	return formattedData
 }
 
 // Track clicks for a link or button

@@ -1,5 +1,6 @@
 "use client"
 
+import { formatDate } from "@/src/lib/utils"
 import { getButtons } from "@/src/services/buttonsService"
 import { getLinks } from "@/src/services/linksService"
 import { Icon } from "@iconify/react"
@@ -41,7 +42,7 @@ export default function ClicksByLink() {
 
 					<div className="flex flex-col gap-1">
 						<span className="text-xs text-muted-foreground">{item.url}</span>
-						<span className="text-xs text-muted-foreground">Created at {item.createdAt}</span>
+						<span className="text-xs text-muted-foreground">Created at {formatDate(item.createdAt)}</span>
 					</div>
 				</li>
 			))}
