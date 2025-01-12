@@ -1,6 +1,7 @@
 import UserButton from "@/src/components/UserButton"
 import UserLink from "@/src/components/UserLink"
 import { db } from "@/src/lib/db"
+import { trackPageVisit, updateClickStats } from "@/src/lib/utils"
 import Image from "next/image"
 
 export default async function UserPage({ params }: { params: { slug: string } }) {
@@ -27,11 +28,13 @@ export default async function UserPage({ params }: { params: { slug: string } })
 
 	const { description, userLinks, image, userButtons, settings, id: userId } = user
 
+	await trackPageVisit(userId)
+
+	await updateClickStats(userId)
+
 	return (
 		<div className="min-h-screen p-12" style={{ backgroundColor: settings?.backgroundColor }}>
 			<div className="flex flex-col items-center justify-center gap-3 text-center">
-				{/* {settings && settings.supportBanner !== "NONE" && <SupportBanner bannerType={settings.supportBanner} />} */}
-
 				{image && <Image src={image} alt={slug} width={100} height={100} className="icon rounded-full" />}
 				<p
 					style={{
