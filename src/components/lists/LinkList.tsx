@@ -12,7 +12,7 @@ export default function LinkList({ links, setLinks }) {
 	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
 	const [currentLink, setCurrentLink] = useState<Link | null>(null)
 
-	const { data: userLinks, refetch: refetchLinks } = useGetLinks()
+	const { data: userLinks } = useGetLinks()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
 
@@ -24,7 +24,6 @@ export default function LinkList({ links, setLinks }) {
 		updateLink(updatedLink, {
 			onSuccess: () => {
 				setLinks((prevLinks: Link[]) => prevLinks.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
-				refetchLinks()
 				setIsUpdateDialogOpen(false)
 			}
 		})
@@ -34,7 +33,6 @@ export default function LinkList({ links, setLinks }) {
 		deleteLink(id, {
 			onSuccess: () => {
 				setLinks((prevLinks: Link[]) => prevLinks.filter((l: Link) => l.id !== id))
-				refetchLinks()
 			}
 		})
 	}

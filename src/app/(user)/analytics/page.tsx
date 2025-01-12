@@ -17,8 +17,6 @@ export default function Analytics() {
 
 			<main className="flex flex-col gap-4">
 				<div className="flex flex-col gap-2">
-					<h3>Analytics Sumary</h3>
-					<h6 className="text-muted-foreground">Your Key Metrics.</h6>
 					<AnalyticsCharts />
 					<hr />
 				</div>

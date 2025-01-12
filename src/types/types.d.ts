@@ -28,6 +28,13 @@ interface Link {
 	createdAt: Date
 }
 
+interface AnalyticsData {
+	views: number
+	linkClicks: number
+	buttonClicks: number
+	date: string
+}
+
 interface Settings {
 	backgroundColor: string
 	headerTextColor: string
