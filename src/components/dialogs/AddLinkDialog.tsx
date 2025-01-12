@@ -3,10 +3,10 @@ import { useEffect, useState } from "react"
 import Dialog from "../Dialog"
 
 export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
+	const { mutate: addLink, isPending } = useAddLink()
+
 	const [title, setTitle] = useState("")
 	const [url, setUrl] = useState("")
-
-	const { mutate: addLink, isPending } = useAddLink()
 
 	// Reset form fields when dialog is opened
 	useEffect(() => {

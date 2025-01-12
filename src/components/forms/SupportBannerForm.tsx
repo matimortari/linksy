@@ -3,8 +3,9 @@ import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 
 export default function SupportBannerForm({ settings }) {
-	const [selectedOption, setSelectedOption] = useState("NONE")
 	const { mutate: updateBannerMutation, isPending } = useUpdateUserBanner()
+
+	const [selectedOption, setSelectedOption] = useState("NONE")
 
 	useEffect(() => {
 		if (settings) {

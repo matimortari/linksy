@@ -8,13 +8,13 @@ import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function LinkList({ links, setLinks }) {
-	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
-	const [currentLink, setCurrentLink] = useState<Link | null>(null)
-
 	const { data: userLinks } = useGetLinks()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
+
+	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+	const [isUpdateDialogOpen, setIsUpdateDialogOpen] = useState(false)
+	const [currentLink, setCurrentLink] = useState<Link | null>(null)
 
 	const handleAddLink = (newLink: Link) => {
 		setLinks((prevLinks: Link[]) => [...prevLinks, newLink])
