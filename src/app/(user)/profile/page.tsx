@@ -20,18 +20,17 @@ export default function Profile() {
 					</h5>
 				</header>
 
+				<div className="mt-2 flex flex-row justify-between rounded-2xl border border-border bg-muted p-4 text-foreground">
+					<div className="flex flex-col gap-1">
+						<h4 className="text-lg font-semibold">Share your Linksy Page:</h4>
+						<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
+					</div>
+					<button className="btn bg-card">Share Now</button>
+				</div>
+
 				<hr className="my-4" />
 
 				<main className="flex flex-col gap-4">
-					<div className="flex flex-row justify-between rounded-2xl border border-border bg-muted p-4 text-foreground">
-						<div className="flex flex-col gap-1">
-							<h4 className="text-lg font-semibold">Share your Linksy Page:</h4>
-							<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
-						</div>
-						<button className="btn bg-card">Share Now</button>
-					</div>
-					<hr />
-
 					<div className="section-container">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change the display name and description for your header.</h6>

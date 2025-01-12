@@ -29,9 +29,9 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
-			<form onSubmit={handleSubmit} className="flex flex-col gap-4">
+			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
 				<div className="my-2 flex flex-col space-y-2">
-					<label className="text-sm font-medium">Select Platform</label>
+					<label className="text-sm font-semibold text-muted-foreground">Select Platform</label>
 					<div className="grid grid-cols-5 gap-1 md:grid-cols-9">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 							<div
@@ -48,27 +48,27 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					</div>
 				</div>
 
-				<div>
-					<label htmlFor="url" className="block text-sm font-medium text-muted-foreground">
+				<div className="input-group">
+					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL
 					</label>
 					<input
-						type="url"
 						id="url"
+						type="url"
 						value={url}
 						onChange={(e) => setUrl(e.target.value)}
 						placeholder="Button URL"
-						className="input-field"
+						className="max-w-md"
 						required
 					/>
 				</div>
 
-				<div className="flex justify-between gap-4">
-					<button type="button" onClick={onClose} className="btn bg-secondary">
-						Cancel
-					</button>
+				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={isPending}>
 						{isPending ? "Adding..." : "Add Button"}
+					</button>
+					<button type="button" onClick={onClose} className="btn bg-secondary">
+						Cancel
 					</button>
 				</div>
 			</form>

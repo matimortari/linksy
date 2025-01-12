@@ -1,4 +1,3 @@
-import "@/src/styles/inputs.css"
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 

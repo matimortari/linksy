@@ -36,8 +36,10 @@ export default function Preferences() {
 					<div className="section-container">
 						<h3>Delete Account</h3>
 						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
-						<button className="btn bg-danger">Delete Account</button>
-						<hr />
+						<div className="input-group">
+							<button className="btn bg-danger">Delete Account</button>
+							<hr />
+						</div>
 					</div>
 				</main>
 			</div>

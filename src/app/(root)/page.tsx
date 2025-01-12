@@ -62,7 +62,7 @@ export default function Home() {
 					<form className="my-8 inline-flex items-center rounded-2xl border border-muted bg-card p-1 pl-3">
 						<span className="hidden text-muted-foreground md:block">linksy-live.vercel.app/</span>
 						<span className="block text-muted-foreground md:hidden">@</span>
-						<input type="text" placeholder="your_name" className="bg-transparent" />
+						<input type="text" placeholder="your_name" />
 						<Link href="/login" className="btn bg-primary">
 							Get Started!
 						</Link>

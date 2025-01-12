@@ -31,41 +31,40 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Link">
-			<form onSubmit={handleSubmit} className="flex flex-col gap-4">
-				<div>
-					<label htmlFor="title" className="block text-sm font-medium text-muted-foreground">
+			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
+				<div className="input-group">
+					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title
 					</label>
 					<input
-						type="text"
 						id="title"
+						type="text"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
-						className="input-field"
-						placeholder="e.g. My Portfolio"
+						className="border border-border"
 						required
 					/>
 				</div>
-				<div>
-					<label htmlFor="url" className="block text-sm font-medium text-muted-foreground">
+				<div className="input-group">
+					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL
 					</label>
 					<input
-						type="url"
 						id="url"
+						type="url"
 						value={url}
 						onChange={(e) => setUrl(e.target.value)}
-						className="input-field"
 						placeholder="Link URL"
 						required
 					/>
 				</div>
-				<div className="flex justify-between gap-4">
-					<button type="button" onClick={onClose} className="btn bg-secondary">
-						Cancel
-					</button>
+
+				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={isPending}>
 						{isPending ? "Adding..." : "Add Link"}
+					</button>
+					<button type="button" onClick={onClose} className="btn bg-secondary">
+						Cancel
 					</button>
 				</div>
 			</form>
