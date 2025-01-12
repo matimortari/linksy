@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
-import { getButtons, getLinks, getSettings, getUserData } from "../lib/apiServices"
+import { getButtons } from "../services/buttonsService"
+import { getLinks } from "../services/linksService"
+import { getSettings } from "../services/settingsService"
+import { getUserData } from "../services/userService"
 
 export function useGetUserData() {
 	return useQuery({

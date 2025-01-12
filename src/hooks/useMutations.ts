@@ -1,15 +1,7 @@
-import {
-	addButton,
-	addLink,
-	deleteButton,
-	deleteLink,
-	resetSettings,
-	updateDescription,
-	updateLink,
-	updateSettings,
-	updateSlug,
-	updateSupportBanner
-} from "@/src/lib/apiServices"
+import { addButton, deleteButton } from "@/src/services/buttonsService"
+import { addLink, deleteLink, updateLink } from "@/src/services/linksService"
+import { resetSettings, updateSettings, updateSupportBanner } from "@/src/services/settingsService"
+import { updateDescription, updateSlug } from "@/src/services/userService"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useUpdateSlug() {
