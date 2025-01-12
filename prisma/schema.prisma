@@ -113,6 +113,7 @@ model UserStats {
   buttonClicks Int      @default(0) // Total button clicks on a given date
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, date]) // Compound unique constraint
   @@index([userId, date]) // Index for faster queries by user and date
 }
 
