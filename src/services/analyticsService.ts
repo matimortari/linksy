@@ -15,8 +15,7 @@ export const getAnalytics = async () => {
 }
 
 // Track clicks for a link or button
-// TODO - Correctly type the id parameters
-export async function trackClick(id: any, type: "link" | "button", userId: any) {
+export async function trackClick(id: number, type: "link" | "button", userId: string) {
 	const res = await fetch("/api/analytics", {
 		method: "POST",
 		headers: {

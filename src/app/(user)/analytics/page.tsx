@@ -2,9 +2,10 @@
 
 import AnalyticsCharts from "@/src/components/lists/AnalyticsCharts"
 import ClicksByLink from "@/src/components/lists/ClicksByLink"
+import useAuth from "@/src/hooks/useAuth"
 
 export default function Analytics() {
-	// TODO - Add redirect for unauthenticated users
+	useAuth()
 
 	return (
 		<div className="card">
