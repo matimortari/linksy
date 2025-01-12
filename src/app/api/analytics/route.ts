@@ -17,9 +17,7 @@ export async function GET() {
 
 // POST method for processing link and button clicks
 export async function POST(req: NextRequest) {
-	const { error, response } = await getSessionOrUnauthorized()
-	if (error) return response
-
+	// Extract data from the request
 	const { type, id } = await req.json()
 
 	if (type === "link") {
