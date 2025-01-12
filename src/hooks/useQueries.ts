@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import { getAnalytics } from "../services/analyticsService"
 import { getButtons } from "../services/buttonsService"
 import { getLinks } from "../services/linksService"
 import { getSettings } from "../services/settingsService"
@@ -29,5 +30,12 @@ export function useGetSettings() {
 	return useQuery({
 		queryKey: ["settings"],
 		queryFn: getSettings
+	})
+}
+
+export function useGetAnalytics() {
+	return useQuery({
+		queryKey: ["analytics"],
+		queryFn: getAnalytics
 	})
 }
