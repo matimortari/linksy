@@ -24,18 +24,19 @@ export default function ButtonList({ buttons, setButtons }) {
 		<>
 			<ul className="flex flex-row gap-2">
 				{userButtons?.map((b: Button) => (
-					<li key={b.id} className="card relative flex flex-col gap-2">
+					<li key={b.id} className="card relative">
 						<Link href={b.url} target="_blank" rel="noopener noreferrer">
-							<Icon icon={b.icon} />
+							<Icon icon={b.icon} className="m-1 size-6" />
 						</Link>
-						<button onClick={() => handleDeleteButton(b.id)} className="absolute bottom-0 right-0 p-1 text-danger">
-							<Icon icon="mdi:remove-circle-outline" className="icon size-5" />
+
+						<button onClick={() => handleDeleteButton(b.id)} className="absolute bottom-0 right-0 p-1">
+							<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
 						</button>
 					</li>
 				))}
 			</ul>
 
-			<div>
+			<div className="input-group">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
 					Add Social Button
 				</button>
@@ -44,7 +45,7 @@ export default function ButtonList({ buttons, setButtons }) {
 			<AddButtonDialog
 				isOpen={isAddDialogOpen}
 				onClose={() => setIsAddDialogOpen(false)}
-				onAddButton={(newButton) => setButtons((prev) => [...prev, newButton])} // Update button list here
+				onAddButton={(newButton: Button) => setButtons((prev: Button[]) => [...prev, newButton])}
 			/>
 		</>
 	)

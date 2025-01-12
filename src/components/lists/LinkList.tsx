@@ -41,31 +41,35 @@ export default function LinkList({ links, setLinks }) {
 		<>
 			<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
 				{userLinks?.map((l: Link) => (
-					<li key={l.id} className="card flex flex-col gap-2">
-						<div className="flex flex-col">
-							<div className="flex flex-row gap-1">
-								<Link href={l.url} target="_blank" rel="noopener noreferrer" className="flex flex-row gap-2">
+					<li key={l.id} className="card">
+						<div className="flex flex-col gap-1">
+							<div className="flex flex-row gap-4">
+								<Link href={l.url} target="_blank" rel="noopener noreferrer">
 									{l.title}
 								</Link>
-								<button
-									onClick={() => {
-										setCurrentLink(l)
-										setIsUpdateDialogOpen(true)
-									}}
-								>
-									<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
-								</button>
-								<button onClick={() => handleDeleteLink(l.id)}>
-									<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
-								</button>
+
+								<div className="input-group">
+									<button
+										onClick={() => {
+											setCurrentLink(l)
+											setIsUpdateDialogOpen(true)
+										}}
+									>
+										<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
+									</button>
+									<button onClick={() => handleDeleteLink(l.id)}>
+										<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+									</button>
+								</div>
 							</div>
+
 							<span className="text-xs text-muted-foreground">{l.url}</span>
 						</div>
 					</li>
 				))}
 			</ul>
 
-			<div>
+			<div className="input-group">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
 					Add Link
 				</button>
@@ -77,8 +81,8 @@ export default function LinkList({ links, setLinks }) {
 				<UpdateLinkDialog
 					isOpen={isUpdateDialogOpen}
 					onClose={() => setIsUpdateDialogOpen(false)}
-					currentLink={currentLink}
 					onUpdateLink={handleUpdateLink}
+					currentLink={currentLink}
 				/>
 			)}
 		</>
