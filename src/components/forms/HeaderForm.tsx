@@ -3,8 +3,9 @@ import { Icon } from "@iconify/react"
 import { useState } from "react"
 
 function UpdateSlugForm({ setSlug, slug }) {
-	const [localSlug, setLocalSlug] = useState("")
 	const { mutate: updateSlugMutation, isPending: pendingSlug } = useUpdateSlug()
+
+	const [localSlug, setLocalSlug] = useState("")
 	const [isGeneratingSlug, setIsGeneratingSlug] = useState(false)
 
 	const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,10 +55,10 @@ function UpdateSlugForm({ setSlug, slug }) {
 }
 
 function UpdateDescriptionForm({ setDescription, description }) {
+	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
+
 	const [localDescription, setLocalDescription] = useState("")
 	const [isClearingDescription, setIsClearingDescription] = useState(false)
-
-	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
 
 	const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalDescription(e.target.value)

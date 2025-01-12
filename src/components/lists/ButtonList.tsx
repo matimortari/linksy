@@ -7,10 +7,10 @@ import AddButtonDialog from "../dialogs/AddButtonDialog"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function ButtonList({ buttons, setButtons }) {
-	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-
 	const { data: userButtons } = useGetButtons()
 	const { mutate: deleteButton } = useDeleteButton()
+
+	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
 
 	const handleDeleteButton = (id: number) => {
 		deleteButton(id, {
@@ -18,6 +18,10 @@ export default function ButtonList({ buttons, setButtons }) {
 				setButtons((prevButtons: Button[]) => prevButtons.filter((b: Button) => b.id !== id))
 			}
 		})
+	}
+
+	const handleAddButton = (newButton: Button) => {
+		setButtons((prevButtons: Button[]) => [...prevButtons, newButton])
 	}
 
 	return (
@@ -45,7 +49,7 @@ export default function ButtonList({ buttons, setButtons }) {
 			<AddButtonDialog
 				isOpen={isAddDialogOpen}
 				onClose={() => setIsAddDialogOpen(false)}
-				onAddButton={(newButton: Button) => setButtons((prev: Button[]) => [...prev, newButton])}
+				onAddButton={handleAddButton}
 			/>
 		</>
 	)

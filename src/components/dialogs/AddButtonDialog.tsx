@@ -5,11 +5,11 @@ import { useState } from "react"
 import Dialog from "../Dialog"
 
 export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
+	const { mutate: addButton, isPending } = useAddButton()
+
 	const [selectedPlatform, setSelectedPlatform] = useState<string>("")
 	const [url, setUrl] = useState<string>("")
 	const icon = selectedPlatform ? SOCIAL_ICONS[selectedPlatform] : ""
-
-	const { mutate: addButton, isPending } = useAddButton()
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
