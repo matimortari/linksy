@@ -29,7 +29,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 				<meta name="description" content={metadata.description ?? ""} />
 			</head>
 
-			<body className={inter.className}>
+			<body className={`${inter.className} p-4`}>
 				<Providers session={session}>
 					<div className="flex min-h-screen flex-col md:flex-row">
 						<aside className="p-4 md:w-2/12">

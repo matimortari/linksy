@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${inter.className}`}>
+			<body className={`${inter.className} p-4`}>
 				<Providers session={session}>
 					{children}
 					<Footer />
