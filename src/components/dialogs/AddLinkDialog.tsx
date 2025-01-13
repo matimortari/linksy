@@ -43,14 +43,7 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input
-						id="url"
-						type="url"
-						value={url}
-						onChange={(e) => setUrl(e.target.value)}
-						placeholder="Link URL"
-						required
-					/>
+					<input id="url" type="url" value={url} onChange={(e) => setUrl(e.target.value)} required />
 				</div>
 
 				<div className="input-group">

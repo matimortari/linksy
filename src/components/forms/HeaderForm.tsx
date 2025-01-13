@@ -6,7 +6,6 @@ function UpdateSlugForm({ setSlug, slug }) {
 	const { mutate: updateSlugMutation, isPending: pendingSlug } = useUpdateSlug()
 
 	const [localSlug, setLocalSlug] = useState("")
-	const [isGeneratingSlug, setIsGeneratingSlug] = useState(false)
 
 	const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalSlug(e.target.value)
@@ -14,12 +13,10 @@ function UpdateSlugForm({ setSlug, slug }) {
 	}
 
 	const handleGenerateSlug = () => {
-		setIsGeneratingSlug(true)
 		const generatedSlug = `${Math.random().toString(36).substring(7)}`
 		setLocalSlug(generatedSlug)
 		setSlug(generatedSlug)
 		updateSlugMutation(generatedSlug)
-		setIsGeneratingSlug(false)
 	}
 
 	const handleSlugSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,25 +25,33 @@ function UpdateSlugForm({ setSlug, slug }) {
 	}
 
 	return (
-		<form className="flex max-w-xl flex-col gap-2" onSubmit={handleSlugSubmit}>
-			<div className="flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
-				<label htmlFor="slug" className="text-right text-sm font-semibold text-muted-foreground">
+		<form className="flex w-full max-w-xl flex-col gap-2 overflow-x-hidden" onSubmit={handleSlugSubmit}>
+			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+				<label htmlFor="slug" className="text-sm font-semibold text-muted-foreground">
 					Slug:
 				</label>
-				<input type="text" value={localSlug} onChange={handleSlugChange} placeholder={slug} />
+				<input
+					id="slug"
+					type="text"
+					value={localSlug}
+					onChange={handleSlugChange}
+					placeholder={slug}
+					className="w-full flex-grow"
+				/>
+
 				<div className="input-group">
-					<button type="submit" className="btn bg-primary" disabled={pendingSlug}>
+					<button type="submit" className="btn w-full bg-primary sm:w-auto" disabled={pendingSlug}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
-						{pendingSlug ? "Updating..." : "Update"}
+						<span className="hidden md:block">{pendingSlug ? "Updating..." : "Update"}</span>
 					</button>
 					<button
 						type="button"
-						className="btn bg-secondary"
+						className="btn w-full bg-secondary sm:w-auto"
 						onClick={handleGenerateSlug}
-						disabled={pendingSlug || isGeneratingSlug}
+						disabled={pendingSlug}
 					>
 						<Icon icon="icon-park-outline:magic-wand" className="icon text-xl" />
-						{isGeneratingSlug ? "Generating..." : "Random"}
+						<span className="hidden md:block">{pendingSlug ? "Generating..." : "Random"}</span>
 					</button>
 				</div>
 			</div>
@@ -58,7 +63,6 @@ function UpdateDescriptionForm({ setDescription, description }) {
 	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
 
 	const [localDescription, setLocalDescription] = useState("")
-	const [isClearingDescription, setIsClearingDescription] = useState(false)
 
 	const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLocalDescription(e.target.value)
@@ -66,11 +70,9 @@ function UpdateDescriptionForm({ setDescription, description }) {
 	}
 
 	const handleDescriptionReset = () => {
-		setIsClearingDescription(true)
 		setLocalDescription("")
 		setDescription("")
 		updateDescriptionMutation("")
-		setIsClearingDescription(false)
 	}
 
 	const handleDescriptionSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -79,30 +81,33 @@ function UpdateDescriptionForm({ setDescription, description }) {
 	}
 
 	return (
-		<form className="flex max-w-xl flex-col gap-2" onSubmit={handleDescriptionSubmit}>
-			<div className="flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
-				<label htmlFor="description" className="text-right text-sm font-semibold text-muted-foreground">
+		<form className="flex w-full max-w-xl flex-col gap-2 overflow-x-hidden" onSubmit={handleDescriptionSubmit}>
+			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+				<label htmlFor="description" className="text-sm font-semibold text-muted-foreground">
 					Description:
 				</label>
 				<input
+					id="description"
 					type="text"
 					value={localDescription}
 					onChange={handleDescriptionChange}
-					placeholder={description || "Enter header description"}
+					placeholder={description}
+					className="w-full flex-grow"
 				/>
+
 				<div className="input-group">
-					<button type="submit" className="btn bg-primary" disabled={pendingDescription}>
+					<button type="submit" className="btn w-full bg-primary sm:w-auto" disabled={pendingDescription}>
 						<Icon icon="material-symbols:update" className="icon text-xl" />
-						{pendingDescription ? "Updating..." : "Update"}
+						<span className="hidden md:block">{pendingDescription ? "Updating..." : "Update"}</span>
 					</button>
 					<button
 						type="button"
-						className="btn bg-danger"
+						className="btn w-full bg-danger sm:w-auto"
 						onClick={handleDescriptionReset}
-						disabled={pendingDescription || isClearingDescription}
+						disabled={pendingDescription}
 					>
 						<Icon icon="material-symbols:delete-history" className="icon text-xl" />
-						{isClearingDescription ? "Clearing..." : "Clear"}
+						<span className="hidden md:block">{pendingDescription ? "Clearing..." : "Clear"}</span>
 					</button>
 				</div>
 			</div>
@@ -112,7 +117,7 @@ function UpdateDescriptionForm({ setDescription, description }) {
 
 export default function HeaderForm({ setDescription, setSlug, slug, description }) {
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex w-full flex-col gap-2">
 			<UpdateSlugForm setSlug={setSlug} slug={slug} />
 			<UpdateDescriptionForm setDescription={setDescription} description={description} />
 		</div>

@@ -35,7 +35,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 						<aside className="p-4 md:w-2/12">
 							<Navbar slug={slug} image={image} />
 						</aside>
-						<main className="md:w-full">{children}</main>
+						<main className="w-full">{children}</main>
 					</div>
 					<Footer />
 				</Providers>
