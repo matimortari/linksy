@@ -42,38 +42,39 @@ export default function Home() {
 	]
 
 	return (
-		<div className="card relative flex min-h-screen items-center justify-between">
-			<div className="absolute inset-x-0 bottom-0 h-2/6 opacity-50 md:h-3/6">
-				<Image src="/grid-bg.png" alt="Background" fill className="" />
+		<div className="card relative min-h-screen">
+			<div className="absolute inset-x-0 bottom-0 z-0 h-2/6 opacity-50 md:h-3/6">
+				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 
 			<Header />
 
-			<main className="z-20 grid justify-items-center py-8 md:grid-cols-2 md:gap-12">
-				<div className="order-1">
-					<div className="flex max-w-lg flex-col gap-4 text-center md:items-start md:text-start">
-						<p className={`${bowlby.className} text-5xl`}>Keep all your stuff together!</p>
-						<p className={`${bowlby.className} text-3xl`}>Your link-in-bio page 🔗</p>
-						<p>
+			<main className="relative z-10 flex flex-col items-center justify-between gap-12 md:p-8 lg:flex-row">
+				<div className="w-full space-y-4 md:w-1/2">
+					<div className="space-y-4 text-center md:text-left">
+						<h1 className={`${bowlby.className} text-3xl md:text-6xl`}>Keep all your stuff together!</h1>
+						<h2 className={`${bowlby.className} text-xl md:text-3xl`}>Your link-in-bio page 🔗</h2>
+						<p className="">
 							Welcome to <span className="font-bold">Linksy</span>! Your links, profiles, contact info, and more in one
 							place. Create and customize your page and share it with your audience.
 						</p>
 					</div>
-					<form className="my-8 inline-flex items-center rounded-2xl border border-border bg-card p-1 pl-3">
-						<span className="hidden text-muted-foreground md:block">linksy-live.vercel.app/</span>
-						<span className="block text-muted-foreground md:hidden">@</span>
-						<input type="text" placeholder="your_name" />
+
+					<form className="flex flex-row items-center rounded-2xl border border-border bg-card p-1 pl-3 text-sm text-muted-foreground md:mr-16">
+						<span className="hidden sm:inline">linksy-live.vercel.app/</span>
+						<span className="sm:hidden">@</span>
+						<input type="text" placeholder="your_name" className="w-full flex-1 bg-transparent px-1 outline-none" />
 						<Link href="/login" className="btn bg-primary">
 							Get Started!
 						</Link>
 					</form>
 
-					<div className="grid grid-cols-1 gap-2 px-4 md:grid-cols-2">
+					<div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:mr-16">
 						{features.map((feature, index) => (
-							<div key={index} className="card flex flex-col items-start gap-2">
-								<div className="flex flex-row items-center gap-2">
+							<div key={index} className="card flex flex-col space-y-2">
+								<div className="flex items-center gap-2">
 									<span className="icon rounded-full bg-muted p-2">
-										<Icon icon={feature.icon} />
+										<Icon icon={feature.icon} className="icon size-4" />
 									</span>
 									<p className="font-bold">{feature.title}</p>
 								</div>
@@ -83,8 +84,10 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="animate-expand animate-float z-50 order-2 my-12 flex w-full max-w-xl flex-col items-center justify-center">
-					<Carousel />
+				<div className="flex w-full justify-center md:w-1/2">
+					<div className="animate-expand animate-float w-full max-w-sm">
+						<Carousel />
+					</div>
 				</div>
 			</main>
 		</div>

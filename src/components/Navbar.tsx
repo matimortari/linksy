@@ -23,10 +23,10 @@ export default function Navbar({ slug, image }) {
 		<>
 			{/* Mobile Top Navbar */}
 			<div className="md:hidden">
-				<div className="flex items-center justify-between p-2 pb-4">
-					<div className="flex flex-row items-center justify-start gap-2">
+				<div className="flex w-full items-center justify-between p-2 pb-4">
+					<Link href="/" className="flex flex-row items-center justify-start gap-2">
 						<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
-					</div>
+					</Link>
 
 					<ThemeSwitch />
 
