@@ -11,7 +11,7 @@ export default function Profile() {
 		useAuth()
 
 	return (
-		<div className="flex flex-row gap-4">
+		<div className="flex flex-col gap-4 md:flex-row">
 			<div className="card md:w-8/12">
 				<header>
 					<h1>My Profile</h1>
@@ -20,12 +20,16 @@ export default function Profile() {
 					</h5>
 				</header>
 
-				<div className="mt-2 flex flex-row justify-between rounded-2xl border border-border bg-muted p-4 text-foreground">
+				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border border-border bg-muted p-2 text-foreground">
 					<div className="flex flex-col gap-1">
-						<h4 className="text-lg font-semibold">Share your Linksy Page:</h4>
+						<p className="text-base font-semibold md:text-lg">Share your Linksy Page:</p>
 						<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
 					</div>
-					<button className="btn bg-card">Share Now</button>
+					<div className="input-group">
+						<button type="submit" className="btn bg-card">
+							Share Now
+						</button>
+					</div>
 				</div>
 
 				<hr className="my-4" />
@@ -33,7 +37,7 @@ export default function Profile() {
 				<main className="flex flex-col gap-4">
 					<div className="section-container">
 						<h3>Update Header</h3>
-						<h6 className="text-muted-foreground">Change the display name and description for your header.</h6>
+						<h6 className="text-muted-foreground">Change your display name and description.</h6>
 						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
 						<hr />
 					</div>

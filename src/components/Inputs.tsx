@@ -20,7 +20,7 @@ export const RadioOptions = ({ options, name, value, onChange, label }) => (
 	<div className="my-2">
 		<p className="mb-2 font-bold">{label}</p>
 		<div className="space-y-1">
-			{options.map((option) => (
+			{options.map((option: any) => (
 				<label key={option.value} className="flex items-center space-x-2 text-xs">
 					<input type="radio" name={name} value={option.value} checked={value === option.value} onChange={onChange} />
 					<span className="font-normal">{option.label}</span>

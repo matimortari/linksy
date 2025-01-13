@@ -49,8 +49,8 @@ export default function Home() {
 
 			<Header />
 
-			<main className="z-20 grid justify-items-center gap-12 py-8 md:grid-cols-2">
-				<div className="order-2 md:order-1">
+			<main className="z-20 grid justify-items-center py-8 md:grid-cols-2 md:gap-12">
+				<div className="order-1">
 					<div className="flex max-w-lg flex-col gap-4 text-center md:items-start md:text-start">
 						<p className={`${bowlby.className} text-5xl`}>Keep all your stuff together!</p>
 						<p className={`${bowlby.className} text-3xl`}>Your link-in-bio page 🔗</p>
@@ -59,7 +59,6 @@ export default function Home() {
 							place. Create and customize your page and share it with your audience.
 						</p>
 					</div>
-
 					<form className="my-8 inline-flex items-center rounded-2xl border border-border bg-card p-1 pl-3">
 						<span className="hidden text-muted-foreground md:block">linksy-live.vercel.app/</span>
 						<span className="block text-muted-foreground md:hidden">@</span>
@@ -68,12 +67,6 @@ export default function Home() {
 							Get Started!
 						</Link>
 					</form>
-				</div>
-
-				<div className="order-1 md:order-2">
-					<div className="animate-expand animate-float z-50 flex w-full max-w-xl flex-col items-center justify-center">
-						<Carousel />
-					</div>
 
 					<div className="grid grid-cols-1 gap-2 px-4 md:grid-cols-2">
 						{features.map((feature, index) => (
@@ -88,6 +81,10 @@ export default function Home() {
 							</div>
 						))}
 					</div>
+				</div>
+
+				<div className="animate-expand animate-float z-50 order-2 my-12 flex w-full max-w-xl flex-col items-center justify-center">
+					<Carousel />
 				</div>
 			</main>
 		</div>

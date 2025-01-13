@@ -31,7 +31,9 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
 			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
 				<div className="my-2 flex flex-col space-y-2">
-					<label className="text-sm font-semibold text-muted-foreground">Select Platform:</label>
+					<label htmlFor="platform" className="text-sm font-semibold text-muted-foreground">
+						Select Platform:
+					</label>
 					<div className="grid grid-cols-5 gap-1 md:grid-cols-9">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 							<div
@@ -52,15 +54,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input
-						id="url"
-						type="url"
-						value={url}
-						onChange={(e) => setUrl(e.target.value)}
-						placeholder="Button URL"
-						className="max-w-md"
-						required
-					/>
+					<input id="url" type="url" value={url} onChange={(e) => setUrl(e.target.value)} required />
 				</div>
 
 				<div className="input-group">
