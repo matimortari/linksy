@@ -32,7 +32,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 			<body className={`${inter.className} p-4`}>
 				<Providers session={session}>
 					<div className="flex min-h-screen flex-col md:flex-row">
-						<aside className="p-4 md:w-2/12">
+						<aside className="md:w-2/12">
 							<Navbar slug={slug} image={image} />
 						</aside>
 						<main className="w-full">{children}</main>

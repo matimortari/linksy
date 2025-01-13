@@ -6,7 +6,7 @@ import ThemeSwitch from "./ThemeSwitch"
 
 const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
-function Header() {
+export default function Header() {
 	return (
 		<header className="relative flex w-full items-center justify-between">
 			<Link href="/" className="flex flex-row items-center justify-start gap-2">
@@ -16,6 +16,7 @@ function Header() {
 
 			<div className="flex flex-row items-center justify-end gap-1">
 				<ThemeSwitch />
+
 				<Link href="/login" className="btn size-12">
 					<Icon icon="material-symbols:login" width={20} height={20} className="icon" />
 				</Link>
@@ -23,5 +24,3 @@ function Header() {
 		</header>
 	)
 }
-
-export default Header

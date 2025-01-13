@@ -58,7 +58,7 @@ export default function Profile() {
 				</main>
 			</div>
 
-			<aside className="p-4 md:w-4/12">
+			<aside className="md:w-4/12">
 				<h2>Preview</h2>
 				<Preview
 					slug={slug}
