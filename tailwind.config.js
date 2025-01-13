@@ -1,12 +1,6 @@
-import daisyui from "daisyui"
-
 const config = {
 	content: ["./src/app/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],
 	darkMode: "class",
-	plugins: [daisyui],
-	daisyui: {
-		styled: false
-	},
 	theme: {
 		extend: {
 			colors: {
