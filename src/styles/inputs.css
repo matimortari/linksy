@@ -35,10 +35,12 @@ input:checked + .slider:before {
 
 /* Text input & select element styling */
 input[type="text"],
+textarea,
 input[type="url"],
 select {
 	appearance: none;
 	background-color: transparent;
+	border-color: var(--border);
 	color: var(--muted-foreground);
 	flex: 1 1 0%;
 	border-radius: 1rem;
@@ -46,20 +48,6 @@ select {
 	font-size: 0.875rem;
 	line-height: 1.25rem;
 }
-
-/* URL input styling */
-/* input[type="url"] {
-	appearance: none;
-	background-color: transparent;
-	color: var(--muted-foreground);
-	border-width: 1px;
-	border-color: var(--border);
-	flex: 1 1 0%;
-	border-radius: 1rem;
-	padding: 0.5rem;
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-} */
 
 /* Color picker input styling */
 input[type="color"] {
