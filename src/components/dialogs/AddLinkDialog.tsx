@@ -1,25 +1,31 @@
 import { useAddLink } from "@/src/hooks/useMutations"
-import { useEffect, useState } from "react"
+import { linkFormSchema } from "@/src/lib/Formvalidator"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
 import Dialog from "../Dialog"
 
 export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 	const { mutate: addLink, isPending } = useAddLink()
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<LinkFormData>({
+		resolver: zodResolver(linkFormSchema)
+	})
 
-	const [title, setTitle] = useState("")
-	const [url, setUrl] = useState("")
-
-	// Reset form fields when dialog is opened
+	// Reset form fields when dialog is opened or closed
 	useEffect(() => {
-		setTitle("")
-		setUrl("")
-	}, [isOpen])
+		if (isOpen) {
+			reset()
+		}
+	}, [isOpen, reset])
 
-	// Handle form submission by calling the addLink mutation and closing the dialog
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-
+	const onSubmit = (data: LinkFormData) => {
 		addLink(
-			{ title, url },
+			{ title: data.title, url: data.url },
 			{
 				onSuccess: (newLink) => {
 					onAddLink(newLink)
@@ -31,20 +37,24 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Link">
-			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
+			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
 				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>
-					<input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+					<input id="title" type="text" {...register("title")} className="flex-1" />
 				</div>
+
+				{errors.title && <p className="py-2 text-xs text-danger">{errors.title.message}</p>}
 
 				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input id="url" type="url" value={url} onChange={(e) => setUrl(e.target.value)} required />
+					<input id="url" type="url" {...register("url")} className="flex-1" />
 				</div>
+
+				{errors.url && <p className="py-2 text-xs text-danger">{errors.url.message}</p>}
 
 				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={isPending}>
