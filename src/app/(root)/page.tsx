@@ -49,7 +49,7 @@ export default function Home() {
 
 			<Header />
 
-			<main className="relative z-10 flex flex-col items-center justify-between gap-12 md:p-8 lg:flex-row">
+			<main className="relative z-10 flex flex-col items-center justify-between gap-12 md:flex-row md:p-8">
 				<div className="w-full space-y-4 md:w-1/2">
 					<div className="space-y-4 text-center md:text-left">
 						<h1 className={`${bowlby.className} text-3xl md:text-6xl`}>Keep all your stuff together!</h1>
