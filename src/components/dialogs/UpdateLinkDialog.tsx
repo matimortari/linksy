@@ -1,56 +1,57 @@
-import { useEffect, useState } from "react"
+import { linkFormSchema } from "@/src/lib/Formvalidator"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
 import Dialog from "../Dialog"
 
 export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdateLink }) {
-	const [updatedLink, setUpdatedLink] = useState<Link | null>(null)
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<LinkFormData>({
+		defaultValues: {
+			title: "",
+			url: ""
+		},
+		resolver: zodResolver(linkFormSchema)
+	})
 
-	// Set the form fields to the selected link values when dialog is opened
+	// Update form fields when the dialog opens and currentLink changes
 	useEffect(() => {
-		if (currentLink) {
-			setUpdatedLink(currentLink)
+		if (isOpen && currentLink) {
+			reset(currentLink)
 		}
-	}, [currentLink])
+	}, [isOpen, currentLink, reset])
 
-	// Handle form submission by calling the onUpdateLink function and closing the dialog
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-
-		if (updatedLink) {
-			onUpdateLink(updatedLink)
-			onClose()
-		}
+	const onSubmit = (data: LinkFormData) => {
+		onUpdateLink(data)
+		onClose()
 	}
 
-	if (!updatedLink) return null
+	if (!currentLink) return null
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Update Link">
-			<form onSubmit={handleSubmit} className="my-4 flex flex-col gap-4">
+			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
 				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>
-					<input
-						id="title"
-						type="text"
-						value={updatedLink.title}
-						onChange={(e) => setUpdatedLink({ ...updatedLink, title: e.target.value })}
-						required
-					/>
+					<input id="title" type="text" {...register("title")} className="flex-1" />
 				</div>
+
+				{errors.title && <p className="py-2 text-xs text-danger">{errors.title.message}</p>}
 
 				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input
-						id="url"
-						type="url"
-						value={updatedLink.url}
-						onChange={(e) => setUpdatedLink({ ...updatedLink, url: e.target.value })}
-						required
-					/>
+					<input id="url" type="url" {...register("url")} className="flex-1" />
 				</div>
+
+				{errors.url && <p className="py-2 text-xs text-danger">{errors.url.message}</p>}
 
 				<div className="input-group">
 					<button type="submit" className="btn bg-primary">

@@ -55,3 +55,37 @@ interface Settings {
 	buttonHoverBackgroundColor: string
 	supportBanner: string
 }
+
+interface ButtonFormData {
+	platform: string
+	url: string
+}
+
+interface LinkFormData {
+	title: string
+	url: string
+}
+
+interface SettingsFormValues {
+	backgroundColor: string
+	slugTextColor: string
+	headerTextColor: string
+	slugTextSize: string
+	slugTextWeight: string
+	buttonBackgroundColor: string
+	buttonIconColor: string
+	buttonHoverBackgroundColor: string
+	isButtonShadow: boolean
+	buttonShadowColor: string
+	linkBackgroundColor: string
+	linkTextColor: string
+	linkHoverBackgroundColor: string
+	isLinkShadow: boolean
+	linkShadowColor: string
+	linkBorderRadius: string
+	linkPadding: string
+}
+
+interface SupportBannerFormValues {
+	supportBanner: string
+}

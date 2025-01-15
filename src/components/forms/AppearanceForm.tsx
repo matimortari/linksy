@@ -3,179 +3,166 @@ import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
 import { useGetSettings } from "@/src/hooks/useQueries"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { CheckboxInput, ColorInput, RadioOptions } from "../Inputs"
 
 export default function AppearanceForm({ settings, setSettings }) {
 	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
-	const { mutate: resetSettingsMutation, isSuccess: successReset, isPending: pendingReset } = useResetSettings()
-	const { mutate: updateSettingsMutation, isSuccess: successUpdate, isPending: pendingUpdate } = useUpdateSettings()
+	const { mutate: resetSettingsMutation, isPending: pendingReset } = useResetSettings()
+	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()
+
+	const { control, handleSubmit, reset, watch } = useForm<SettingsFormValues>({
+		defaultValues: settings
+	})
 
 	useEffect(() => {
 		if (userSettings) {
-			setSettings(userSettings)
+			reset(userSettings)
 		}
-	}, [userSettings])
+	}, [userSettings, reset])
 
 	useEffect(() => {
-		if (successReset) {
-			setSettings(userSettings)
-			refetchSettings()
-		}
-	}, [successReset])
+		const subscription = watch((updatedSettings) => setSettings(updatedSettings))
+		return () => subscription.unsubscribe()
+	}, [setSettings, watch])
 
-	useEffect(() => {
-		if (successUpdate) {
-			refetchSettings()
-		}
-	}, [successUpdate, refetchSettings])
-
-	const handleColorChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSettings((prev: any) => ({ ...prev, [key]: e.target.value }))
+	const handleReset = () => {
+		resetSettingsMutation(undefined, {
+			onSuccess: () => {
+				refetchSettings()
+			}
+		})
 	}
 
-	const handleRadioChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSettings((prev: any) => ({ ...prev, [key]: e.target.value }))
-	}
-
-	const handleCheckboxChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSettings((prev: any) => ({ ...prev, [key]: e.target.checked }))
-	}
-
-	const handleReset = (e: { preventDefault: () => void }) => {
-		e.preventDefault()
-		resetSettingsMutation()
-	}
-
-	const handleSubmit = (e: { preventDefault: () => void }) => {
-		e.preventDefault()
-		updateSettingsMutation(settings)
+	const onSubmit = (data: SettingsFormValues) => {
+		updateSettingsMutation(data, {
+			onSuccess: () => {
+				refetchSettings()
+			}
+		})
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="flex flex-wrap">
+		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap">
 			<div className="flex w-full flex-col md:w-1/2">
 				<h4 className="my-2">General Settings</h4>
 				<hr className="max-w-xs" />
-				<ColorInput
-					id="backgroundColor"
-					label="Main Page Background Color"
-					value={settings.backgroundColor}
-					onChange={handleColorChange("backgroundColor")}
+				<Controller
+					name="backgroundColor"
+					control={control}
+					render={({ field }) => <ColorInput id="backgroundColor" label="Main Page Background Color" {...field} />}
 				/>
-				<ColorInput
-					id="slugTextColor"
-					label="Username Font Color"
-					value={settings.slugTextColor}
-					onChange={handleColorChange("slugTextColor")}
+				<Controller
+					name="slugTextColor"
+					control={control}
+					render={({ field }) => <ColorInput id="slugTextColor" label="Username Font Color" {...field} />}
 				/>
-				<ColorInput
-					id="headerTextColor"
-					label="Header Font Color"
-					value={settings.headerTextColor}
-					onChange={handleColorChange("headerTextColor")}
+				<Controller
+					name="headerTextColor"
+					control={control}
+					render={({ field }) => <ColorInput id="headerTextColor" label="Header Font Color" {...field} />}
 				/>
 				<hr className="max-w-xs" />
-				<RadioOptions
+				<Controller
 					name="slugTextSize"
-					label="Username Font Size"
-					options={SLUG_FONT_SIZES}
-					value={settings.slugTextSize}
-					onChange={handleRadioChange("slugTextSize")}
+					control={control}
+					render={({ field }) => <RadioOptions label="Username Font Size" options={SLUG_FONT_SIZES} {...field} />}
 				/>
-				<RadioOptions
+				<Controller
 					name="slugTextWeight"
-					label="Username Font Weight"
-					options={SLUG_FONT_WEIGHTS}
-					value={settings.slugTextWeight}
-					onChange={handleRadioChange("slugTextWeight")}
+					control={control}
+					render={({ field }) => <RadioOptions label="Username Font Weight" options={SLUG_FONT_WEIGHTS} {...field} />}
 				/>
 			</div>
 
 			<div className="flex w-full flex-col md:w-1/2">
 				<h4 className="my-2">Social Buttons</h4>
 				<hr className="max-w-xs" />
-				<ColorInput
-					id="buttonBackgroundColor"
-					label="Social Button Background Color"
-					value={settings.buttonBackgroundColor}
-					onChange={handleColorChange("buttonBackgroundColor")}
+				<Controller
+					name="buttonBackgroundColor"
+					control={control}
+					render={({ field }) => (
+						<ColorInput id="buttonBackgroundColor" label="Social Button Background Color" {...field} />
+					)}
 				/>
-				<ColorInput
-					id="buttonIconColor"
-					label="Social Button Icon Color"
-					value={settings.buttonIconColor}
-					onChange={handleColorChange("buttonIconColor")}
+				<Controller
+					name="buttonIconColor"
+					control={control}
+					render={({ field }) => <ColorInput id="buttonIconColor" label="Social Button Icon Color" {...field} />}
 				/>
-				<ColorInput
-					id="buttonHoverBackgroundColor"
-					label="Social Button Hover Background Color"
-					value={settings.buttonHoverBackgroundColor}
-					onChange={handleColorChange("buttonHoverBackgroundColor")}
+				<Controller
+					name="buttonHoverBackgroundColor"
+					control={control}
+					render={({ field }) => (
+						<ColorInput id="buttonHoverBackgroundColor" label="Social Button Hover Background Color" {...field} />
+					)}
 				/>
 				<hr className="max-w-xs" />
-				<CheckboxInput
-					id="isButtonShadow"
-					label="Enable Social Button Shadow"
-					checked={settings.isButtonShadow}
-					onChange={handleCheckboxChange("isButtonShadow")}
+				<Controller
+					name="isButtonShadow"
+					control={control}
+					render={({ field }) => (
+						<CheckboxInput id="isButtonShadow" label="Enable Social Button Shadow" checked={field.value} {...field} />
+					)}
 				/>
-				<ColorInput
-					id="buttonShadowColor"
-					label="Social Button Shadow Color"
-					value={settings.buttonShadowColor}
-					disabled={!settings.isButtonShadow}
-					onChange={handleColorChange("buttonShadowColor")}
+				<Controller
+					name="buttonShadowColor"
+					control={control}
+					render={({ field }) => (
+						<ColorInput
+							id="buttonShadowColor"
+							label="Social Button Shadow Color"
+							disabled={!watch("isButtonShadow")}
+							{...field}
+						/>
+					)}
 				/>
 				<hr className="max-w-xs" />
 
-				<h4 className="my-2">Link Buttons</h4>
+				<h4 className="my-2">Links</h4>
 				<hr className="max-w-xs" />
-				<ColorInput
-					id="linkBackgroundColor"
-					label="Link Button Background Color"
-					value={settings.linkBackgroundColor}
-					onChange={handleColorChange("linkBackgroundColor")}
+				<Controller
+					name="linkBackgroundColor"
+					control={control}
+					render={({ field }) => <ColorInput id="linkBackgroundColor" label="Link Background Color" {...field} />}
 				/>
-				<ColorInput
-					id="linkTextColor"
-					label="Link Button Font Color"
-					value={settings.linkTextColor}
-					onChange={handleColorChange("linkTextColor")}
+				<Controller
+					name="linkTextColor"
+					control={control}
+					render={({ field }) => <ColorInput id="linkTextColor" label="Link Font Color" {...field} />}
 				/>
-				<ColorInput
-					id="linkHoverBackgroundColor"
-					label="Link Button Hover Background Color"
-					value={settings.linkHoverBackgroundColor}
-					onChange={handleColorChange("linkHoverBackgroundColor")}
-				/>
-				<hr className="max-w-xs" />
-				<CheckboxInput
-					id="isLinkShadow"
-					label="Enable Link Button Shadow"
-					checked={settings.isLinkShadow}
-					onChange={handleCheckboxChange("isLinkShadow")}
-				/>
-				<ColorInput
-					id="linkShadowColor"
-					label="Link Button Shadow Color"
-					value={settings.linkShadowColor}
-					disabled={!settings.isLinkShadow}
-					onChange={handleColorChange("linkShadowColor")}
+				<Controller
+					name="linkHoverBackgroundColor"
+					control={control}
+					render={({ field }) => (
+						<ColorInput id="linkHoverBackgroundColor" label="Link Hover Background Color" {...field} />
+					)}
 				/>
 				<hr className="max-w-xs" />
-				<RadioOptions
+				<Controller
+					name="isLinkShadow"
+					control={control}
+					render={({ field }) => (
+						<CheckboxInput id="isLinkShadow" label="Enable Link Shadow" checked={field.value} {...field} />
+					)}
+				/>
+				<Controller
+					name="linkShadowColor"
+					control={control}
+					render={({ field }) => (
+						<ColorInput id="linkShadowColor" label="Link Shadow Color" disabled={!watch("isLinkShadow")} {...field} />
+					)}
+				/>
+				<hr className="max-w-xs" />
+				<Controller
 					name="linkBorderRadius"
-					label="Link Button Corner Radius"
-					options={RADIUS_OPTIONS}
-					value={settings.linkBorderRadius}
-					onChange={handleRadioChange("linkBorderRadius")}
+					control={control}
+					render={({ field }) => <RadioOptions label="Link Corner Radius" options={RADIUS_OPTIONS} {...field} />}
 				/>
-				<RadioOptions
+				<Controller
 					name="linkPadding"
-					label="Link Button Padding"
-					options={PADDING_OPTIONS}
-					value={settings.linkPadding}
-					onChange={handleRadioChange("linkPadding")}
+					control={control}
+					render={({ field }) => <RadioOptions label="Link Padding" options={PADDING_OPTIONS} {...field} />}
 				/>
 			</div>
 
