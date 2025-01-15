@@ -52,7 +52,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					<label htmlFor="platform" className="text-sm font-semibold text-muted-foreground">
 						Select Platform:
 					</label>
-					<div className="grid grid-cols-5 gap-1 md:grid-cols-9">
+					<div className="grid max-h-48 grid-cols-5 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9 md:overflow-visible">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 							<div
 								key={platform}
