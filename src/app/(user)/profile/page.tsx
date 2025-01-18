@@ -20,7 +20,7 @@ export default function Profile() {
 					</h5>
 				</header>
 
-				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border border-border bg-muted p-2 text-foreground">
+				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2 text-foreground">
 					<div className="flex flex-col gap-1">
 						<p className="text-base font-semibold md:text-lg">Share your Linksy Page:</p>
 						<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
@@ -35,31 +35,27 @@ export default function Profile() {
 				<hr className="my-4" />
 
 				<main className="flex flex-col gap-4">
-					<div className="section-container">
+					<div className="section-container card">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change your display name and description.</h6>
 						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
-						<hr />
 					</div>
 
-					<div className="section-container">
+					<div className="section-container card">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>
 						<LinkList links={links} setLinks={setLinks} />
-						<hr />
 					</div>
 
-					<div className="section-container">
+					<div className="section-container card">
 						<h3>My Social Buttons</h3>
 						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
 						<ButtonList buttons={buttons} setButtons={setButtons} />
-						<hr />
 					</div>
 				</main>
 			</div>
 
 			<aside className="md:w-4/12">
-				<h2>Preview</h2>
 				<Preview
 					slug={slug}
 					description={description}

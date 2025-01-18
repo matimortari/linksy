@@ -24,7 +24,7 @@ export default function SupportBannerForm({ settings }) {
 
 	return (
 		<form className="flex max-w-xs flex-row gap-2" onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+			<div className="flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
 				<Controller
 					name="supportBanner"
 					control={control}

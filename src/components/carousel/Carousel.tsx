@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react"
 import { useState } from "react"
 import CarouselPreview from "./CarouselPreview"
 
-export const Carousel = () => {
+export default function Carousel() {
 	const [currentIndex, setCurrentIndex] = useState(0)
 
 	const nextCard = () => {
@@ -20,10 +20,10 @@ export const Carousel = () => {
 		<div className="relative flex h-[500px] items-center justify-center">
 			<button
 				onClick={prevCard}
-				className="absolute -left-9 z-10 flex items-center justify-center rounded-full"
+				className="absolute -left-8 z-10 flex items-center justify-center rounded-full md:-left-4"
 				style={{ top: "50%", transform: "translateY(-50%)" }}
 			>
-				<Icon icon="ri:arrow-left-s-line" className="icon size-8 hover:text-muted" />
+				<Icon icon="ri:arrow-left-s-line" className="icon size-10 hover:text-muted" />
 			</button>
 
 			<div className="flex items-center">
@@ -32,10 +32,10 @@ export const Carousel = () => {
 
 			<button
 				onClick={nextCard}
-				className="absolute -right-9 z-10 flex items-center justify-center rounded-full"
+				className="absolute -right-8 z-10 flex items-center justify-center rounded-full md:-right-4"
 				style={{ top: "50%", transform: "translateY(-50%)" }}
 			>
-				<Icon icon="ri:arrow-right-s-line" className="icon size-8 hover:text-muted" />
+				<Icon icon="ri:arrow-right-s-line" className="icon size-10 hover:text-muted" />
 			</button>
 		</div>
 	)

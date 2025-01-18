@@ -37,7 +37,6 @@ export default async function UserPage({ params }: { params: { slug: string } })
 			<div className="flex flex-col items-center justify-center gap-3 text-center">
 				{settings && settings.supportBanner !== "NONE" && <SupportBanner bannerType={settings.supportBanner} />}
 				{image && <Image src={image} alt={slug} width={100} height={100} className="icon rounded-full" />}
-
 				<p
 					style={{
 						color: settings?.slugTextColor,
@@ -48,7 +47,6 @@ export default async function UserPage({ params }: { params: { slug: string } })
 				>
 					@{slug}
 				</p>
-
 				{description && (
 					<p style={{ color: settings?.headerTextColor }} className="max-w-lg text-center">
 						{description}

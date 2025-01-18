@@ -25,8 +25,8 @@ function UpdateSlugForm({ setSlug, slug }) {
 	}
 
 	return (
-		<form className="flex w-full max-w-xl flex-col gap-2 overflow-x-hidden" onSubmit={handleSlugSubmit}>
-			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+		<form className="flex w-full max-w-lg flex-col gap-2 overflow-x-hidden" onSubmit={handleSlugSubmit}>
+			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border p-1 pl-2">
 				<label htmlFor="slug" className="text-sm font-semibold text-muted-foreground">
 					Slug:
 				</label>
@@ -81,8 +81,8 @@ function UpdateDescriptionForm({ setDescription, description }) {
 	}
 
 	return (
-		<form className="flex w-full max-w-xl flex-col gap-2 overflow-x-hidden" onSubmit={handleDescriptionSubmit}>
-			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+		<form className="flex w-full max-w-lg flex-col gap-2 overflow-x-hidden" onSubmit={handleDescriptionSubmit}>
+			<div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border p-1 pl-2">
 				<label htmlFor="description" className="text-sm font-semibold text-muted-foreground">
 					Description:
 				</label>

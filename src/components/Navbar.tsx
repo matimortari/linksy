@@ -21,7 +21,7 @@ export default function Navbar({ slug, image }) {
 
 	return (
 		<>
-			{/* Mobile Top Navbar */}
+			{/* Top navbar for mobile */}
 			<div className="md:hidden">
 				<div className="flex w-full items-center justify-between p-2 pb-4">
 					<Link href="/" className="flex flex-row items-center justify-start gap-2">
@@ -49,7 +49,7 @@ export default function Navbar({ slug, image }) {
 				)}
 			</div>
 
-			{/* Desktop Sidebar */}
+			{/* Desktop sidebar */}
 			<div className="hidden w-44 md:fixed md:inset-y-0 md:flex md:flex-col">
 				<div className="flex flex-col gap-4">
 					<div className="mt-8 flex flex-row items-center justify-start gap-2">

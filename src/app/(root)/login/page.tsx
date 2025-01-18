@@ -25,7 +25,7 @@ export default function Login() {
 			<Header />
 
 			<main className="relative z-10 flex flex-col items-center justify-between md:p-8">
-				<div className="card gap-4 text-center">
+				<div className="card gap-4 text-center shadow-xl">
 					<div className="flex flex-col items-center gap-4 p-8">
 						<p className={`${bowlby.className} text-4xl`}>Sign In</p>
 						<p className="text-muted-foreground">Sign in with your preferred provider.</p>
@@ -35,13 +35,13 @@ export default function Login() {
 
 					<div className="flex flex-row items-center justify-center gap-4 p-8">
 						<button
-							className="flex items-center justify-center rounded-full border bg-google p-4"
+							className="flex items-center justify-center rounded-full border bg-google p-4 text-white"
 							onClick={() => signIn("google")}
 						>
 							<Icon icon="simple-icons:google" className="icon size-5" />
 						</button>
 						<button
-							className="flex items-center justify-center rounded-full border bg-github p-4"
+							className="flex items-center justify-center rounded-full border bg-github p-4 text-white"
 							onClick={() => signIn("github")}
 						>
 							<Icon icon="simple-icons:github" className="icon size-5" />
