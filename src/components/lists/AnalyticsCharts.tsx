@@ -10,27 +10,25 @@ export default function AnalyticsCharts() {
 	const conversionRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
 
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flex flex-col gap-2">
 			<h3>Analytics Summary</h3>
 			<h6 className="text-muted-foreground">Your Key Metrics.</h6>
-			<div className="flex flex-row items-center justify-between gap-2">
+			<div className="mx-12 mb-4 flex flex-col items-center justify-between gap-2 md:flex-row">
 				<div className="card flex flex-col text-center">
-					<p className="description-label">Total Page Views</p>
+					<p className="whitespace-nowrap font-semibold text-muted-foreground">Total Page Views</p>
 					<p className="text-2xl font-semibold">{totalViews}</p>
 				</div>
 
 				<div className="card flex flex-col text-center">
-					<p className="description-label">Total Link Clicks</p>
+					<p className="whitespace-nowrap font-semibold text-muted-foreground">Total Link Clicks</p>
 					<p className="text-2xl font-semibold">{totalClicks}</p>
 				</div>
 
 				<div className="card flex flex-col text-center">
-					<p className="description-label">Conversion Rate</p>
+					<p className="whitespace-nowrap font-semibold text-muted-foreground">Conversion Rate</p>
 					<p className="text-2xl font-semibold text-primary">{conversionRate}%</p>
 				</div>
 			</div>
-
-			<hr />
 
 			<div className="section-container">
 				<h3>Profile Views</h3>

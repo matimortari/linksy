@@ -67,13 +67,13 @@ export default function Navbar({ slug, image }) {
 					<div className="flex flex-col overflow-y-auto">
 						<nav className="w-full space-y-2">
 							{navLinks.map((item) => (
-								<>
-									<Link key={item.label} href={item.href} className="btn w-full">
+								<div key={item.label}>
+									<Link href={item.href} className="btn w-full">
 										<Icon icon={item.icon} className="icon size-6" />
 										{item.label}
 									</Link>
 									<hr />
-								</>
+								</div>
 							))}
 							<button onClick={async () => await signOut({ redirect: true, callbackUrl: "/" })} className="btn w-full">
 								<Icon icon="material-symbols:logout" className="icon size-6" />

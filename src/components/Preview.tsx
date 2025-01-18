@@ -1,5 +1,6 @@
 "use client"
 
+import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
@@ -38,7 +39,11 @@ export default function Preview({ slug, description, image, settings, links, but
 	return (
 		<div className="my-6 flex h-full flex-col items-center gap-2">
 			<h2 className="hidden md:block">Preview</h2>
-			<button className="btn fixed bottom-16 z-20 transform bg-primary text-lg md:hidden" onClick={togglePreview}>
+			<button
+				className={`btn fixed bottom-12 z-20 transform md:hidden ${isVisible ? "bg-card" : "bg-primary"}`}
+				onClick={togglePreview}
+			>
+				<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} className="icon" />
 				{isVisible ? "Close Preview" : "Preview"}
 			</button>
 

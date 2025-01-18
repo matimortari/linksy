@@ -20,7 +20,7 @@ export default function Carousel() {
 		<div className="relative flex h-[500px] items-center justify-center">
 			<button
 				onClick={prevCard}
-				className="absolute -left-8 z-10 flex items-center justify-center rounded-full md:-left-4"
+				className="absolute -left-2 z-10 flex items-center justify-center rounded-full"
 				style={{ top: "50%", transform: "translateY(-50%)" }}
 			>
 				<Icon icon="ri:arrow-left-s-line" className="icon size-10 hover:text-muted" />
@@ -32,7 +32,7 @@ export default function Carousel() {
 
 			<button
 				onClick={nextCard}
-				className="absolute -right-8 z-10 flex items-center justify-center rounded-full md:-right-4"
+				className="absolute -right-2 z-10 flex items-center justify-center rounded-full"
 				style={{ top: "50%", transform: "translateY(-50%)" }}
 			>
 				<Icon icon="ri:arrow-right-s-line" className="icon size-10 hover:text-muted" />

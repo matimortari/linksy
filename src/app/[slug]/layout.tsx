@@ -17,7 +17,7 @@ export default async function SlugLayout({ children }: { children: ReactNode }) 
 	}
 
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<title>{String(metadata.title)}</title>
 				<meta name="description" content={metadata.description ?? ""} />
