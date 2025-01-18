@@ -42,8 +42,8 @@ export default function Home() {
 	]
 
 	return (
-		<div className="card relative min-h-screen">
-			<div className="absolute inset-x-0 bottom-0 z-0 h-2/6 opacity-50 md:h-3/6">
+		<div className="relative min-h-screen">
+			<div className="absolute inset-x-0 bottom-0 z-0 h-3/6 opacity-20 md:h-3/6">
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 

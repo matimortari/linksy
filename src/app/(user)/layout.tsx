@@ -29,9 +29,9 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 				<meta name="description" content={metadata.description ?? ""} />
 			</head>
 
-			<body className={`${inter.className} p-4`}>
+			<body className={`${inter.className}`}>
 				<Providers session={session}>
-					<div className="flex min-h-screen flex-col md:flex-row">
+					<div className="flex min-h-screen flex-col px-4 pt-4 md:flex-row">
 						<aside className="md:w-2/12">
 							<Navbar slug={slug} image={image} />
 						</aside>

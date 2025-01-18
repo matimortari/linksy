@@ -20,13 +20,13 @@ export default function Profile() {
 					</h5>
 				</header>
 
-				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2 text-foreground">
+				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
 					<div className="flex flex-col gap-1">
-						<p className="text-base font-semibold md:text-lg">Share your Linksy Page:</p>
+						<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
 						<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
 					</div>
 					<div className="input-group">
-						<button type="submit" className="btn bg-card">
+						<button type="submit" className="btn bg-card text-foreground">
 							Share Now
 						</button>
 					</div>
