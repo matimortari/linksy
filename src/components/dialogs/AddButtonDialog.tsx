@@ -57,7 +57,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 							<div
 								key={platform}
 								onClick={() => setValue("platform", platform)}
-								className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border border-border p-2 ${
+								className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border p-2 ${
 									selectedPlatform === platform ? "bg-secondary" : "bg-transparent"
 								} hover:bg-secondary`}
 							>
@@ -69,7 +69,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					{errors.platform && <p className="py-2 text-xs text-danger">{errors.platform.message}</p>}
 				</div>
 
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border border-border p-1 pl-2">
+				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
