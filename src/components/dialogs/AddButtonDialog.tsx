@@ -1,6 +1,6 @@
 import { SOCIAL_ICONS } from "@/src/data/formConfig"
 import { useAddButton } from "@/src/hooks/useMutations"
-import { buttonFormSchema } from "@/src/lib/Formvalidator"
+import { buttonFormSchema } from "@/src/lib/formSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
