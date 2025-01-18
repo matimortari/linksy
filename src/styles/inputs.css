@@ -35,8 +35,8 @@ input:checked + .slider:before {
 
 /* Text input & select element styling */
 input[type="text"],
-textarea,
 input[type="url"],
+textarea,
 select {
 	appearance: none;
 	background-color: transparent;

@@ -1,6 +1,6 @@
 "use client"
 
-import { Carousel } from "@/src/components/carousel/Carousel"
+import Carousel from "@/src/components/carousel/Carousel"
 import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
@@ -49,27 +49,38 @@ export default function Home() {
 
 			<Header />
 
-			<main className="relative z-10 flex flex-col items-center justify-between gap-12 md:flex-row md:p-8">
-				<div className="w-full space-y-4 md:w-1/2">
-					<div className="space-y-4 text-center md:text-left">
-						<h1 className={`${bowlby.className} text-3xl md:text-6xl`}>Keep all your stuff together!</h1>
-						<h2 className={`${bowlby.className} text-xl md:text-3xl`}>Your link-in-bio page 🔗</h2>
-						<p className="">
-							Welcome to <span className="font-bold">Linksy</span>! Your links, profiles, contact info, and more in one
-							place. Create and customize your page and share it with your audience.
-						</p>
-					</div>
+			<main className="relative z-10 flex flex-col items-center gap-4 px-4 md:px-8 md:pb-8">
+				<div className="flex w-full flex-col md:flex-row md:gap-4">
+					<section className="flex flex-col md:w-1/2">
+						<div className="my-8 max-w-md space-y-4 text-center md:text-left">
+							<h4 className="text-accent">Your link-in-bio page 🔗</h4>
+							<h1 className={`${bowlby.className} text-3xl md:text-5xl`}>Keep all your stuff together!</h1>
+							<p>
+								Welcome to <span className="font-bold">Linksy</span>! Your links, profiles, contact info, and more in
+								one place. Create and customize your page and share it with your audience.
+							</p>
+						</div>
+						<div className="flex max-w-md flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground">
+							<span className="hidden sm:inline">linksy-live.vercel.app/</span>
+							<span className="sm:hidden">@</span>
+							<input type="text" placeholder="your_name" className="w-full flex-1 bg-transparent px-1 outline-none" />
+							<Link href="/login" className="btn bg-primary">
+								Get Started!
+							</Link>
+						</div>
+					</section>
 
-					<form className="flex flex-row items-center rounded-2xl border border-border bg-card p-1 pl-3 text-sm text-muted-foreground md:mr-16">
-						<span className="hidden sm:inline">linksy-live.vercel.app/</span>
-						<span className="sm:hidden">@</span>
-						<input type="text" placeholder="your_name" className="w-full flex-1 bg-transparent px-1 outline-none" />
-						<Link href="/login" className="btn bg-primary">
-							Get Started!
-						</Link>
-					</form>
+					<section className="flex w-full justify-center md:w-1/2">
+						<div className="animate-expand animate-float w-full max-w-sm">
+							<Carousel />
+						</div>
+					</section>
+				</div>
 
-					<div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:mr-16">
+				<section>
+					<h2 className="m-4">Features</h2>
+
+					<div className="grid grid-cols-1 gap-2 md:grid-cols-4">
 						{features.map((feature, index) => (
 							<div key={index} className="card flex flex-col space-y-2">
 								<div className="flex items-center gap-2">
@@ -82,13 +93,7 @@ export default function Home() {
 							</div>
 						))}
 					</div>
-				</div>
-
-				<div className="flex w-full justify-center md:w-1/2">
-					<div className="animate-expand animate-float w-full max-w-sm">
-						<Carousel />
-					</div>
-				</div>
+				</section>
 			</main>
 		</div>
 	)

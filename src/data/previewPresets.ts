@@ -46,8 +46,7 @@ export const previewPresets = [
 		links: [
 			{ id: 1, title: "Innovative Solutions" },
 			{ id: 2, title: "Our Story" },
-			{ id: 3, title: "Join Our Team" },
-			{ id: 4, title: "Contact Us" }
+			{ id: 3, title: "Contact Us" }
 		],
 		settings: {
 			backgroundColor: "#272525",
