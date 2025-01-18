@@ -6,13 +6,13 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
-				onClose() // Close dialog on Escape key press
+				onClose()
 			}
 		}
 
 		const handleClickOutside = (e: MouseEvent) => {
 			if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
-				onClose() // Close dialog on outside click
+				onClose()
 			}
 		}
 
@@ -26,7 +26,7 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 		}
 
 		return () => {
-			document.body.style.overflow = "" // Ensure scrolling is restored on cleanup
+			document.body.style.overflow = ""
 			window.removeEventListener("keydown", handleKeyDown)
 			document.removeEventListener("mousedown", handleClickOutside)
 		}
@@ -35,7 +35,7 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 	if (!isOpen) return null
 
 	return (
-		<div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+		<div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
 			<div ref={dialogRef} className="popover m-12 min-w-96 max-w-full">
 				{title && <h2 className="font-bold">{title}</h2>}
 				<div>{children}</div>
