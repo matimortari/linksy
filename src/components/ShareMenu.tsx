@@ -37,18 +37,18 @@ export default function ShareMenu({ isOpen, slug, onClose }) {
 	return (
 		<>
 			{isOpen && (
-				<div className="animate-slide-in popover absolute right-0 top-full w-52">
-					<ul className="text-sm">
-						<li className="cursor-pointer rounded-2xl p-2 hover:bg-muted" onClick={handleCopyLink}>
+				<div className="animate-slide-in popover absolute right-0 top-full">
+					<div className="flex flex-col items-start gap-2 text-xs font-semibold">
+						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleCopyLink}>
 							Copy Link
-						</li>
-						<li className="cursor-pointer rounded-2xl p-2 hover:bg-muted" onClick={handleShareTwitter}>
+						</button>
+						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleShareTwitter}>
 							Share on X
-						</li>
-						<li className="cursor-pointer rounded-2xl p-2 hover:bg-muted" onClick={handleQRCode}>
+						</button>
+						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleQRCode}>
 							Get QR Code
-						</li>
-					</ul>
+						</button>
+					</div>
 				</div>
 			)}
 

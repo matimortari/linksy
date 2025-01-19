@@ -17,11 +17,11 @@ export default function Analytics() {
 			<hr className="my-4" />
 
 			<main className="flex flex-col gap-4">
-				<div className="section-container card">
+				<div className="section-container">
 					<AnalyticsCharts />
 				</div>
 
-				<div className="section-container card">
+				<div className="section-container">
 					<h3>Clicks By Link</h3>
 					<h6 className="text-muted-foreground">Your most visited links & social buttons.</h6>
 					<ClicksByLink />

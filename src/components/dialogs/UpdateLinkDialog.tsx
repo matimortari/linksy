@@ -18,7 +18,6 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 		resolver: zodResolver(linkFormSchema)
 	})
 
-	// Update form fields when the dialog opens and currentLink changes
 	useEffect(() => {
 		if (isOpen && currentLink) {
 			reset(currentLink)
@@ -26,7 +25,8 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 	}, [isOpen, currentLink, reset])
 
 	const onSubmit = (data: LinkFormData) => {
-		onUpdateLink(data)
+		const updatedLink = { ...data, id: currentLink.id }
+		onUpdateLink(updatedLink)
 		onClose()
 	}
 
@@ -35,7 +35,7 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Update Link">
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
+				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>

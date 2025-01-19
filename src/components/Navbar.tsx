@@ -72,7 +72,6 @@ export default function Navbar({ slug, image }) {
 										<Icon icon={item.icon} className="icon size-6" />
 										{item.label}
 									</Link>
-									<hr />
 								</div>
 							))}
 							<button onClick={async () => await signOut({ redirect: true, callbackUrl: "/" })} className="btn w-full">

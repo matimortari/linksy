@@ -1,31 +1,15 @@
 "use client"
 
+import { useGetClicksByLink } from "@/src/hooks/useQueries"
 import { formatDate } from "@/src/lib/utils"
-import { getButtons } from "@/src/services/buttonsService"
-import { getLinks } from "@/src/services/linksService"
 import { Icon } from "@iconify/react"
-import { useQuery } from "@tanstack/react-query"
-
-// Combine links and buttons data and fetch them together
-async function getClicksByLink() {
-	const links = await getLinks()
-	const buttons = await getButtons()
-
-	// Combine both the links and buttons into a single array with a type identifier
-	const combinedItems = [
-		...links.map((link: Link) => ({ ...link, type: "link" })),
-		...buttons.map((button: Button) => ({ ...button, type: "button" }))
-	]
-
-	return combinedItems
-}
 
 export default function ClicksByLink() {
-	const { data } = useQuery({ queryKey: ["getClicksByLink"], queryFn: getClicksByLink })
+	const { data: items } = useGetClicksByLink()
 
 	return (
 		<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
-			{data?.map((item) => (
+			{items?.map((item) => (
 				<li key={item.url} className="card gap-2">
 					{item.type === "link" ? (
 						<div className="flex flex-row items-center gap-1">

@@ -11,10 +11,7 @@ export function useUpdateSlug() {
 		mutationKey: ["updateSlug"],
 		mutationFn: updateSlug,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["user"] })
-		},
-		onError: (error) => {
-			console.error("Error updating slug:", error)
+			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
 		}
 	})
 }
@@ -26,10 +23,7 @@ export function useUpdateDescription() {
 		mutationKey: ["updateDescription"],
 		mutationFn: updateDescription,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["user"] })
-		},
-		onError: (error) => {
-			console.error("Error updating description:", error)
+			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
 		}
 	})
 }
@@ -41,10 +35,7 @@ export function useAddLink() {
 		mutationKey: ["addLink"],
 		mutationFn: addLink,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["links"] })
-		},
-		onError: (error) => {
-			console.error("Error adding link:", error)
+			queryClient.invalidateQueries({ queryKey: ["getLinks"] })
 		}
 	})
 }
@@ -56,10 +47,7 @@ export function useUpdateLink() {
 		mutationKey: ["updateLink"],
 		mutationFn: updateLink,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["links"] })
-		},
-		onError: (error) => {
-			console.error("Error updating link:", error)
+			queryClient.invalidateQueries({ queryKey: ["getLinks"] })
 		}
 	})
 }
@@ -71,10 +59,7 @@ export function useDeleteLink() {
 		mutationKey: ["deleteLink"],
 		mutationFn: (id: number) => deleteLink(id),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["links"] })
-		},
-		onError: (error) => {
-			console.error("Error deleting link:", error)
+			queryClient.invalidateQueries({ queryKey: ["getLinks"] })
 		}
 	})
 }
@@ -86,10 +71,7 @@ export function useAddButton() {
 		mutationKey: ["addButton"],
 		mutationFn: addButton,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["buttons"] })
-		},
-		onError: (error) => {
-			console.error("Error adding button:", error)
+			queryClient.invalidateQueries({ queryKey: ["getButtons"] })
 		}
 	})
 }
@@ -101,10 +83,7 @@ export function useDeleteButton() {
 		mutationKey: ["deleteButton"],
 		mutationFn: (id: number) => deleteButton(id),
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["buttons"] })
-		},
-		onError: (error) => {
-			console.error("Error deleting button:", error)
+			queryClient.invalidateQueries({ queryKey: ["getButtons"] })
 		}
 	})
 }
@@ -116,10 +95,7 @@ export function useUpdateSettings() {
 		mutationKey: ["updateSettings"],
 		mutationFn: updateSettings,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["settings"] })
-		},
-		onError: (error) => {
-			console.error("Error updating settings:", error)
+			queryClient.invalidateQueries({ queryKey: ["getSettings"] })
 		}
 	})
 }
@@ -130,27 +106,20 @@ export function useResetSettings() {
 	return useMutation({
 		mutationKey: ["resetSettings"],
 		mutationFn: resetSettings,
-		onSuccess: (data) => {
-			queryClient.invalidateQueries({ queryKey: ["settings"] })
-			return data.settings
-		},
-		onError: (error) => {
-			console.error("Error resetting settings:", error)
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["getSettings"] })
 		}
 	})
 }
 
-export function useUpdateUserBanner() {
+export function useUpdateSupportBanner() {
 	const queryClient = useQueryClient()
 
 	return useMutation({
 		mutationKey: ["updateSupportBanner"],
 		mutationFn: updateSupportBanner,
 		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ["settings"] })
-		},
-		onError: (error) => {
-			console.error("Error updating support banner:", error)
+			queryClient.invalidateQueries({ queryKey: ["getSettings"] })
 		}
 	})
 }
