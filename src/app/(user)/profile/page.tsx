@@ -4,11 +4,24 @@ import HeaderForm from "@/src/components/forms/HeaderForm"
 import ButtonList from "@/src/components/lists/ButtonList"
 import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
+import ShareMenu from "@/src/components/ShareMenu"
 import useAuth from "@/src/hooks/useAuth"
+import Link from "next/link"
+import { useState } from "react"
 
 export default function Profile() {
 	const { slug, setSlug, description, setDescription, image, settings, links, buttons, setLinks, setButtons } =
 		useAuth()
+
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+	const toggleDropdown = () => {
+		setIsDropdownOpen((prev) => !prev)
+	}
+
+	const closeDropdown = () => {
+		setIsDropdownOpen(false)
+	}
 
 	return (
 		<div className="flex flex-col gap-4 md:flex-row">
@@ -20,16 +33,20 @@ export default function Profile() {
 					</h5>
 				</header>
 
-				<div className="mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
+				<div className="relative mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
 					<div className="flex flex-col gap-1">
 						<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
-						<p className="truncate text-xs font-medium">Linksy.vercel.app/{slug}</p>
+						<Link href={`/${slug}`} className="truncate text-xs font-medium">
+							linksy-live.vercel.app/{slug}
+						</Link>
 					</div>
 					<div className="input-group">
-						<button type="submit" className="btn bg-card text-foreground">
+						<button type="button" className="btn bg-card text-foreground" onClick={toggleDropdown}>
 							Share Now
 						</button>
 					</div>
+
+					<ShareMenu isOpen={isDropdownOpen} onClose={closeDropdown} slug={slug} />
 				</div>
 
 				<hr className="my-4" />
