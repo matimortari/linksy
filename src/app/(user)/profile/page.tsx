@@ -52,19 +52,19 @@ export default function Profile() {
 				<hr className="my-4" />
 
 				<main className="flex flex-col gap-4">
-					<div className="section-container card">
+					<div className="section-container">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change your display name and description.</h6>
 						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
 					</div>
 
-					<div className="section-container card">
+					<div className="section-container">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>
 						<LinkList links={links} setLinks={setLinks} />
 					</div>
 
-					<div className="section-container card">
+					<div className="section-container">
 						<h3>My Social Buttons</h3>
 						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
 						<ButtonList buttons={buttons} setButtons={setButtons} />

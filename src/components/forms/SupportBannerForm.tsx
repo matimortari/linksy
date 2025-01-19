@@ -1,10 +1,10 @@
-import { useUpdateUserBanner } from "@/src/hooks/useMutations"
+import { useUpdateSupportBanner } from "@/src/hooks/useMutations"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 export default function SupportBannerForm({ settings }) {
-	const { mutate: updateBannerMutation, isPending } = useUpdateUserBanner()
+	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
 
 	const { control, handleSubmit, reset } = useForm<SupportBannerFormValues>({
 		defaultValues: {
@@ -24,7 +24,7 @@ export default function SupportBannerForm({ settings }) {
 
 	return (
 		<form className="flex max-w-xs flex-row gap-2" onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
+			<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 				<Controller
 					name="supportBanner"
 					control={control}

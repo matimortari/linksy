@@ -30,27 +30,23 @@ export default function AnalyticsCharts() {
 				</div>
 			</div>
 
-			<div className="section-container">
-				<h3>Profile Views</h3>
-				<h6 className="text-muted-foreground">Total views of your profile page over time.</h6>
-				<ResponsiveContainer width="100%" height={200}>
-					<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="date" className="text-xs" />
-						<YAxis />
-						<Tooltip />
-						<Line type="monotone" dataKey="views" stroke="#41a490" activeDot={{ r: 8 }} />
-					</LineChart>
-				</ResponsiveContainer>
-			</div>
-
-			<hr />
+			<h3>Profile Views</h3>
+			<h6 className="text-muted-foreground">Total views of your profile page over time.</h6>
+			<ResponsiveContainer width="100%" height={200} className="card">
+				<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis dataKey="date" className="text-xs" />
+					<YAxis />
+					<Tooltip />
+					<Line type="monotone" dataKey="views" stroke="#41a490" activeDot={{ r: 8 }} />
+				</LineChart>
+			</ResponsiveContainer>
 
 			<div className="flex flex-col justify-between gap-2 md:flex-row">
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Link Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your links over time.</h6>
-					<ResponsiveContainer width="100%" height={200}>
+					<ResponsiveContainer width="100%" height={200} className="card">
 						<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
 							<XAxis dataKey="date" className="text-xs" />
 							<YAxis />
@@ -63,7 +59,7 @@ export default function AnalyticsCharts() {
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Button Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your social buttons over time.</h6>
-					<ResponsiveContainer width="100%" height={200}>
+					<ResponsiveContainer width="100%" height={200} className="card">
 						<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
 							<XAxis dataKey="date" className="text-xs" />
 							<YAxis />

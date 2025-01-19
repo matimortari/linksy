@@ -1,11 +1,12 @@
 import { formatDate } from "@/src/lib/utils"
+import { getButtons } from "@/src/services/buttonsService"
+import { getLinks } from "@/src/services/linksService"
 
 // Get user analytics data
 export const getAnalytics = async () => {
 	const res = await fetch("/api/analytics", { method: "GET" })
 	const data = await res.json()
 
-	// Format the date in each data entry
 	const formattedData = data.map((entry: { date: any }) => ({
 		...entry,
 		date: formatDate(entry.date)
@@ -26,31 +27,16 @@ export async function trackClick(id: number, type: "link" | "button", userId: st
 	return res.json()
 }
 
-// Track visits to a user's page
-// export async function trackPageVisit(slug: string) {
-// 	const user = await db.user.findUnique({
-// 		where: { slug },
-// 		include: { userStats: true }
-// 	})
+// Combine links and buttons data and fetch them together for analytics view
+export async function getClicksByLink() {
+	const links = await getLinks()
+	const buttons = await getButtons()
 
-// 	if (!user) return
+	// Combine both the links and buttons into a single array with a type identifier
+	const combinedItems = [
+		...links.map((link: Link) => ({ ...link, type: "link" })),
+		...buttons.map((button: Button) => ({ ...button, type: "button" }))
+	]
 
-// 	const today = new Date().toISOString().split("T")[0]
-
-// 	const stats =
-// 		user.userStats.find((stat) => stat.date.toISOString().split("T")[0] === today) ||
-// 		(await db.userStats.create({
-// 			data: {
-// 				userId: user.id,
-// 				date: new Date(),
-// 				views: 0,
-// 				linkClicks: 0,
-// 				buttonClicks: 0
-// 			}
-// 		}))
-
-// 	await db.userStats.update({
-// 		where: { id: stats.id },
-// 		data: { views: stats.views + 1 }
-// 	})
-// }
+	return combinedItems
+}

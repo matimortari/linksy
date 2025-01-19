@@ -38,7 +38,7 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Link">
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
+				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>

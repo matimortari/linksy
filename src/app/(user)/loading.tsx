@@ -1,4 +1,3 @@
-import "@/src/styles/animations.css"
 import Image from "next/image"
 
 export default function Loading() {

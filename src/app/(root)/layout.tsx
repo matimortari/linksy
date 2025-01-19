@@ -1,7 +1,6 @@
 import Providers from "@/src/components/context/Providers"
 import Footer from "@/src/components/Footer"
 import { authOptions } from "@/src/lib/auth"
-import "@/src/styles/animations.css"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
 import type { Metadata } from "next"

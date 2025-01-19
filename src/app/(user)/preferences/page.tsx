@@ -19,19 +19,19 @@ export default function Preferences() {
 				<hr className="my-4" />
 
 				<main className="flex flex-col gap-4">
-					<div className="section-container card">
+					<div className="section-container">
 						<h3>Appearance</h3>
 						<h6 className="text-muted-foreground">Customize the Appearance for Your Page.</h6>
 						<AppearanceForm settings={settings} setSettings={setSettings} />
 					</div>
 
-					<div className="section-container card">
+					<div className="section-container">
 						<h3>Support Banner</h3>
 						<h6 className="text-muted-foreground">Show Your Support for Important Causes.</h6>
 						<SupportBannerForm settings={settings} />
 					</div>
 
-					<div className="section-container card border-danger">
+					<div className="section-container border-danger">
 						<h3>Delete Account</h3>
 						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
 						<div className="input-group">

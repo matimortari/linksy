@@ -71,7 +71,7 @@ export default function Home() {
 					</section>
 
 					<section className="flex w-full justify-center md:w-1/3">
-						<div className="animate-expand animate-float w-full max-w-sm">
+						<div className="animate-expand-float w-full max-w-sm">
 							<Carousel />
 						</div>
 					</section>

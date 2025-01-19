@@ -146,6 +146,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		padding: 1rem;
+		background-color: var(--background);
+		color: var(--card-foreground);
+		border-radius: 1rem;
+		border-width: 1px;
+		border-color: var(--border);
 	}
 
 	.input-group {
@@ -245,4 +251,77 @@
 
 .banner.climate-action {
 	background-color: #287445;
+}
+
+/* Keyframe animation for sliding in an element */
+@keyframes dialogSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-slide-in {
+	animation: dialogSlideIn 0.3s ease-out;
+}
+
+/* Keyframe animation for expanding and moving an element */
+@keyframes expandFloat {
+	0% {
+		transform: scale(0.5) translateX(-120px);
+		opacity: 0;
+	}
+
+	50% {
+		transform: scale(1.1) translateX(0px);
+		opacity: 1;
+	}
+
+	60% {
+		transform: translate(0, 12px);
+	}
+
+	100% {
+		transform: scale(1) translateX(0px) translate(0, 0px);
+		opacity: 1;
+	}
+}
+
+.animate-expand-float {
+	animation: expandFloat 2s ease-in-out forwards, float 5s ease-in-out infinite;
+}
+
+/* Keyframe animation for spinning effect */
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.animate-spin {
+	animation: spin 8s linear infinite;
+	position: relative;
+}
+
+/* Keyframe animation for reverse spinning effect */
+@keyframes spin-reverse {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+.animate-spin-reverse {
+	animation: spin-reverse 12s linear infinite;
+	position: absolute;
+	transform: translate(-50%, -50%);
 }
