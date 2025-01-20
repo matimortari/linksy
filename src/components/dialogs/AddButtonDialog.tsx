@@ -9,14 +9,7 @@ import Dialog from "../Dialog"
 
 export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 	const { mutate: addButton, isPending } = useAddButton()
-	const {
-		register,
-		handleSubmit,
-		watch,
-		setValue,
-		reset,
-		formState: { errors }
-	} = useForm<ButtonFormData>({
+	const { register, handleSubmit, watch, setValue, reset } = useForm<ButtonFormData>({
 		resolver: zodResolver(buttonFormSchema),
 		defaultValues: {
 			platform: "",
@@ -66,7 +59,6 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 							</div>
 						))}
 					</div>
-					{errors.platform && <p className="py-2 text-xs text-danger">{errors.platform.message}</p>}
 				</div>
 
 				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
@@ -75,7 +67,6 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					</label>
 					<input id="url" type="url" {...register("url")} className="flex-1" />
 				</div>
-				{errors.url && <p className="py-2 text-xs text-danger">{errors.url.message}</p>}
 
 				<div className="input-group">
 					<button type="submit" className="btn bg-primary" disabled={isPending}>

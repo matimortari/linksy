@@ -1,5 +1,3 @@
-"use client"
-
 import { useGetClicksByLink } from "@/src/hooks/useQueries"
 import { formatDate } from "@/src/lib/utils"
 import { Icon } from "@iconify/react"

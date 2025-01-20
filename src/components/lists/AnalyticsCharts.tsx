@@ -6,7 +6,6 @@ export default function AnalyticsCharts() {
 
 	const totalViews = stats.reduce((sum: any, entry: any) => sum + entry.views, 0)
 	const totalClicks = stats.reduce((sum: any, entry: any) => sum + entry.linkClicks + entry.buttonClicks, 0)
-
 	const conversionRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
 
 	return (

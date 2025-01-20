@@ -27,11 +27,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 	}, [setSettings, watch])
 
 	const handleReset = () => {
-		resetSettingsMutation(undefined, {
-			onSuccess: () => {
-				refetchSettings()
-			}
-		})
+		resetSettingsMutation()
 	}
 
 	const onSubmit = (data: SettingsFormValues) => {
