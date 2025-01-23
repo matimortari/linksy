@@ -33,9 +33,14 @@ export default function ButtonList({ buttons, setButtons }) {
 							<Icon icon={b.icon} className="m-1 size-6" />
 						</Link>
 
-						<button onClick={() => handleDeleteButton(b.id)} className="absolute bottom-0 right-0 p-1">
-							<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
-						</button>
+						{b.id !== undefined && (
+							<button
+								onClick={() => b.id !== undefined && handleDeleteButton(b.id)}
+								className="absolute bottom-0 right-0 p-1"
+							>
+								<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+							</button>
+						)}
 					</li>
 				))}
 			</ul>

@@ -11,7 +11,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 	const { mutate: resetSettingsMutation, isPending: pendingReset } = useResetSettings()
 	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()
 
-	const { control, handleSubmit, reset, watch } = useForm<SettingsFormValues>({
+	const { control, handleSubmit, reset, watch } = useForm<SettingsFormData>({
 		defaultValues: settings
 	})
 
@@ -30,7 +30,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 		resetSettingsMutation()
 	}
 
-	const onSubmit = (data: SettingsFormValues) => {
+	const onSubmit = (data: SettingsFormData) => {
 		updateSettingsMutation(data, {
 			onSuccess: () => {
 				refetchSettings()

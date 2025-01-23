@@ -55,15 +55,8 @@ export default async function UserPage({ params }: { params: { slug: string } })
 
 				{userButtons.length > 0 ? (
 					<ul className="my-2 flex flex-row justify-center gap-2">
-						{userButtons.map((button) => (
-							<UserButton
-								key={button.id}
-								url={button.url}
-								icon={button.icon}
-								settings={settings}
-								buttonId={button.id}
-								userId={userId}
-							/>
+						{userButtons.map((b: Button) => (
+							<UserButton key={b.id} url={b.url} icon={b.icon} settings={settings} buttonId={b.id} userId={userId} />
 						))}
 					</ul>
 				) : (
@@ -72,15 +65,8 @@ export default async function UserPage({ params }: { params: { slug: string } })
 
 				{userLinks.length > 0 ? (
 					<ul className="space-y-4">
-						{userLinks.map((link) => (
-							<UserLink
-								key={link.id}
-								url={link.url}
-								title={link.title}
-								settings={settings}
-								linkId={link.id}
-								userId={userId}
-							/>
+						{userLinks.map((l: Link) => (
+							<UserLink key={l.id} url={l.url} title={l.title} settings={settings} linkId={l.id} userId={userId} />
 						))}
 					</ul>
 				) : (

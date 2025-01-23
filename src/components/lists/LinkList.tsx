@@ -57,7 +57,7 @@ export default function LinkList({ links, setLinks }) {
 									>
 										<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
 									</button>
-									<button onClick={() => handleDeleteLink(l.id)}>
+									<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)}>
 										<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
 									</button>
 								</div>

@@ -1,6 +1,7 @@
 // Get user data
 export const getUserData = async () => {
 	const res = await fetch("/api/user", { method: "GET" })
+
 	return res.json()
 }
 
@@ -14,10 +15,7 @@ export const updateSlug = async (newSlug: string): Promise<void> => {
 		body: JSON.stringify({ newSlug })
 	})
 
-	if (!response.ok) {
-		const errorData = await response.json()
-		throw new Error(errorData.message || "Failed to update slug.")
-	}
+	return response.json()
 }
 
 // Update user description
@@ -30,14 +28,11 @@ export const updateDescription = async (newDescription: string): Promise<void> =
 		body: JSON.stringify({ newDescription })
 	})
 
-	if (!response.ok) {
-		const errorData = await response.json()
-		throw new Error(errorData.message || "Failed to update description.")
-	}
+	return response.json()
 }
 
 // Reset user description
-export const resetDescription = ({
+export const resetDescription = async ({
 	setDescription,
 	setLocalDescription
 }: {
@@ -49,11 +44,8 @@ export const resetDescription = ({
 }
 
 // Delete user account
-export async function deleteAccount() {
+export const deleteAccount = async () => {
 	const response = await fetch("/api/user", { method: "DELETE" })
 
-	if (!response.ok) {
-		const errorData = await response.json()
-		throw new Error(errorData.message || "Failed to delete user account.")
-	}
+	return response.json()
 }

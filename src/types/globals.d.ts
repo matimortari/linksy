@@ -1,46 +1,28 @@
-interface UserLink {
-	url: string
-	title: string
-}
-
-interface UserButton {
-	url: string
-	platform: string
-	icon: string
-}
-
-interface Button {
-	id: number
-	url: string
-	icon: string
-	userId: string
-	clicks: number
-	createdAt: Date
-	platform: string
+interface User {
+	id: string
+	name: string
+	email: string
 }
 
 interface Link {
-	id: number
-	title: string
+	id?: number
 	url: string
-	userId: string
-	clicks: number
-	createdAt: Date
+	title: string
 }
 
-interface AnalyticsData {
-	views: number
-	linkClicks: number
-	buttonClicks: number
-	date: string
+interface Button {
+	id?: number
+	url: string
+	platform: string
+	icon: string
 }
 
-interface Settings {
+interface UserSettings {
 	backgroundColor: string
-	headerTextColor: string
 	slugTextColor: string
 	slugTextWeight: string
 	slugTextSize: string
+	headerTextColor: string
 	linkBackgroundColor: string
 	linkTextColor: string
 	linkShadowColor: string
@@ -56,6 +38,15 @@ interface Settings {
 	supportBanner: string
 }
 
+interface UserStats {
+	id: number
+	userId: string
+	date: Date
+	views: number
+	linkClicks: number
+	buttonClicks: number
+}
+
 interface ButtonFormData {
 	platform: string
 	url: string
@@ -66,7 +57,7 @@ interface LinkFormData {
 	url: string
 }
 
-interface SettingsFormValues {
+interface SettingsFormData {
 	backgroundColor: string
 	slugTextColor: string
 	headerTextColor: string
@@ -86,6 +77,6 @@ interface SettingsFormValues {
 	linkPadding: string
 }
 
-interface SupportBannerFormValues {
+interface SupportBannerFormData {
 	supportBanner: string
 }
