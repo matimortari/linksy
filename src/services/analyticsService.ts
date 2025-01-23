@@ -16,7 +16,7 @@ export const getAnalytics = async () => {
 }
 
 // Track clicks for a link or button
-export async function trackClick(id: number, type: "link" | "button", userId: string) {
+export const trackClick = async (id: number, type: "link" | "button", userId: string) => {
 	const res = await fetch("/api/analytics", {
 		method: "POST",
 		headers: {
@@ -24,11 +24,12 @@ export async function trackClick(id: number, type: "link" | "button", userId: st
 		},
 		body: JSON.stringify({ id, type, userId })
 	})
+
 	return res.json()
 }
 
 // Combine links and buttons data and fetch them together for analytics view
-export async function getClicksByLink() {
+export const getClicksByLink = async () => {
 	const links = await getLinks()
 	const buttons = await getButtons()
 

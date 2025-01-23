@@ -3,6 +3,7 @@ import { defaultSettings } from "@/src/lib/utils"
 // Get user settings
 export const getSettings = async () => {
 	const res = await fetch("/api/preferences", { method: "GET" })
+
 	return res.json()
 }
 
@@ -13,6 +14,7 @@ export const updateSettings = async (newSettings: object) => {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(newSettings)
 	})
+
 	return res.json()
 }
 
@@ -23,6 +25,7 @@ export const updateSupportBanner = async (newBanner: string) => {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ supportBanner: newBanner })
 	})
+
 	return res.json()
 }
 
@@ -33,5 +36,6 @@ export const resetSettings = async () => {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(defaultSettings)
 	})
+
 	return res.json()
 }

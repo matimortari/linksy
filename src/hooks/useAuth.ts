@@ -5,12 +5,12 @@ import { useEffect, useState } from "react"
 
 export default function useAuth() {
 	const { data: session, status } = useSession()
-	const [buttons, setButtons] = useState<Button[]>([])
-	const [links, setLinks] = useState<Link[]>([])
 	const [slug, setSlug] = useState("")
 	const [description, setDescription] = useState("")
 	const [image, setImage] = useState("")
-	const [settings, setSettings] = useState<Settings>(defaultSettings)
+	const [buttons, setButtons] = useState<Button[]>([])
+	const [links, setLinks] = useState<Link[]>([])
+	const [settings, setSettings] = useState<UserSettings>(defaultSettings)
 
 	useEffect(() => {
 		if (status === "unauthenticated" || !session?.user) {

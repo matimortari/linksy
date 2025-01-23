@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form"
 export default function SupportBannerForm({ settings }) {
 	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
 
-	const { control, handleSubmit, reset } = useForm<SupportBannerFormValues>({
+	const { control, handleSubmit, reset } = useForm<SupportBannerFormData>({
 		defaultValues: {
 			supportBanner: "NONE"
 		}
@@ -18,7 +18,7 @@ export default function SupportBannerForm({ settings }) {
 		}
 	}, [settings, reset])
 
-	const onSubmit = (data: SupportBannerFormValues) => {
+	const onSubmit = (data: SupportBannerFormData) => {
 		updateBannerMutation(data.supportBanner)
 	}
 
