@@ -1,6 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { UserButton, UserLink } from "@prisma/client"
-import { Account, DefaultSession, Profile, SessionStrategy } from "next-auth"
+import { Account, Profile, SessionStrategy } from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import { db } from "./db"
@@ -9,13 +9,14 @@ import { defaultSettings, generateSlug } from "./utils"
 // Extend the default session with custom properties
 declare module "next-auth" {
 	interface Session {
-		user: DefaultSession["user"] & {
-			id: string
+		user: {
+			id: number
 			slug: string
 			description: string
-			links: UserLink[]
+			image: string
 			buttons: UserButton[]
-			settings: typeof defaultSettings
+			links: UserLink[]
+			settings: UserSettings
 		}
 	}
 }
@@ -37,18 +38,18 @@ export const authOptions = {
 		strategy: "database" as SessionStrategy
 	},
 	callbacks: {
-		async signIn({ user, profile }: { user: any; account: Account | null; profile?: Profile | undefined }) {
+		async signIn({ user, profile }: { user: any; account: Account | null; profile?: Profile }) {
 			const existingUser = await db.user.findUnique({
 				where: { email: user.email }
 			})
 
 			if (!existingUser) {
-				const baseSlug = profile?.name ?? user.email ?? ""
+				const baseSlug = profile?.name || user.name // Fallback to user.name if profile is undefined
 				const slug = generateSlug(baseSlug, true) // Set isInitial to true
 				const newUser = await db.user.create({
 					data: {
 						email: user.email,
-						name: profile?.name ?? user.name,
+						name: profile?.name || user.name, // Use profile name if available, else fallback to user.name
 						image: user.image,
 						slug
 					}
@@ -62,16 +63,17 @@ export const authOptions = {
 				})
 			} else {
 				await db.user.update({
-					where: { email: user.email },
+					where: { id: existingUser.id },
 					data: {
-						image: user.image,
-						name: profile?.name ?? existingUser.name
+						name: profile?.name ?? existingUser.name, // Update name based on profile
+						image: user.image
 					}
 				})
 			}
 
 			return true
 		},
+
 		async session({ session, user }) {
 			session.user.id = user.id
 			const dbUser = await db.user.findUnique({ where: { id: user.id } })
