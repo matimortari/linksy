@@ -4,9 +4,23 @@ import AppearanceForm from "@/src/components/forms/AppearanceForm"
 import SupportBannerForm from "@/src/components/forms/SupportBannerForm"
 import Preview from "@/src/components/Preview"
 import useAuth from "@/src/hooks/useAuth"
+import { deleteAccount } from "@/src/services/userService"
 
 export default function Preferences() {
 	const { slug, description, image, settings, links, buttons, setSettings } = useAuth()
+
+	const handleDeleteAccount = async () => {
+		const confirm = window.confirm("Are you sure you want to delete your account?")
+		if (!confirm) return false
+		else {
+			const response = await deleteAccount()
+			if (response.error) {
+				alert(response.error)
+			} else {
+				window.location.href = "/"
+			}
+		}
+	}
 
 	return (
 		<div className="flex flex-col gap-4 md:flex-row">
@@ -35,7 +49,9 @@ export default function Preferences() {
 						<h3>Delete Account</h3>
 						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
 						<div className="input-group">
-							<button className="btn bg-danger">Delete Account</button>
+							<button onClick={handleDeleteAccount} className="btn bg-danger">
+								Delete Account
+							</button>
 						</div>
 					</div>
 				</main>
