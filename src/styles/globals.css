@@ -269,30 +269,21 @@
 	animation: dialogSlideIn 0.3s ease-out;
 }
 
-/* Keyframe animation for expanding and moving an element */
-@keyframes expandFloat {
+/* Keyframe animation for floating and pulsating effect */
+@keyframes float {
 	0% {
-		transform: scale(0.5) translateX(-120px);
-		opacity: 0;
+		transform: translateY(0);
 	}
-
 	50% {
-		transform: scale(1.1) translateX(0px);
-		opacity: 1;
+		transform: translateY(-10px);
 	}
-
-	60% {
-		transform: translate(0, 12px);
-	}
-
 	100% {
-		transform: scale(1) translateX(0px) translate(0, 0px);
-		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
-.animate-expand-float {
-	animation: expandFloat 2s ease-in-out forwards, float 5s ease-in-out infinite;
+.animate-float {
+	animation: float 3s ease-in-out infinite;
 }
 
 /* Keyframe animation for spinning effect */

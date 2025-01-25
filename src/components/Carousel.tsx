@@ -1,7 +1,10 @@
+"use client"
+
 import { previewPresets } from "@/src/data/previewPresets"
 import { Icon } from "@iconify/react"
+import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function CarouselLink({ title, settings }) {
 	const [isHovered, setIsHovered] = useState(false)
@@ -49,20 +52,14 @@ function CarouselButton({ icon, settings }) {
 	)
 }
 
-export default function CarouselPreview({ presetId = 0 }) {
+function CarouselCard({ presetId = 0 }) {
 	const { description, links, image, buttons, slug, settings } = previewPresets[presetId]
 
 	return (
 		<div className="rounded-2xl shadow-xl">
-			<div
-				className="hide-scrollbar relative h-[450px] w-64 rounded-2xl md:w-[300px]"
-				style={{
-					WebkitOverflowScrolling: "touch",
-					overflowY: "scroll"
-				}}
-			>
+			<div className="relative w-64 rounded-2xl md:w-[300px]">
 				<div
-					className="relative grid place-content-center overflow-hidden rounded-2xl px-4 py-2"
+					className="relative grid place-content-center rounded-2xl px-4 py-2"
 					style={{
 						backgroundColor: settings.backgroundColor
 					}}
@@ -98,6 +95,37 @@ export default function CarouselPreview({ presetId = 0 }) {
 						</ul>
 					</div>
 				</div>
+			</div>
+		</div>
+	)
+}
+
+export default function Carousel() {
+	const [currentIndex, setCurrentIndex] = useState(0)
+
+	const nextCard = () => {
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % previewPresets.length)
+	}
+
+	useEffect(() => {
+		const intervalId = setInterval(nextCard, 3000)
+		return () => clearInterval(intervalId)
+	}, [])
+
+	return (
+		<div className="animate-float relative flex h-[480px] select-none items-center justify-center">
+			<div className="flex cursor-pointer items-center" onClick={nextCard}>
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={currentIndex}
+						initial={{ opacity: 0, x: 50 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: -50 }}
+						transition={{ duration: 0.5 }}
+					>
+						<CarouselCard presetId={currentIndex} />
+					</motion.div>
+				</AnimatePresence>
 			</div>
 		</div>
 	)
