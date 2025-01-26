@@ -4,10 +4,13 @@ import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useUserStore } from "../lib/store"
 import UserButton from "./UserButton"
 import UserLink from "./UserLink"
 
-export default function Preview({ slug, description, image, settings, links, buttons }) {
+export default function Preview() {
+	const { slug, description, image, settings, links, buttons } = useUserStore()
+
 	const { data: session } = useSession()
 	const [isVisible, setIsVisible] = useState(false)
 

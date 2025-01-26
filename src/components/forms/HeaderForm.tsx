@@ -1,21 +1,24 @@
 import { useUpdateDescription, useUpdateSlug } from "@/src/hooks/useMutations"
+import { useUserStore } from "@/src/lib/store"
 import { Icon } from "@iconify/react"
 import { useState } from "react"
 
-function UpdateSlugForm({ setSlug, slug }) {
+function UpdateSlugForm() {
+	const { slug, setSlug } = useUserStore()
 	const { mutate: updateSlugMutation, isPending: pendingSlug } = useUpdateSlug()
 
-	const [localSlug, setLocalSlug] = useState("")
+	const [localSlug, setLocalSlug] = useState(slug || "") // Initialize local state with Zustand store value
 
 	const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setLocalSlug(e.target.value)
-		setSlug(e.target.value)
+		const newSlug = e.target.value
+		setLocalSlug(newSlug) // Update local state
+		setSlug(newSlug) // Update global state from Zustand store
 	}
 
 	const handleGenerateSlug = () => {
 		const generatedSlug = `${Math.random().toString(36).substring(7)}`
 		setLocalSlug(generatedSlug)
-		setSlug(generatedSlug)
+		setSlug(generatedSlug) // Set generated slug to Zustand store
 		updateSlugMutation(generatedSlug)
 	}
 
@@ -59,14 +62,16 @@ function UpdateSlugForm({ setSlug, slug }) {
 	)
 }
 
-function UpdateDescriptionForm({ setDescription, description }) {
+function UpdateDescriptionForm() {
+	const { description, setDescription } = useUserStore()
 	const { mutate: updateDescriptionMutation, isPending: pendingDescription } = useUpdateDescription()
 
-	const [localDescription, setLocalDescription] = useState("")
+	const [localDescription, setLocalDescription] = useState(description || "") // Initialize local state with Zustand store value
 
 	const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setLocalDescription(e.target.value)
-		setDescription(e.target.value)
+		const newDescription = e.target.value
+		setLocalDescription(newDescription) // Update local state
+		setDescription(newDescription) // Update global state from Zustand store
 	}
 
 	const handleDescriptionReset = () => {
@@ -115,11 +120,11 @@ function UpdateDescriptionForm({ setDescription, description }) {
 	)
 }
 
-export default function HeaderForm({ setDescription, setSlug, slug, description }) {
+export default function HeaderForm() {
 	return (
 		<div className="flex w-full flex-col gap-2">
-			<UpdateSlugForm setSlug={setSlug} slug={slug} />
-			<UpdateDescriptionForm setDescription={setDescription} description={description} />
+			<UpdateSlugForm />
+			<UpdateDescriptionForm />
 		</div>
 	)
 }

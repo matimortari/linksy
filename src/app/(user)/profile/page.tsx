@@ -6,12 +6,14 @@ import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
 import ShareMenu from "@/src/components/ShareMenu"
 import useAuth from "@/src/hooks/useAuth"
+import { useUserStore } from "@/src/lib/store"
 import Link from "next/link"
 import { useState } from "react"
 
 export default function Profile() {
-	const { slug, setSlug, description, setDescription, image, settings, links, buttons, setLinks, setButtons } =
-		useAuth()
+	useAuth()
+
+	const { slug } = useUserStore()
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
@@ -46,7 +48,7 @@ export default function Profile() {
 						</button>
 					</div>
 
-					<ShareMenu isOpen={isDropdownOpen} onClose={closeDropdown} slug={slug} />
+					<ShareMenu isOpen={isDropdownOpen} onClose={closeDropdown} />
 				</div>
 
 				<hr className="my-4" />
@@ -55,32 +57,25 @@ export default function Profile() {
 					<div className="section-container">
 						<h3>Update Header</h3>
 						<h6 className="text-muted-foreground">Change your display name and description.</h6>
-						<HeaderForm description={description} setDescription={setDescription} slug={slug} setSlug={setSlug} />
+						<HeaderForm />
 					</div>
 
 					<div className="section-container">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>
-						<LinkList links={links} setLinks={setLinks} />
+						<LinkList />
 					</div>
 
 					<div className="section-container">
 						<h3>My Social Buttons</h3>
 						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
-						<ButtonList buttons={buttons} setButtons={setButtons} />
+						<ButtonList />
 					</div>
 				</main>
 			</div>
 
 			<aside className="md:w-4/12">
-				<Preview
-					slug={slug}
-					description={description}
-					image={image}
-					settings={settings}
-					links={links}
-					buttons={buttons}
-				/>
+				<Preview />
 			</aside>
 		</div>
 	)

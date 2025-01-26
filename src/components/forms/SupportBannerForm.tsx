@@ -1,10 +1,12 @@
 import { useUpdateSupportBanner } from "@/src/hooks/useMutations"
+import { useUserStore } from "@/src/lib/store"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
-export default function SupportBannerForm({ settings }) {
+export default function SupportBannerForm() {
 	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
+	const { settings } = useUserStore()
 
 	const { control, handleSubmit, reset } = useForm<SupportBannerFormData>({
 		defaultValues: {

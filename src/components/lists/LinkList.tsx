@@ -1,13 +1,14 @@
 import { useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
+import { useUserStore } from "@/src/lib/store"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
 import AddLinkDialog from "../dialogs/AddLinkDialog"
 import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function LinkList({ links, setLinks }) {
+export default function LinkList() {
+	const { links, setLinks } = useUserStore()
 	const { data: userLinks } = useGetLinks()
 	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
@@ -17,13 +18,13 @@ export default function LinkList({ links, setLinks }) {
 	const [currentLink, setCurrentLink] = useState<Link | null>(null)
 
 	const handleAddLink = (newLink: Link) => {
-		setLinks((prevLinks: Link[]) => [...prevLinks, newLink])
+		setLinks([...links, newLink])
 	}
 
 	const handleUpdateLink = (updatedLink: Link) => {
 		updateLink(updatedLink, {
 			onSuccess: () => {
-				setLinks((prevLinks: Link[]) => prevLinks.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
+				setLinks(links.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
 				setIsUpdateDialogOpen(false)
 			}
 		})
@@ -32,7 +33,7 @@ export default function LinkList({ links, setLinks }) {
 	const handleDeleteLink = (id: number) => {
 		deleteLink(id, {
 			onSuccess: () => {
-				setLinks((prevLinks: Link[]) => prevLinks.filter((l: Link) => l.id !== id))
+				setLinks(links.filter((l: Link) => l.id !== id))
 			}
 		})
 	}

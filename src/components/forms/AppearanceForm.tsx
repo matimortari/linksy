@@ -1,12 +1,14 @@
 import { PADDING_OPTIONS, RADIUS_OPTIONS, SLUG_FONT_SIZES, SLUG_FONT_WEIGHTS } from "@/src/data/formConfig"
 import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
 import { useGetSettings } from "@/src/hooks/useQueries"
+import { useUserStore } from "@/src/lib/store" // Import Zustand store
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { CheckboxInput, ColorInput, RadioOptions } from "../Inputs"
 
-export default function AppearanceForm({ settings, setSettings }) {
+export default function AppearanceForm() {
+	const { settings, setSettings } = useUserStore()
 	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
 	const { mutate: resetSettingsMutation, isPending: pendingReset } = useResetSettings()
 	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()
@@ -22,7 +24,7 @@ export default function AppearanceForm({ settings, setSettings }) {
 	}, [userSettings, reset])
 
 	useEffect(() => {
-		const subscription = watch((updatedSettings) => setSettings(updatedSettings))
+		const subscription = watch((updatedSettings) => setSettings(updatedSettings)) // Update global state from Zustand store
 		return () => subscription.unsubscribe()
 	}, [setSettings, watch])
 
