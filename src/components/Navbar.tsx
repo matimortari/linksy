@@ -1,5 +1,6 @@
 "use client"
 
+import { useUserStore } from "@/src/lib/store"
 import { Icon } from "@iconify/react"
 import { signOut } from "next-auth/react"
 import { Chau_Philomene_One } from "next/font/google"
@@ -16,8 +17,9 @@ const navLinks = [
 	{ href: "/analytics", icon: "material-symbols:chart-data-outline", label: "Analytics" }
 ]
 
-export default function Navbar({ slug, image }) {
+export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
+	const { slug, image } = useUserStore()
 
 	return (
 		<>
@@ -58,7 +60,7 @@ export default function Navbar({ slug, image }) {
 					</div>
 
 					<Link href={`/${slug}`} className="flex flex-row items-center justify-start gap-2">
-						{image && <Image src={image} alt={image} width={30} height={30} className="hidden rounded-full md:block" />}
+						{image && <Image src={image} alt={slug} width={30} height={30} className="hidden rounded-full md:block" />}
 						<p className="truncate text-xs font-medium text-muted-foreground">@{slug}</p>
 					</Link>
 

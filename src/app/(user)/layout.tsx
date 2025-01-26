@@ -13,8 +13,6 @@ const inter = Inter({ subsets: ["latin"] })
 
 export default async function UserLayout({ children }: { children: ReactNode }) {
 	const session = await getServerSession(authOptions)
-	const slug = session?.user?.slug
-	const image = session?.user?.image
 
 	const metadata: Metadata = {
 		title: session?.user?.slug ? `${session.user.slug} | Linksy` : "Linksy",
@@ -32,7 +30,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 				<Providers session={session}>
 					<div className="flex min-h-screen flex-col px-4 pt-4 md:flex-row">
 						<aside className="md:w-2/12">
-							<Navbar slug={slug} image={image} />
+							<Navbar />
 						</aside>
 						<main className="w-full">{children}</main>
 					</div>

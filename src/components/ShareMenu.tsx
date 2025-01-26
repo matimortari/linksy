@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
+import { useUserStore } from "../lib/store"
 import QRCodeDialog from "./dialogs/QRCodeDialog"
 
-export default function ShareMenu({ isOpen, slug, onClose }) {
+export default function ShareMenu({ isOpen, onClose }) {
+	const { slug } = useUserStore()
+
 	const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
 
 	const handleCopyLink = () => {

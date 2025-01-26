@@ -1,12 +1,13 @@
 import { useDeleteButton } from "@/src/hooks/useMutations"
 import { useGetButtons } from "@/src/hooks/useQueries"
+import { useUserStore } from "@/src/lib/store"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"
 import AddButtonDialog from "../dialogs/AddButtonDialog"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function ButtonList({ buttons, setButtons }) {
+export default function ButtonList() {
+	const { buttons, setButtons } = useUserStore()
 	const { data: userButtons } = useGetButtons()
 	const { mutate: deleteButton } = useDeleteButton()
 
@@ -15,13 +16,13 @@ export default function ButtonList({ buttons, setButtons }) {
 	const handleDeleteButton = (id: number) => {
 		deleteButton(id, {
 			onSuccess: () => {
-				setButtons((prevButtons: Button[]) => prevButtons.filter((b: Button) => b.id !== id))
+				setButtons(buttons.filter((b: Button) => b.id !== id))
 			}
 		})
 	}
 
 	const handleAddButton = (newButton: Button) => {
-		setButtons((prevButtons: Button[]) => [...prevButtons, newButton])
+		setButtons([...buttons, newButton])
 	}
 
 	return (

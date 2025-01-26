@@ -7,7 +7,7 @@ import useAuth from "@/src/hooks/useAuth"
 import { deleteAccount } from "@/src/services/userService"
 
 export default function Preferences() {
-	const { slug, description, image, settings, links, buttons, setSettings } = useAuth()
+	useAuth()
 
 	const handleDeleteAccount = async () => {
 		const confirm = window.confirm("Are you sure you want to delete your account?")
@@ -36,13 +36,13 @@ export default function Preferences() {
 					<div className="section-container">
 						<h3>Appearance</h3>
 						<h6 className="text-muted-foreground">Customize the Appearance for Your Page.</h6>
-						<AppearanceForm settings={settings} setSettings={setSettings} />
+						<AppearanceForm />
 					</div>
 
 					<div className="section-container">
 						<h3>Support Banner</h3>
 						<h6 className="text-muted-foreground">Show Your Support for Important Causes.</h6>
-						<SupportBannerForm settings={settings} />
+						<SupportBannerForm />
 					</div>
 
 					<div className="section-container border-danger">
@@ -58,14 +58,7 @@ export default function Preferences() {
 			</div>
 
 			<aside className="md:w-4/12">
-				<Preview
-					slug={slug}
-					description={description}
-					image={image}
-					settings={settings}
-					links={links}
-					buttons={buttons}
-				/>
+				<Preview />
 			</aside>
 		</div>
 	)
