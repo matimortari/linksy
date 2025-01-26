@@ -5,12 +5,13 @@ import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { useSession } from "next-auth/react"
-import { Bowlby_One } from "next/font/google"
+import { Bowlby_One, Lato } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
+const lato = Lato({ subsets: ["latin"], weight: "900" })
 
 export default function Home() {
 	const { status } = useSession()
@@ -59,18 +60,18 @@ export default function Home() {
 						transition={{ duration: 0.6 }}
 					>
 						<div className="space-y-6 text-center md:text-left">
-							<h4 className="text-lg font-bold text-accent">Your link-in-bio page 🔗</h4>
+							<h4 className={`${lato.className} text-lg text-accent`}>Your link-in-bio page 🔗</h4>
 							<h1 className={`${bowlby.className} max-w-md text-4xl leading-tight md:text-5xl`}>
 								Keep all your stuff together!
 							</h1>
-							<p className="max-w-xl text-muted-foreground">
+							<p className={`${lato.className} max-w-xl text-muted-foreground`}>
 								Welcome to <span className="font-bold text-primary">Linksy</span>! Your links, profiles, contact info,
 								and more in one place. Create and customize your page and share it with your audience.
 							</p>
 						</div>
 
 						<motion.div
-							className="mt-4 flex max-w-md flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-xl"
+							className="my-8 flex max-w-md flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-xl"
 							whileHover={{ scale: 1.05 }}
 							transition={{ type: "spring", stiffness: 400, damping: 10 }}
 						>

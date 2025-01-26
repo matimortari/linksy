@@ -29,9 +29,7 @@ export default function Navbar() {
 					<Link href="/" className="flex flex-row items-center justify-start gap-2">
 						<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
 					</Link>
-
 					<ThemeSwitch />
-
 					<button onClick={() => setIsOpen(!isOpen)}>
 						{isOpen ? <Icon icon="mdi:close" className="size-8" /> : <Icon icon="mdi:menu" className="size-8" />}
 					</button>

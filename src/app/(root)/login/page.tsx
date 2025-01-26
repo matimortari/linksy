@@ -4,11 +4,12 @@ import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { signIn, useSession } from "next-auth/react"
-import { Bowlby_One } from "next/font/google"
+import { Bowlby_One, Lato } from "next/font/google"
 import Image from "next/image"
 import { redirect } from "next/navigation"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
+const lato = Lato({ subsets: ["latin"], weight: "900" })
 
 export default function Login() {
 	const { status } = useSession()
@@ -34,7 +35,7 @@ export default function Login() {
 				>
 					<div className="flex flex-col items-center gap-4 p-8">
 						<h1 className={`${bowlby.className}`}>Sign In</h1>
-						<h4 className="text-muted-foreground">Sign in with your preferred provider.</h4>
+						<h4 className={`${lato.className} text-muted-foreground`}>Sign in with your preferred provider.</h4>
 					</div>
 
 					<hr />
