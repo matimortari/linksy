@@ -23,7 +23,7 @@ export default function Preferences() {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 md:flex-row">
+		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-8/12">
 				<header>
 					<h1>Preferences</h1>
