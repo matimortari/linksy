@@ -1,7 +1,6 @@
 "use client"
 
 import Carousel from "@/src/components/Carousel"
-import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { useSession } from "next-auth/react"
@@ -48,8 +47,6 @@ export default function Home() {
 			<div className="absolute inset-x-0 bottom-0 z-0 hidden opacity-20 md:block md:h-3/6">
 				<Image src="/grid-bg.png" alt="Background" fill className="object-cover" />
 			</div>
-
-			<Header />
 
 			<main className="relative z-10 flex flex-col items-center gap-4 px-4 md:px-8 md:pb-8">
 				<div className="flex w-full flex-col items-center md:flex-row">

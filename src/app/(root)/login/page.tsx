@@ -1,6 +1,5 @@
 "use client"
 
-import Header from "@/src/components/Header"
 import { Icon } from "@iconify/react"
 import { motion } from "framer-motion"
 import { signIn, useSession } from "next-auth/react"
@@ -23,8 +22,6 @@ export default function Login() {
 			<div className="absolute inset-x-0 bottom-0 z-0 hidden opacity-20 md:block md:h-3/6">
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
-
-			<Header />
 
 			<main className="relative z-10 flex flex-col items-center justify-between md:p-8">
 				<motion.section

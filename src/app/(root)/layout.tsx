@@ -1,5 +1,6 @@
 import Providers from "@/src/components/context/Providers"
 import Footer from "@/src/components/Footer"
+import Header from "@/src/components/Header"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
 import "@/src/styles/inputs.css"
@@ -26,6 +27,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${inter.className}`}>
 				<Providers session={session}>
+					<Header />
 					{children}
 					<Footer />
 				</Providers>

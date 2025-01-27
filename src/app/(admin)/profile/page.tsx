@@ -26,7 +26,7 @@ export default function Profile() {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 md:flex-row">
+		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-8/12">
 				<header>
 					<h1>My Profile</h1>
@@ -47,7 +47,6 @@ export default function Profile() {
 							Share Now
 						</button>
 					</div>
-
 					<ShareMenu isOpen={isDropdownOpen} onClose={closeDropdown} />
 				</div>
 

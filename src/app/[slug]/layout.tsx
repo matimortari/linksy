@@ -12,7 +12,7 @@ export default async function SlugLayout({ children }: { children: ReactNode }) 
 	const session = await getServerSession(authOptions)
 
 	const metadata: Metadata = {
-		title: session?.user?.slug ? `${session.user.slug} | Linksy` : "Linksy", // TODO - Correctly handle dynamic username display
+		title: session?.user?.slug ? `${session.user.slug} | Linksy` : "Linksy",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
 	}
 

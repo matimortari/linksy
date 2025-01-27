@@ -11,7 +11,7 @@ import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default async function UserLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: { children: ReactNode }) {
 	const session = await getServerSession(authOptions)
 
 	const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default async function UserLayout({ children }: { children: ReactNode }) 
 						<aside className="md:w-2/12">
 							<Navbar />
 						</aside>
-						<main className="w-full">{children}</main>
+						{children}
 					</div>
 					<Footer />
 				</Providers>

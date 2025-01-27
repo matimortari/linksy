@@ -110,7 +110,6 @@ CREATE TABLE "LinkClick" (
     "id" SERIAL NOT NULL,
     "userLinkId" INTEGER NOT NULL,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "count" INTEGER NOT NULL DEFAULT 1,
 
     CONSTRAINT "LinkClick_pkey" PRIMARY KEY ("id")
 );
@@ -120,7 +119,6 @@ CREATE TABLE "ButtonClick" (
     "id" SERIAL NOT NULL,
     "userButtonId" INTEGER NOT NULL,
     "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "count" INTEGER NOT NULL DEFAULT 1,
 
     CONSTRAINT "ButtonClick_pkey" PRIMARY KEY ("id")
 );
@@ -142,6 +140,9 @@ CREATE UNIQUE INDEX "UserSettings_userId_key" ON "UserSettings"("userId");
 
 -- CreateIndex
 CREATE INDEX "UserStats_userId_date_idx" ON "UserStats"("userId", "date");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserStats_userId_date_key" ON "UserStats"("userId", "date");
 
 -- CreateIndex
 CREATE INDEX "LinkClick_userLinkId_date_idx" ON "LinkClick"("userLinkId", "date");
