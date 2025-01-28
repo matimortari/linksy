@@ -1,4 +1,4 @@
-import { useDeleteLink, useUpdateLink } from "@/src/hooks/useMutations"
+import { useDeleteLink } from "@/src/hooks/useMutations"
 import { useGetLinks } from "@/src/hooks/useQueries"
 import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
@@ -10,7 +10,6 @@ import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 export default function LinkList() {
 	const { links, setLinks } = useUserStore()
 	const { data: userLinks } = useGetLinks()
-	const { mutate: updateLink } = useUpdateLink()
 	const { mutate: deleteLink } = useDeleteLink()
 
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
@@ -22,12 +21,8 @@ export default function LinkList() {
 	}
 
 	const handleUpdateLink = (updatedLink: Link) => {
-		updateLink(updatedLink, {
-			onSuccess: () => {
-				setLinks(links.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
-				setIsUpdateDialogOpen(false)
-			}
-		})
+		setLinks(links.map((l: Link) => (l.id === updatedLink.id ? updatedLink : l)))
+		setIsUpdateDialogOpen(false)
 	}
 
 	const handleDeleteLink = (id: number) => {
@@ -40,35 +35,39 @@ export default function LinkList() {
 
 	return (
 		<>
-			<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
-				{userLinks?.map((l: Link) => (
-					<li key={l.id} className="card">
-						<div className="flex flex-col gap-1">
-							<div className="flex flex-row gap-4">
-								<Link href={l.url} target="_blank" rel="noopener noreferrer">
-									{l.title}
-								</Link>
+			{userLinks == 0 ? (
+				<p className="my-1 font-semibold text-muted-foreground">No links here yet. Get started!</p>
+			) : (
+				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
+					{userLinks?.map((l: Link) => (
+						<li key={l.id} className="card">
+							<div className="flex flex-col gap-1">
+								<div className="flex flex-row gap-4">
+									<Link href={l.url} target="_blank" rel="noopener noreferrer">
+										{l.title}
+									</Link>
 
-								<div className="input-group">
-									<button
-										onClick={() => {
-											setCurrentLink(l)
-											setIsUpdateDialogOpen(true)
-										}}
-									>
-										<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
-									</button>
-									<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)}>
-										<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
-									</button>
+									<div className="input-group">
+										<button
+											onClick={() => {
+												setCurrentLink(l)
+												setIsUpdateDialogOpen(true)
+											}}
+										>
+											<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
+										</button>
+										<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)}>
+											<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+										</button>
+									</div>
 								</div>
-							</div>
 
-							<span className="text-xs text-muted-foreground">{l.url}</span>
-						</div>
-					</li>
-				))}
-			</ul>
+								<span className="text-xs text-muted-foreground">{l.url}</span>
+							</div>
+						</li>
+					))}
+				</ul>
+			)}
 
 			<div className="input-group">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">

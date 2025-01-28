@@ -4,51 +4,24 @@ import HeaderForm from "@/src/components/forms/HeaderForm"
 import ButtonList from "@/src/components/lists/ButtonList"
 import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
-import ShareMenu from "@/src/components/ShareMenu"
+import ShareBanner from "@/src/components/ShareBanner"
 import useAuth from "@/src/hooks/useAuth"
 import { useUserStore } from "@/src/hooks/useUserStore"
-import Link from "next/link"
-import { useState } from "react"
 
 export default function Profile() {
-	useAuth() // Check if authenticated and populate the Zustand store
-
-	const { slug } = useUserStore() // Get the slug from the store after authentication
-
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-
-	const toggleDropdown = () => {
-		setIsDropdownOpen((prev) => !prev)
-	}
-
-	const closeDropdown = () => {
-		setIsDropdownOpen(false)
-	}
+	useAuth()
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-8/12">
-				<header>
-					<h1>My Profile</h1>
+				<header className="mb-4 space-y-1">
+					<h2>My Profile</h2>
 					<h5>
-						Welcome back, <span className="font-bold text-primary">{slug}</span>!
+						Welcome back, <span className="font-bold text-primary">{useUserStore((state) => state.slug)}</span>!
 					</h5>
 				</header>
 
-				<div className="relative mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
-					<div className="flex flex-col gap-1">
-						<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
-						<Link href={`/${slug}`} className="truncate text-xs font-medium">
-							linksy-live.vercel.app/{slug}
-						</Link>
-					</div>
-					<div className="input-group">
-						<button type="button" className="btn bg-card text-foreground" onClick={toggleDropdown}>
-							Share Now
-						</button>
-					</div>
-					<ShareMenu isOpen={isDropdownOpen} onClose={closeDropdown} />
-				</div>
+				<ShareBanner />
 
 				<hr className="my-4" />
 

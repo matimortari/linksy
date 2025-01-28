@@ -9,14 +9,12 @@ import Dialog from "../Dialog"
 
 export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 	const { mutate: addButton, isPending } = useAddButton()
+
 	const { register, handleSubmit, watch, setValue, reset } = useForm<ButtonFormData>({
-		resolver: zodResolver(buttonFormSchema),
-		defaultValues: {
-			platform: "",
-			url: ""
-		}
+		resolver: zodResolver(buttonFormSchema)
 	})
 
+	// Reset form fields when dialog is opened
 	useEffect(() => {
 		if (isOpen) {
 			reset()
@@ -61,20 +59,22 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					</div>
 				</div>
 
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
-					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
-						URL:
-					</label>
-					<input id="url" type="url" {...register("url")} className="flex-1" />
-				</div>
+				<div className="flex flex-col gap-2 md:w-fit md:flex-row md:items-center">
+					<div className="flex w-full flex-row items-center gap-2 rounded-2xl border p-1 pl-2 md:w-72">
+						<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
+							URL:
+						</label>
+						<input id="url" type="url" {...register("url")} className="flex-1" />
+					</div>
 
-				<div className="input-group">
-					<button type="submit" className="btn bg-primary" disabled={isPending}>
-						{isPending ? "Adding..." : "Add Button"}
-					</button>
-					<button type="button" onClick={onClose} className="btn bg-secondary">
-						Cancel
-					</button>
+					<div className="input-group">
+						<button type="submit" className="btn bg-primary" disabled={isPending}>
+							{isPending ? "Adding..." : "Add Button"}
+						</button>
+						<button type="button" onClick={onClose} className="btn bg-secondary">
+							Cancel
+						</button>
+					</div>
 				</div>
 			</form>
 		</Dialog>

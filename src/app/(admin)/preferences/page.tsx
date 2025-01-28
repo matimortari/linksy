@@ -7,7 +7,7 @@ import useAuth from "@/src/hooks/useAuth"
 import { deleteAccount } from "@/src/services/userService"
 
 export default function Preferences() {
-	useAuth() // Check if authenticated
+	useAuth()
 
 	const handleDeleteAccount = async () => {
 		const confirm = window.confirm("Are you sure you want to delete your account?")
@@ -25,7 +25,7 @@ export default function Preferences() {
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-8/12">
-				<header>
+				<header className="space-y-1">
 					<h1>Preferences</h1>
 					<h5>Manage your profile.</h5>
 				</header>
