@@ -19,14 +19,13 @@ export default function Header() {
 		<div className="flex w-full items-center justify-between p-4">
 			<Link href="/" className="flex flex-row items-center justify-start gap-2">
 				<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
-				<span className={`hidden text-2xl md:block ${chau.className}`}>Linksy</span>
+				<span className={`text-2xl ${chau.className}`}>Linksy</span>
 			</Link>
 
 			<div className="flex flex-row items-center justify-end gap-2">
 				<button onClick={handleThemeToggle} className="btn bg-card">
-					<Icon icon={theme === "light" ? "hugeicons:sun-03" : "hugeicons:moon"} className="icon size-6" />
+					<Icon icon={theme === "light" ? "radix-icons:sun" : "radix-icons:moon"} className="icon size-6" />
 				</button>
-
 				<Link href="/login" className="btn bg-card">
 					<Icon icon="material-symbols:login" className="icon size-6" />
 				</Link>
