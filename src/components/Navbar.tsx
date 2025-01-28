@@ -1,6 +1,6 @@
 "use client"
 
-import { useUserStore } from "@/src/lib/store"
+import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { signOut } from "next-auth/react"
 import { useTheme } from "next-themes"

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useUserStore } from "../lib/store"
+import { useUserStore } from "../hooks/useUserStore"
 import QRCodeDialog from "./dialogs/QRCodeDialog"
 
 export default function ShareMenu({ isOpen, onClose }) {

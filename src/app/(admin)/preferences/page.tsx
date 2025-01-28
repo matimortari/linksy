@@ -7,7 +7,7 @@ import useAuth from "@/src/hooks/useAuth"
 import { deleteAccount } from "@/src/services/userService"
 
 export default function Preferences() {
-	useAuth()
+	useAuth() // Check if authenticated
 
 	const handleDeleteAccount = async () => {
 		const confirm = window.confirm("Are you sure you want to delete your account?")

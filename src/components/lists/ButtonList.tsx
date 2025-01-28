@@ -1,6 +1,6 @@
 import { useDeleteButton } from "@/src/hooks/useMutations"
 import { useGetButtons } from "@/src/hooks/useQueries"
-import { useUserStore } from "@/src/lib/store"
+import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useState } from "react"

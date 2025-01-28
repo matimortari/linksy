@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { useUserStore } from "../lib/store"
+import { useUserStore } from "../hooks/useUserStore"
 import UserButton from "./UserButton"
 import UserLink from "./UserLink"
 
