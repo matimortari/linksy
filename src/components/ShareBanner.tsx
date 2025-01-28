@@ -1,8 +1,9 @@
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useUserStore } from "../hooks/useUserStore"
 import QRCodeDialog from "./dialogs/QRCodeDialog"
 
-export default function ShareMenu({ isOpen, onClose }) {
+function ShareDropdown({ isOpen, onClose }) {
 	const { slug } = useUserStore()
 
 	const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
@@ -59,5 +60,36 @@ export default function ShareMenu({ isOpen, onClose }) {
 				<QRCodeDialog isOpen={isQrCodeDialogOpen} onClose={() => setIsQrCodeDialogOpen(false)} slug={slug} />
 			)}
 		</>
+	)
+}
+
+export default function ShareBanner() {
+	const { slug } = useUserStore()
+
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+	const toggleDropdown = () => {
+		setIsDropdownOpen((prev) => !prev)
+	}
+
+	const closeDropdown = () => {
+		setIsDropdownOpen(false)
+	}
+
+	return (
+		<div className="relative mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
+			<div className="flex flex-col gap-1">
+				<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
+				<Link href={`/${slug}`} className="truncate text-xs font-medium">
+					linksy-live.vercel.app/{slug}
+				</Link>
+			</div>
+			<div className="input-group">
+				<button type="button" className="btn bg-card text-foreground" onClick={toggleDropdown}>
+					Share Now
+				</button>
+			</div>
+			<ShareDropdown isOpen={isDropdownOpen} onClose={closeDropdown} />
+		</div>
 	)
 }

@@ -1,5 +1,4 @@
 import Providers from "@/src/components/context/Providers"
-import Footer from "@/src/components/Footer"
 import Navbar from "@/src/components/Navbar"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
@@ -34,7 +33,6 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 						</aside>
 						{children}
 					</div>
-					<Footer />
 				</Providers>
 			</body>
 		</html>

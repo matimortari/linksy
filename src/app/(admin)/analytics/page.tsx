@@ -5,12 +5,12 @@ import ClicksByLink from "@/src/components/lists/ClicksByLink"
 import useAuth from "@/src/hooks/useAuth"
 
 export default function Analytics() {
-	useAuth() // Check if authenticated
+	useAuth()
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-full">
-				<header>
+				<header className="space-y-1">
 					<h1>Analytics</h1>
 					<h5>View your profile analytics.</h5>
 				</header>

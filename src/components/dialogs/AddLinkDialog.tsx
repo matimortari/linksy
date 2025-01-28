@@ -7,11 +7,12 @@ import Dialog from "../Dialog"
 
 export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 	const { mutate: addLink, isPending } = useAddLink()
+
 	const { register, handleSubmit, reset } = useForm<LinkFormData>({
 		resolver: zodResolver(linkFormSchema)
 	})
 
-	// Reset form fields when dialog is opened or closed
+	// Reset form fields when dialog is opened
 	useEffect(() => {
 		if (isOpen) {
 			reset()
@@ -33,14 +34,14 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Link">
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>
 					<input id="title" type="text" {...register("title")} className="flex-1" />
 				</div>
 
-				<div className="input-group flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
+				<div className="flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>

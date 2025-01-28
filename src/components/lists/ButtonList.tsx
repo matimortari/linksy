@@ -27,24 +27,28 @@ export default function ButtonList() {
 
 	return (
 		<>
-			<ul className="flex flex-row gap-2">
-				{userButtons?.map((b: Button) => (
-					<li key={b.id} className="card relative">
-						<Link href={b.url} target="_blank" rel="noopener noreferrer">
-							<Icon icon={b.icon} className="m-1 size-6" />
-						</Link>
+			{userButtons == 0 ? (
+				<p className="my-1 font-semibold text-muted-foreground">No social buttons here yet. Get started!</p>
+			) : (
+				<ul className="flex flex-row gap-2">
+					{userButtons?.map((b: Button) => (
+						<li key={b.id} className="card relative">
+							<Link href={b.url} target="_blank" rel="noopener noreferrer">
+								<Icon icon={b.icon} className="m-1 size-6" />
+							</Link>
 
-						{b.id !== undefined && (
-							<button
-								onClick={() => b.id !== undefined && handleDeleteButton(b.id)}
-								className="absolute bottom-0 right-0 p-1"
-							>
-								<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
-							</button>
-						)}
-					</li>
-				))}
-			</ul>
+							{b.id !== undefined && (
+								<button
+									onClick={() => b.id !== undefined && handleDeleteButton(b.id)}
+									className="absolute bottom-0 right-0 p-1"
+								>
+									<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+								</button>
+							)}
+						</li>
+					))}
+				</ul>
+			)}
 
 			<div className="input-group">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
