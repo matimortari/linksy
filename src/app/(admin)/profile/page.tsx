@@ -6,14 +6,14 @@ import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
 import ShareMenu from "@/src/components/ShareMenu"
 import useAuth from "@/src/hooks/useAuth"
-import { useUserStore } from "@/src/lib/store"
+import { useUserStore } from "@/src/hooks/useUserStore"
 import Link from "next/link"
 import { useState } from "react"
 
 export default function Profile() {
-	useAuth()
+	useAuth() // Check if authenticated and populate the Zustand store
 
-	const { slug } = useUserStore()
+	const { slug } = useUserStore() // Get the slug from the store after authentication
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 

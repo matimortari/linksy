@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { defaultSettings } from "./utils"
+import { defaultSettings } from "../lib/utils"
 
 type UserStore = {
 	slug: string

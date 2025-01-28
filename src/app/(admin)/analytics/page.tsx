@@ -5,7 +5,7 @@ import ClicksByLink from "@/src/components/lists/ClicksByLink"
 import useAuth from "@/src/hooks/useAuth"
 
 export default function Analytics() {
-	useAuth()
+	useAuth() // Check if authenticated
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">

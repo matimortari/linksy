@@ -1,5 +1,5 @@
 import { useUpdateSupportBanner } from "@/src/hooks/useMutations"
-import { useUserStore } from "@/src/lib/store"
+import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"

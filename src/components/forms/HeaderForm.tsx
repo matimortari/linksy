@@ -1,5 +1,5 @@
 import { useUpdateDescription, useUpdateSlug } from "@/src/hooks/useMutations"
-import { useUserStore } from "@/src/lib/store"
+import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { useState } from "react"
 
