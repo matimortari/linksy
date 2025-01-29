@@ -24,7 +24,7 @@ export default function QRCodeDialog({ isOpen, slug, onClose }) {
 					<button className="btn bg-primary" onClick={() => handleDownloadQRCode(slug)}>
 						Download QR Code
 					</button>
-					<button className="btn bg-secondary" onClick={onClose}>
+					<button className="btn bg-danger" onClick={onClose}>
 						Close
 					</button>
 				</div>

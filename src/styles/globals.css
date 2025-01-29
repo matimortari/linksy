@@ -5,62 +5,62 @@
 /* Base layer for custom theme variables and global styles */
 @layer base {
 	:root {
-		--background: #ebe8e8;
+		--background: #e0dddd;
 		--foreground: #131212;
 
-		--card: #f7f2f2;
+		--card: #eeeded;
 		--card-foreground: #131212;
 
-		--popover: #f7f2f2;
+		--popover: #eeeded;
 		--popover-foreground: #131212;
 
-		--primary: #458a7c;
+		--primary: #45698a;
 		--primary-foreground: #ebe8e8;
 
-		--secondary: #6e92b1;
+		--secondary: #3c4557;
 		--secondary-foreground: #ebe8e8;
 
-		--accent: #32589f;
+		--accent: #31589c;
 		--accent-foreground: #ebe8e8;
 
-		--muted: #c7c4c4;
+		--muted: #b8b5b5;
 		--muted-foreground: #535353;
 
-		--danger: #b00020;
-		--success: #00b05e;
+		--danger: #972020;
+		--success: #20975b;
 
-		--border: #c7c4c4;
-		--input: #f7f2f2;
+		--border: #b8b5b5;
+		--input: #eeeded;
 		--ring: #131212;
 	}
 
 	.dark {
-		--background: #131212;
+		--background: #040308;
 		--foreground: #ebe8e8;
 
-		--card: #1b1b1b;
+		--card: #111016;
 		--card-foreground: #ebe8e8;
 
-		--popover: #1b1b1b;
+		--popover: #111016;
 		--popover-foreground: #ebe8e8;
 
-		--primary: #458a7c;
+		--primary: #222d42;
 		--primary-foreground: #ebe8e8;
 
-		--secondary: #285980;
+		--secondary: #42629e;
 		--secondary-foreground: #ebe8e8;
 
-		--accent: #6086cd;
+		--accent: #31589c;
 		--accent-foreground: #ebe8e8;
 
-		--muted: #535353;
+		--muted: #3b3b41;
 		--muted-foreground: #c7c4c4;
 
-		--danger: #9d2a26;
-		--success: #269d54;
+		--danger: #972020;
+		--success: #20975b;
 
-		--border: #535353;
-		--input: #1b1b1b;
+		--border: #3b3b41;
+		--input: #111016;
 		--ring: #ebe8e8;
 	}
 

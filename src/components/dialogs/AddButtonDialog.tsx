@@ -40,17 +40,14 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
 				<div className="my-2 flex flex-col space-y-2">
-					<label htmlFor="platform" className="text-sm font-semibold text-muted-foreground">
-						Select Platform:
-					</label>
 					<div className="grid max-h-48 grid-cols-5 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9 md:overflow-visible">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 							<div
 								key={platform}
 								onClick={() => setValue("platform", platform)}
 								className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border p-2 ${
-									selectedPlatform === platform ? "bg-secondary" : "bg-transparent"
-								} hover:bg-secondary`}
+									selectedPlatform === platform ? "bg-muted" : "bg-transparent"
+								} hover:bg-muted`}
 							>
 								<Icon icon={icon} className="text-xl" />
 								<p className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</p>
@@ -71,7 +68,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 						<button type="submit" className="btn bg-primary" disabled={isPending}>
 							{isPending ? "Adding..." : "Add Button"}
 						</button>
-						<button type="button" onClick={onClose} className="btn bg-secondary">
+						<button type="button" onClick={onClose} className="btn bg-danger">
 							Cancel
 						</button>
 					</div>

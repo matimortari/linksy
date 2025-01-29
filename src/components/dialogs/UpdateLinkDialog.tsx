@@ -52,7 +52,7 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 					<button type="submit" className="btn bg-primary" disabled={isPending}>
 						{isPending ? "Updating..." : "Update Link"}
 					</button>
-					<button type="button" onClick={onClose} className="btn bg-secondary">
+					<button type="button" onClick={onClose} className="btn bg-danger">
 						Cancel
 					</button>
 				</div>

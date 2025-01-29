@@ -25,7 +25,7 @@ export default function AnalyticsCharts() {
 
 				<div className="card flex flex-col text-center">
 					<p className="whitespace-nowrap font-semibold text-muted-foreground">Conversion Rate</p>
-					<p className="text-2xl font-semibold text-primary">{conversionRate}%</p>
+					<p className="text-2xl font-semibold text-accent">{conversionRate}%</p>
 				</div>
 			</div>
 

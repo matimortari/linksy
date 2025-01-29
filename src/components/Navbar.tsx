@@ -85,21 +85,21 @@ export default function Navbar() {
 
 					<div className="flex flex-col overflow-y-auto">
 						<nav className="w-full space-y-2">
-							<button onClick={handleThemeToggle} className="btn flex w-full justify-start gap-2">
+							<button onClick={handleThemeToggle} className="btn flex w-full justify-start gap-2 bg-card">
 								<Icon icon={theme === "light" ? "radix-icons:sun" : "radix-icons:moon"} className="icon size-6" />
 								<span>Toggle Theme</span>
 							</button>
 
 							{navLinks.map((item) => (
 								<div key={item.label}>
-									<Link href={item.href} className="btn flex w-full justify-start gap-2">
+									<Link href={item.href} className="btn flex w-full justify-start gap-2 bg-card">
 										<Icon icon={item.icon} className="icon size-6" />
 										{item.label}
 									</Link>
 								</div>
 							))}
 
-							<button onClick={handleSignOut} className="btn flex w-full justify-start gap-2">
+							<button onClick={handleSignOut} className="btn flex w-full justify-start gap-2 bg-card">
 								<Icon icon="material-symbols:logout" className="icon size-6" />
 								<p className="hidden md:block">Sign Out</p>
 							</button>

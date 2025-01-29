@@ -62,7 +62,7 @@ export default function Home() {
 								Keep all your stuff together!
 							</h1>
 							<p className={`${lato.className} max-w-xl text-muted-foreground`}>
-								Welcome to <span className="font-bold text-primary">Linksy</span>! Your links, profiles, contact info,
+								Welcome to <span className="font-bold text-accent">Linksy</span>! Your links, profiles, contact info,
 								and more in one place. Create and customize your page and share it with your audience.
 							</p>
 						</div>

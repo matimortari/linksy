@@ -52,7 +52,7 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 					<button type="submit" className="btn bg-primary" disabled={isPending}>
 						{isPending ? "Adding..." : "Add Link"}
 					</button>
-					<button type="button" onClick={onClose} className="btn bg-secondary">
+					<button type="button" onClick={onClose} className="btn bg-danger">
 						Cancel
 					</button>
 				</div>

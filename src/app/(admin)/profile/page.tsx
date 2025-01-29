@@ -17,7 +17,7 @@ export default function Profile() {
 				<header className="mb-4 space-y-1">
 					<h2>My Profile</h2>
 					<h5>
-						Welcome back, <span className="font-bold text-primary">{useUserStore((state) => state.slug)}</span>!
+						Welcome back, <span className="font-bold text-accent">{useUserStore((state) => state.slug)}</span>!
 					</h5>
 				</header>
 

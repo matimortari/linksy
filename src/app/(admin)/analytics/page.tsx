@@ -11,7 +11,7 @@ export default function Analytics() {
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<div className="card md:w-full">
 				<header className="space-y-1">
-					<h1>Analytics</h1>
+					<h2>Analytics</h2>
 					<h5>View your profile analytics.</h5>
 				</header>
 
