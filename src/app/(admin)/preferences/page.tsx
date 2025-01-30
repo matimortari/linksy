@@ -1,8 +1,8 @@
 "use client"
 
-import AppearanceForm from "@/src/components/forms/AppearanceForm"
-import SupportBannerForm from "@/src/components/forms/SupportBannerForm"
+import AppearanceForm from "@/src/components/AppearanceForm"
 import Preview from "@/src/components/Preview"
+import SupportBannerForm from "@/src/components/SupportBannerForm"
 import useAuth from "@/src/hooks/useAuth"
 import { deleteAccount } from "@/src/services/userService"
 
