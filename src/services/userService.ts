@@ -31,6 +31,23 @@ export const updateDescription = async (newDescription: string): Promise<void> =
 	return response.json()
 }
 
+// Update user image
+export const updateImage = async (newImageUrl: string): Promise<void> => {
+	const response = await fetch("/api/user", {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ newImageUrl })
+	})
+
+	if (!response.ok) {
+		throw new Error("Failed to update image")
+	}
+
+	return response.json()
+}
+
 // Reset user description
 export const resetDescription = async ({
 	setDescription,

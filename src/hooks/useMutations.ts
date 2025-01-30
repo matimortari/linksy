@@ -1,7 +1,7 @@
 import { addButton, deleteButton } from "@/src/services/buttonsService"
 import { addLink, deleteLink, updateLink } from "@/src/services/linksService"
 import { resetSettings, updateSettings, updateSupportBanner } from "@/src/services/settingsService"
-import { updateDescription, updateSlug } from "@/src/services/userService"
+import { updateDescription, updateImage, updateSlug } from "@/src/services/userService"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 export function useUpdateSlug() {
@@ -22,6 +22,18 @@ export function useUpdateDescription() {
 	return useMutation({
 		mutationKey: ["updateDescription"],
 		mutationFn: updateDescription,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
+		}
+	})
+}
+
+export function useUpdateImage() {
+	const queryClient = useQueryClient()
+
+	return useMutation({
+		mutationKey: ["updateImage"],
+		mutationFn: updateImage,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["getUserData"] })
 		}

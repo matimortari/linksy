@@ -1,6 +1,5 @@
 "use client"
 
-import HeaderForm from "@/src/components/forms/HeaderForm"
 import ButtonList from "@/src/components/lists/ButtonList"
 import LinkList from "@/src/components/lists/LinkList"
 import Preview from "@/src/components/Preview"
@@ -26,12 +25,6 @@ export default function Profile() {
 				<hr className="my-4" />
 
 				<main className="flex flex-col gap-4">
-					<div className="section-container">
-						<h3>Update Header</h3>
-						<h6 className="text-muted-foreground">Change your display name and description.</h6>
-						<HeaderForm />
-					</div>
-
 					<div className="section-container">
 						<h3>My Links</h3>
 						<h6 className="text-muted-foreground">Manage your social links.</h6>

@@ -47,6 +47,12 @@ interface UserStats {
 	buttonClicks: number
 }
 
+interface UserFormData {
+	slug: string
+	description: string
+	image: string
+}
+
 interface ButtonFormData {
 	platform: string
 	url: string

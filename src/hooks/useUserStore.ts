@@ -13,7 +13,8 @@ type UserStore = {
 	setImage: (image: string) => void
 	setButtons: (buttons: Button[]) => void
 	setLinks: (links: Link[]) => void
-	setSettings: (settings: Partial<UserSettings>) => void // Accept partial updates
+	setSettings: (settings: Partial<UserSettings>) => void
+	setUserData: (userData: { slug: string; description: string; image: string }) => void // New method to set all user data at once
 }
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -34,5 +35,6 @@ export const useUserStore = create<UserStore>((set) => ({
 				...state.settings, // Preserve existing settings
 				...settings // Merge new settings
 			}
-		}))
+		})),
+	setUserData: ({ slug, description, image }) => set({ slug, description, image }) // Set all user data at once
 }))

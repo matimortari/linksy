@@ -15,15 +15,17 @@ export async function GET() {
 	return NextResponse.json(user, { status: 200 })
 }
 
-// PUT method for updating user data
+// PUT method for updating user data (including image URL)
 export async function PUT(req: NextRequest) {
 	const { error, session, response } = await getSessionOrUnauthorized()
 	if (error) return response
 
-	const { newSlug, newDescription } = await req.json()
-	const updateData: { slug?: string; description?: string | null } = {
+	const { newSlug, newDescription, newImageUrl } = await req.json()
+
+	const updateData: { slug?: string; description?: string | null; image?: string | null } = {
 		...(newSlug && typeof newSlug === "string" && { slug: newSlug }),
-		...(newDescription !== undefined && typeof newDescription === "string" && { description: newDescription })
+		...(newDescription !== undefined && typeof newDescription === "string" && { description: newDescription }),
+		...(newImageUrl && typeof newImageUrl === "string" && { image: newImageUrl })
 	}
 
 	if (!Object.keys(updateData).length) {
@@ -35,7 +37,7 @@ export async function PUT(req: NextRequest) {
 		data: updateData
 	})
 
-	return NextResponse.json({ message: "User updated successfully", updatedUser, status: 200 })
+	return NextResponse.json({ message: "User updated successfully", updatedUser }, { status: 200 })
 }
 
 // DELETE method for deleting user
