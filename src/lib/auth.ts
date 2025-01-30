@@ -44,12 +44,12 @@ export const authOptions = {
 			})
 
 			if (!existingUser) {
-				const baseSlug = profile?.name || user.name // Fallback to user.name if profile is undefined
-				const slug = generateSlug(baseSlug, true) // Set isInitial to true
+				const baseSlug = profile?.name || user.name
+				const slug = generateSlug(baseSlug)
 				const newUser = await db.user.create({
 					data: {
 						email: user.email,
-						name: profile?.name || user.name, // Use profile name if available, else fallback to user.name
+						name: profile?.name || user.name,
 						image: user.image,
 						slug
 					}
@@ -65,7 +65,7 @@ export const authOptions = {
 				await db.user.update({
 					where: { id: existingUser.id },
 					data: {
-						name: profile?.name ?? existingUser.name, // Update name based on profile
+						name: profile?.name ?? existingUser.name,
 						image: user.image
 					}
 				})

@@ -39,18 +39,16 @@ export function formatDate(dateString: Date) {
 }
 
 // Helper function to generate a random slug
-export function generateSlug(base: string = "", isInitial: boolean = false, length: number = 6) {
+export function generateSlug(base: string = "") {
 	const randomString = () =>
 		Math.random()
 			.toString(36)
 			.substring(2, 2 + length)
 
-	return isInitial
-		? `${base
-				.toLowerCase()
-				.replace(/\s+/g, "-")
-				.replace(/[^a-z0-9-]/g, "")}-${randomString()}`
-		: `${randomString()}-${randomString()}`
+	return `${base
+		.toLowerCase()
+		.replace(/\s+/g, "-")
+		.replace(/[^a-z0-9-]/g, "")}-${randomString()}-${randomString()}`
 }
 
 // Helper function to get the session or return an unauthorized JSON response
