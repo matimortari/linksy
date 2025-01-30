@@ -41,7 +41,9 @@ function UserCard({ slug, description, image, setIsDialogOpen }) {
 			</div>
 
 			<div className="flex flex-col gap-1 md:w-28">
-				<h5 className="truncate">@{slug}</h5>
+				<Link href={`/${slug}`}>
+					<h5 className="truncate hover:underline">@{slug}</h5>
+				</Link>
 				<p className="break-all text-xs text-muted-foreground md:hidden">{description}</p>
 			</div>
 		</div>

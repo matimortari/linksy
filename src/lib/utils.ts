@@ -40,15 +40,12 @@ export function formatDate(dateString: Date) {
 
 // Helper function to generate a random slug
 export function generateSlug(base: string = "") {
-	const randomString = () =>
-		Math.random()
-			.toString(36)
-			.substring(2, 2 + length)
+	const randomString = Math.random().toString(36).substring(2, 10)
 
 	return `${base
 		.toLowerCase()
 		.replace(/\s+/g, "-")
-		.replace(/[^a-z0-9-]/g, "")}-${randomString()}-${randomString()}`
+		.replace(/[^a-z0-9-]/g, "")}-${randomString}`
 }
 
 // Helper function to get the session or return an unauthorized JSON response
@@ -63,34 +60,28 @@ export async function getSessionOrUnauthorized() {
 
 // Track page visits and update UserStats table
 export async function trackPageVisit(userId: string) {
-	const today = new Date().toISOString().split("T")[0]
-	const startOfDay = `${today}T00:00:00.000Z`
+	const now = new Date()
 
-	// Check if a record already exists for today's date
-	const userStats = await db.userStats.findUnique({
+	// Find the first record for today
+	const userStats = await db.userStats.findFirst({
 		where: {
-			userId_date: {
-				userId,
-				date: startOfDay
+			userId,
+			date: {
+				gte: new Date(now.getFullYear(), now.getMonth(), now.getDate()) // Find any record for today
 			}
 		}
 	})
 
-	// If the record exists, increment the views count by 1. If no record exists, create a new one with 1 view
 	if (userStats) {
 		await db.userStats.update({
-			where: {
-				id: userStats.id
-			},
-			data: {
-				views: userStats.views + 1
-			}
+			where: { id: userStats.id },
+			data: { views: userStats.views + 1 }
 		})
 	} else {
 		await db.userStats.create({
 			data: {
 				userId,
-				date: startOfDay,
+				date: now,
 				views: 1,
 				linkClicks: 0,
 				buttonClicks: 0
@@ -101,20 +92,18 @@ export async function trackPageVisit(userId: string) {
 
 // Sum linkClicks and buttonClicks and update UserStats table
 export async function updateClickStats(userId: string) {
-	const today = new Date().toISOString().split("T")[0]
-	const startOfDay = `${today}T00:00:00.000Z`
+	const now = new Date()
 
-	// Check if a record already exists for today's date
-	const userStats = await db.userStats.findUnique({
+	// Find the first record for today
+	const userStats = await db.userStats.findFirst({
 		where: {
-			userId_date: {
-				userId,
-				date: startOfDay
+			userId,
+			date: {
+				gte: new Date(now.getFullYear(), now.getMonth(), now.getDate()) // Find any record for today
 			}
 		}
 	})
 
-	// Aggregate the link and button clicks
 	const linkClicksSum = await db.linkClick.aggregate({
 		where: { userLink: { userId } },
 		_count: { id: true }
@@ -127,12 +116,9 @@ export async function updateClickStats(userId: string) {
 	const linkClicksTotal = linkClicksSum._count.id ?? 0
 	const buttonClicksTotal = buttonClicksSum._count.id ?? 0
 
-	// If the record exists, update the linkClicks and buttonClicks. If no record exists, create a new one with the sum of clicks
 	if (userStats) {
 		await db.userStats.update({
-			where: {
-				id: userStats.id
-			},
+			where: { id: userStats.id },
 			data: {
 				linkClicks: linkClicksTotal,
 				buttonClicks: buttonClicksTotal
@@ -142,7 +128,7 @@ export async function updateClickStats(userId: string) {
 		await db.userStats.create({
 			data: {
 				userId,
-				date: startOfDay,
+				date: now,
 				views: 0,
 				linkClicks: linkClicksTotal,
 				buttonClicks: buttonClicksTotal

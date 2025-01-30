@@ -43,8 +43,8 @@ export default function LinkList() {
 						<li key={l.id} className="card">
 							<div className="flex flex-col gap-1">
 								<div className="flex flex-row gap-4">
-									<Link href={l.url} target="_blank" rel="noopener noreferrer">
-										{l.title}
+									<Link href={l.url} target="_blank" rel="noopener noreferrer" className="truncate">
+										<p className="truncate">{l.title}</p>
 									</Link>
 
 									<div className="input-group">

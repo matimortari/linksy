@@ -30,6 +30,12 @@ export async function POST(req: NextRequest) {
 				}
 			})
 
+			// Increment the click count in userLink
+			await db.userLink.update({
+				where: { id },
+				data: { clicks: { increment: 1 } }
+			})
+
 			return NextResponse.json(linkClick, { status: 200 })
 		} catch (error) {
 			console.error("Error creating link click:", error)
@@ -43,6 +49,12 @@ export async function POST(req: NextRequest) {
 					userButtonId: id,
 					date: new Date()
 				}
+			})
+
+			// Increment the click count in userButton
+			await db.userButton.update({
+				where: { id },
+				data: { clicks: { increment: 1 } }
 			})
 
 			return NextResponse.json(buttonClick, { status: 200 })
