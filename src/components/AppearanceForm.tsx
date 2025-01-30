@@ -41,10 +41,11 @@ export default function AppearanceForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap">
-			<div className="flex w-full flex-col md:w-1/2">
-				<h4 className="my-2">General Settings</h4>
-				<hr className="max-w-xs" />
+		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+			<div className="card">
+				<h4>General Settings</h4>
+				<hr className="my-2" />
+
 				<Controller
 					name="backgroundColor"
 					control={control}
@@ -60,7 +61,7 @@ export default function AppearanceForm() {
 					control={control}
 					render={({ field }) => <ColorInput id="headerTextColor" label="Header Font Color" {...field} />}
 				/>
-				<hr className="max-w-xs" />
+
 				<Controller
 					name="slugTextSize"
 					control={control}
@@ -73,9 +74,10 @@ export default function AppearanceForm() {
 				/>
 			</div>
 
-			<div className="flex w-full flex-col md:w-1/2">
-				<h4 className="my-2">Social Buttons</h4>
-				<hr className="max-w-xs" />
+			<div className="card">
+				<h4>Social Buttons</h4>
+				<hr className="my-2" />
+
 				<Controller
 					name="buttonBackgroundColor"
 					control={control}
@@ -95,7 +97,7 @@ export default function AppearanceForm() {
 						<ColorInput id="buttonHoverBackgroundColor" label="Social Button Hover Background Color" {...field} />
 					)}
 				/>
-				<hr className="max-w-xs" />
+
 				<Controller
 					name="isButtonShadow"
 					control={control}
@@ -115,10 +117,12 @@ export default function AppearanceForm() {
 						/>
 					)}
 				/>
-				<hr className="max-w-xs" />
+			</div>
 
-				<h4 className="my-2">Links</h4>
-				<hr className="max-w-xs" />
+			<div className="card">
+				<h4>Links</h4>
+				<hr className="my-2" />
+
 				<Controller
 					name="linkBackgroundColor"
 					control={control}
@@ -136,7 +140,7 @@ export default function AppearanceForm() {
 						<ColorInput id="linkHoverBackgroundColor" label="Link Hover Background Color" {...field} />
 					)}
 				/>
-				<hr className="max-w-xs" />
+
 				<Controller
 					name="isLinkShadow"
 					control={control}
@@ -151,7 +155,7 @@ export default function AppearanceForm() {
 						<ColorInput id="linkShadowColor" label="Link Shadow Color" disabled={!watch("isLinkShadow")} {...field} />
 					)}
 				/>
-				<hr className="max-w-xs" />
+
 				<Controller
 					name="linkBorderRadius"
 					control={control}
