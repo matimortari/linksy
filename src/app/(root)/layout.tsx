@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	}
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
 	const session = await getServerSession(authOptions)
 
 	return (

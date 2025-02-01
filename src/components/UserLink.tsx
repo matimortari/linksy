@@ -13,8 +13,9 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 
 	return (
 		<li className="flex flex-col items-center justify-center">
-			<Link href={url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
-				<div
+			<Link href={url} target="_blank" rel="noopener noreferrer">
+				<button
+					onClick={handleClick}
 					className="min-w-32 max-w-72 text-center"
 					style={{
 						backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
@@ -29,7 +30,7 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 					<p className="truncate font-medium" style={{ color: settings.linkTextColor }}>
 						{title}
 					</p>
-				</div>
+				</button>
 			</Link>
 		</li>
 	)

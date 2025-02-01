@@ -11,7 +11,8 @@ function CarouselLink({ title, settings }) {
 
 	return (
 		<li className="flex flex-col items-center justify-center">
-			<div
+			<button
+				tabIndex={0}
 				className="min-w-32 max-w-72 text-center"
 				style={{
 					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
@@ -26,7 +27,7 @@ function CarouselLink({ title, settings }) {
 				<p className="truncate font-medium" style={{ color: settings.linkTextColor }}>
 					{title}
 				</p>
-			</div>
+			</button>
 		</li>
 	)
 }
@@ -36,8 +37,9 @@ function CarouselButton({ icon, settings }) {
 
 	return (
 		<li className="flex flex-row items-center justify-center">
-			<div
-				className="flex size-10 items-center justify-center rounded-full"
+			<button
+				tabIndex={0}
+				className="flex size-10 cursor-pointer items-center justify-center rounded-full"
 				style={{
 					backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
 					boxShadow: settings.isButtonShadow ? `0 4px 6px ${settings.buttonShadowColor}` : "none",
@@ -47,7 +49,7 @@ function CarouselButton({ icon, settings }) {
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
-			</div>
+			</button>
 		</li>
 	)
 }
@@ -114,19 +116,17 @@ export default function Carousel() {
 
 	return (
 		<div className="animate-float relative flex h-[480px] select-none items-center justify-center">
-			<div className="flex cursor-pointer items-center" onClick={nextCard}>
-				<AnimatePresence mode="wait">
-					<motion.div
-						key={currentIndex}
-						initial={{ opacity: 0, x: 50 }}
-						animate={{ opacity: 1, x: 0 }}
-						exit={{ opacity: 0, x: -50 }}
-						transition={{ duration: 0.5 }}
-					>
-						<CarouselCard presetId={currentIndex} />
-					</motion.div>
-				</AnimatePresence>
-			</div>
+			<AnimatePresence mode="wait">
+				<motion.div
+					key={currentIndex}
+					initial={{ opacity: 0, x: 50 }}
+					animate={{ opacity: 1, x: 0 }}
+					exit={{ opacity: 0, x: -50 }}
+					transition={{ duration: 0.5 }}
+				>
+					<CarouselCard presetId={currentIndex} />
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	)
 }

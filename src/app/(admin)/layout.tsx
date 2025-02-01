@@ -10,7 +10,7 @@ import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default async function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: Readonly<{ children: ReactNode }>) {
 	const session = await getServerSession(authOptions)
 
 	const metadata: Metadata = {

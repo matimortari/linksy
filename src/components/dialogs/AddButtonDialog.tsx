@@ -36,22 +36,35 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 		)
 	}
 
+	const handlePlatformSelect = (platform: string) => {
+		setValue("platform", platform)
+	}
+
+	const handleKeyDown = (e: React.KeyboardEvent, platform: string) => {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault()
+			handlePlatformSelect(platform)
+		}
+	}
+
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
 				<div className="my-2 flex flex-col space-y-2">
 					<div className="grid max-h-48 grid-cols-5 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9 md:overflow-visible">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
-							<div
+							<button
 								key={platform}
-								onClick={() => setValue("platform", platform)}
+								tabIndex={0}
+								onClick={() => handlePlatformSelect(platform)}
+								onKeyDown={(e) => handleKeyDown(e, platform)}
 								className={`flex cursor-pointer flex-col items-center justify-center rounded-lg border p-2 ${
 									selectedPlatform === platform ? "bg-muted" : "bg-transparent"
 								} hover:bg-muted`}
 							>
 								<Icon icon={icon} className="text-xl" />
 								<p className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</p>
-							</div>
+							</button>
 						))}
 					</div>
 				</div>

@@ -14,8 +14,9 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 
 	return (
 		<li className="flex flex-row items-center justify-center">
-			<Link href={url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
-				<div
+			<Link href={url} target="_blank" rel="noopener noreferrer">
+				<button
+					onClick={handleClick}
 					className="flex size-10 items-center justify-center rounded-full"
 					style={{
 						backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
@@ -26,7 +27,7 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 					onMouseLeave={() => setIsHovered(false)}
 				>
 					{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
-				</div>
+				</button>
 			</Link>
 		</li>
 	)

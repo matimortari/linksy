@@ -51,7 +51,7 @@ export function generateSlug(base: string = "") {
 // Helper function to get the session or return an unauthorized JSON response
 export async function getSessionOrUnauthorized() {
 	const session = await getServerSession(authOptions)
-	if (!session || !session.user) {
+	if (!session?.user) {
 		return { error: true, response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }) }
 	}
 

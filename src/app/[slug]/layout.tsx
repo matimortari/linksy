@@ -8,7 +8,7 @@ import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default async function SlugLayout({ children }: { children: ReactNode }) {
+export default async function SlugLayout({ children }: Readonly<{ children: ReactNode }>) {
 	const session = await getServerSession(authOptions)
 
 	const metadata: Metadata = {

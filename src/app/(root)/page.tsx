@@ -21,21 +21,25 @@ export default function Home() {
 
 	const features = [
 		{
+			id: 1,
 			title: "Unlimited Links",
 			description: "Add as many links or social buttons as you want to your page.",
 			icon: "ri:infinity-fill"
 		},
 		{
+			id: 2,
 			title: "Fully Customizable",
 			description: "Customize the colors, layouts and more for your page.",
 			icon: "ri:paint-brush-fill"
 		},
 		{
+			id: 3,
 			title: "Detailed Analytics",
 			description: "Track your page views, clicks, and more with analytics.",
 			icon: "ri:line-chart-fill"
 		},
 		{
+			id: 4,
 			title: "Free to Use!",
 			description: "Linksy is completely free to use, with no hidden fees.",
 			icon: "ri:price-tag-3-fill"
@@ -94,8 +98,8 @@ export default function Home() {
 				<section className="mt-12 w-full max-w-6xl">
 					<h3 className={`${bowlby.className} mb-4 text-center`}>Why Choose Linksy?</h3>
 					<div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-						{features.map((feature, index) => (
-							<div key={index} className="card icon flex cursor-default flex-col gap-2 shadow-xl">
+						{features.map((feature) => (
+							<div key={feature.id} className="card icon flex cursor-default flex-col gap-2 shadow-xl">
 								<div className="flex items-center gap-2">
 									<span className="rounded-full bg-muted p-2">
 										<Icon icon={feature.icon} className="icon size-4" />
