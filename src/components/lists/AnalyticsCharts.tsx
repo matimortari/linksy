@@ -7,9 +7,14 @@ export default function AnalyticsCharts() {
 	const { data: stats = [] } = useGetAnalytics()
 	const { data: userData } = useGetUserData()
 
+	// Calculate total views and total clicks (sum of linkClicks and buttonClicks)
 	const totalViews = stats.reduce((sum: any, entry: any) => sum + entry.views, 0)
 	const totalClicks = stats.reduce((sum: any, entry: any) => sum + entry.linkClicks + entry.buttonClicks, 0)
-	const conversionRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
+
+	// Calculate Click Rate
+	const clickRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
+
+	const hasEnoughData = stats.length > 1 // Checks if there is more than one data point
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -35,8 +40,8 @@ export default function AnalyticsCharts() {
 				<div className="flex flex-row items-center gap-2">
 					<Icon icon="material-symbols:percent" className="size-6 text-accent" />
 					<div className="flex flex-col items-start">
-						<p className="text-xs text-muted-foreground">Conversion Rate</p>
-						<p className="font-semibold md:text-lg">{conversionRate}%</p>
+						<p className="text-xs text-muted-foreground">Click Rate</p>
+						<p className="font-semibold md:text-lg">{clickRate}%</p>
 					</div>
 				</div>
 
@@ -53,14 +58,24 @@ export default function AnalyticsCharts() {
 
 			<h3>Profile Views</h3>
 			<h6 className="text-muted-foreground">Total views of your profile page over time.</h6>
-			<ResponsiveContainer width="100%" height={200}>
-				<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-					<XAxis dataKey="date" className="text-xs" />
-					<YAxis />
-					<Tooltip />
-					<Bar dataKey="views" fill="#4b3e68" barSize={25} />
-				</BarChart>
-			</ResponsiveContainer>
+			{totalViews === 0 || !hasEnoughData ? (
+				<div className="card my-1 text-center font-semibold text-muted-foreground">
+					{totalViews === 0 ? "Not enough data yet." : "Only one data point available."}
+				</div>
+			) : (
+				<ResponsiveContainer height={200}>
+					<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+						<XAxis dataKey="date" className="text-xs" />
+						<YAxis className="text-xs" />
+						<Tooltip
+							wrapperClassName="popover text-xs"
+							labelClassName="text-foreground font-semibold"
+							contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
+						/>
+						<Bar dataKey="views" fill="#31589c" barSize={25} />
+					</BarChart>
+				</ResponsiveContainer>
+			)}
 
 			<hr />
 
@@ -68,27 +83,47 @@ export default function AnalyticsCharts() {
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Link Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your links over time.</h6>
-					<ResponsiveContainer width="100%" height={200}>
-						<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-							<XAxis dataKey="date" className="text-xs" />
-							<YAxis />
-							<Tooltip />
-							<Line type="monotone" dataKey="linkClicks" stroke="#4b3e68" />
-						</LineChart>
-					</ResponsiveContainer>
+					{totalClicks === 0 || !hasEnoughData ? (
+						<div className="card my-1 text-center font-semibold text-muted-foreground">
+							{totalClicks === 0 ? "Not enough data yet." : "Only one data point available."}
+						</div>
+					) : (
+						<ResponsiveContainer height={200}>
+							<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+								<XAxis dataKey="date" className="text-xs" />
+								<YAxis className="text-xs" />
+								<Tooltip
+									wrapperClassName="popover text-xs"
+									labelClassName="text-foreground font-semibold"
+									contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
+								/>
+								<Line type="monotone" dataKey="linkClicks" name="Link Clicks" stroke="#31589c" />
+							</LineChart>
+						</ResponsiveContainer>
+					)}
 				</div>
 
 				<div className="flex w-full flex-col gap-2">
 					<h3 className="subtitle">Button Clicks</h3>
 					<h6 className="text-muted-foreground">Total clicks on your social buttons over time.</h6>
-					<ResponsiveContainer width="100%" height={200}>
-						<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-							<XAxis dataKey="date" className="text-xs" />
-							<YAxis />
-							<Tooltip />
-							<Line type="monotone" dataKey="buttonClicks" stroke="#4b3e68" />
-						</LineChart>
-					</ResponsiveContainer>
+					{totalClicks === 0 || !hasEnoughData ? (
+						<div className="card my-1 text-center font-semibold text-muted-foreground">
+							{totalClicks === 0 ? "Not enough data yet." : "Only one data point available."}
+						</div>
+					) : (
+						<ResponsiveContainer height={200}>
+							<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+								<XAxis dataKey="date" className="text-xs" />
+								<YAxis className="text-xs" />
+								<Tooltip
+									wrapperClassName="popover text-xs"
+									labelClassName="text-foreground font-semibold"
+									contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
+								/>
+								<Line type="monotone" dataKey="buttonClicks" name="Button Clicks" stroke="#31589c" />
+							</LineChart>
+						</ResponsiveContainer>
+					)}
 				</div>
 			</div>
 		</div>
