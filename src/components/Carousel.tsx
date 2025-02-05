@@ -58,7 +58,7 @@ function CarouselCard({ presetId = 0 }) {
 	const { description, links, image, buttons, slug, settings } = previewPresets[presetId]
 
 	return (
-		<div className="rounded-2xl shadow-xl">
+		<div className="rounded-2xl border shadow-xl">
 			<div className="relative w-64 rounded-2xl md:w-[300px]">
 				<div
 					className="relative grid place-content-center rounded-2xl px-4 py-2"

@@ -7,14 +7,19 @@ export default function AnalyticsCharts() {
 	const { data: stats = [] } = useGetAnalytics()
 	const { data: userData } = useGetUserData()
 
+	// Get the last 30 entries based on the date
+	const filteredStats = stats
+		.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+		.slice(0, 30)
+
 	// Calculate total views and total clicks (sum of linkClicks and buttonClicks)
-	const totalViews = stats.reduce((sum: any, entry: any) => sum + entry.views, 0)
-	const totalClicks = stats.reduce((sum: any, entry: any) => sum + entry.linkClicks + entry.buttonClicks, 0)
+	const totalViews = filteredStats.reduce((sum: any, entry: any) => sum + entry.views, 0)
+	const totalClicks = filteredStats.reduce((sum: any, entry: any) => sum + entry.linkClicks + entry.buttonClicks, 0)
 
 	// Calculate Click Rate
 	const clickRate = totalViews > 0 ? ((totalClicks / totalViews) * 100).toFixed(2) : "0"
 
-	const hasEnoughData = stats.length > 1 // Checks if there is more than one data point
+	const hasEnoughData = filteredStats.length > 1 // Checks if there is more than one data point
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -64,7 +69,7 @@ export default function AnalyticsCharts() {
 				</div>
 			) : (
 				<ResponsiveContainer height={200}>
-					<BarChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+					<BarChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
 						<XAxis dataKey="date" className="text-xs" />
 						<YAxis className="text-xs" />
 						<Tooltip
@@ -89,7 +94,7 @@ export default function AnalyticsCharts() {
 						</div>
 					) : (
 						<ResponsiveContainer height={200}>
-							<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
 								<XAxis dataKey="date" className="text-xs" />
 								<YAxis className="text-xs" />
 								<Tooltip
@@ -112,7 +117,7 @@ export default function AnalyticsCharts() {
 						</div>
 					) : (
 						<ResponsiveContainer height={200}>
-							<LineChart data={stats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
+							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
 								<XAxis dataKey="date" className="text-xs" />
 								<YAxis className="text-xs" />
 								<Tooltip

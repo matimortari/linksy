@@ -29,10 +29,8 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 		})
 	}
 
-	if (!currentLink) return null
-
 	return (
-		<Dialog isOpen={isOpen} onClose={onClose} title="Update Link">
+		<Dialog title="Update Link" isOpen={isOpen} onClose={onClose}>
 			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
 				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">

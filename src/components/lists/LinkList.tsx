@@ -9,6 +9,7 @@ import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 
 export default function LinkList() {
 	const { links, setLinks } = useUserStore()
+
 	const { data: userLinks } = useGetLinks()
 	const { mutate: deleteLink } = useDeleteLink()
 
@@ -36,15 +37,15 @@ export default function LinkList() {
 	return (
 		<>
 			{userLinks == 0 ? (
-				<p className="my-1 font-semibold text-muted-foreground">No links here yet. Get started!</p>
+				<h4 className="my-2 text-center text-muted-foreground">No links here yet. Get started!</h4>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
 					{userLinks?.map((l: Link) => (
 						<li key={l.id} className="card">
-							<div className="flex flex-col gap-1">
-								<div className="flex flex-row gap-4">
+							<div className="flex flex-col gap-2">
+								<div className="flex flex-row items-center gap-4">
 									<Link href={l.url} target="_blank" rel="noopener noreferrer" className="truncate">
-										<p className="truncate">{l.title}</p>
+										<h4 className="truncate">{l.title}</h4>
 									</Link>
 
 									<div className="input-group">
@@ -62,14 +63,14 @@ export default function LinkList() {
 									</div>
 								</div>
 
-								<span className="text-xs text-muted-foreground">{l.url}</span>
+								<span className="truncate text-xs text-muted-foreground">{l.url}</span>
 							</div>
 						</li>
 					))}
 				</ul>
 			)}
 
-			<div className="input-group">
+			<div className="input-group justify-end">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
 					Add Link
 				</button>

@@ -28,7 +28,7 @@ export default function ButtonList() {
 	return (
 		<>
 			{userButtons == 0 ? (
-				<p className="my-1 font-semibold text-muted-foreground">No social buttons here yet. Get started!</p>
+				<h4 className="my-2 text-center text-muted-foreground">No social buttons here yet. Get started!</h4>
 			) : (
 				<ul className="flex flex-row gap-2">
 					{userButtons?.map((b: Button) => (
@@ -50,7 +50,7 @@ export default function ButtonList() {
 				</ul>
 			)}
 
-			<div className="input-group">
+			<div className="input-group justify-end">
 				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
 					Add Social Button
 				</button>

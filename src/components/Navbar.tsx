@@ -29,20 +29,20 @@ function Logo() {
 
 function UserCard({ slug, description, image, setIsDialogOpen }) {
 	return (
-		<div className="my-4 flex flex-row items-center gap-6">
+		<div className="my-4 flex flex-row items-center gap-2">
 			<div className="relative">
 				<Image src={image} alt={slug} width={50} height={50} className="rounded-full border" />
 				<button
 					onClick={() => setIsDialogOpen(true)}
-					className="absolute -bottom-3 -right-3 rounded-full border bg-accent p-1"
+					className="absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
 				>
-					<Icon icon="ic:round-settings-suggest" className="icon size-5" />
+					<Icon icon="mdi:square-edit-outline" className="icon size-4" />
 				</button>
 			</div>
 
-			<div className="flex flex-col gap-1 md:w-28">
-				<Link href={`/${slug}`}>
-					<h5 className="truncate hover:underline">@{slug}</h5>
+			<div className="flex w-full flex-col gap-1 overflow-hidden">
+				<Link href={`/${slug}`} className="w-full">
+					<h5 className="w-full truncate text-sm font-semibold hover:underline">{`@${slug}`}</h5>
 				</Link>
 				<p className="break-all text-xs text-muted-foreground md:hidden">{description}</p>
 			</div>

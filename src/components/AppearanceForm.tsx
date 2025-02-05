@@ -9,6 +9,7 @@ import { CheckboxInput, ColorInput, RadioOptions } from "./Inputs"
 
 export default function AppearanceForm() {
 	const { settings, setSettings } = useUserStore()
+
 	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
 	const { mutate: resetSettingsMutation, isPending: pendingReset } = useResetSettings()
 	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()

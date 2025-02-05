@@ -10,8 +10,8 @@ import UserLink from "./UserLink"
 
 export default function Preview() {
 	const { slug, description, image, settings, links, buttons } = useUserStore()
-
 	const { data: session } = useSession()
+
 	const [isVisible, setIsVisible] = useState(false)
 
 	useEffect(() => {

@@ -77,18 +77,20 @@ export default function ShareBanner() {
 	}
 
 	return (
-		<div className="relative mt-2 flex max-w-lg flex-row justify-between rounded-2xl border bg-muted p-2">
-			<div className="flex flex-col gap-1">
+		<div className="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
+			<div className="flex w-full flex-col gap-1 overflow-hidden">
 				<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
 				<Link href={`/${slug}`} className="truncate text-xs font-medium">
-					linksy-live.vercel.app/{slug}
+					<span>linksy-live.vercel.app/{slug}</span>
 				</Link>
 			</div>
+
 			<div className="input-group">
 				<button type="button" className="btn bg-card text-foreground" onClick={toggleDropdown}>
 					Share Now
 				</button>
 			</div>
+
 			<ShareDropdown isOpen={isDropdownOpen} onClose={closeDropdown} />
 		</div>
 	)

@@ -8,21 +8,21 @@ export default function ClicksByLink() {
 	return (
 		<>
 			{!items || items.length === 0 ? (
-				<p className="my-1 font-semibold text-muted-foreground">No links or buttons available yet.</p>
+				<h4 className="my-2 text-center text-muted-foreground">No links or buttons available yet.</h4>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-3">
 					{items.map((item) => (
-						<li key={item.url} className="card gap-2">
+						<li key={item.url} className="card">
 							{item.type === "link" ? (
-								<div className="flex flex-row items-center gap-1">
-									<p className="truncate font-semibold text-muted-foreground">{item.title}</p>
-									<p className="font-semibold"> - {item.clicks} clicks</p>
+								<div className="mb-2 flex flex-row items-center gap-2">
+									<h4 className="truncate text-muted-foreground">{item.title}</h4>
+									<span className="whitespace-nowrap font-semibold"> - {item.clicks} clicks</span>
 								</div>
 							) : (
-								<div className="flex flex-row items-center gap-1">
+								<div className="mb-2 flex flex-row items-center gap-2">
 									{item.icon && <Icon icon={item.icon} className="size-5 text-muted-foreground" />}
-									<p className="font-semibold text-muted-foreground">{item.platform}</p>
-									<p className="font-semibold"> - {item.clicks} clicks</p>
+									<h4 className="truncate text-muted-foreground">{item.platform}</h4>
+									<span className="whitespace-nowrap font-semibold"> - {item.clicks} clicks</span>
 								</div>
 							)}
 

@@ -24,7 +24,7 @@ export default function Preferences() {
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
-			<div className="card md:w-8/12">
+			<main className="card md:w-8/12">
 				<header className="space-y-1">
 					<h2>Preferences</h2>
 					<h5>Manage your profile.</h5>
@@ -32,20 +32,20 @@ export default function Preferences() {
 
 				<hr className="my-4" />
 
-				<main className="flex flex-col gap-4">
-					<div className="section-container">
+				<div className="flex flex-col gap-4">
+					<section className="section-container">
 						<h3>Appearance</h3>
 						<h6 className="text-muted-foreground">Customize the Appearance for Your Page.</h6>
 						<AppearanceForm />
-					</div>
+					</section>
 
-					<div className="section-container">
+					<section className="section-container">
 						<h3>Support Banner</h3>
 						<h6 className="text-muted-foreground">Show Your Support for Important Causes.</h6>
 						<SupportBannerForm />
-					</div>
+					</section>
 
-					<div className="section-container border-danger">
+					<section className="section-container border-danger">
 						<h3>Delete Account</h3>
 						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
 						<div className="input-group">
@@ -53,9 +53,9 @@ export default function Preferences() {
 								Delete Account
 							</button>
 						</div>
-					</div>
-				</main>
-			</div>
+					</section>
+				</div>
+			</main>
 
 			<aside className="md:w-4/12">
 				<Preview />

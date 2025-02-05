@@ -14,14 +14,14 @@ export default function QRCodeDialog({ isOpen, slug, onClose }) {
 	}
 
 	return (
-		<Dialog isOpen={isOpen} onClose={onClose} title="My QR Code">
+		<Dialog title="My QR Code" isOpen={isOpen} onClose={onClose}>
 			<div className="my-4 flex flex-col items-center gap-4">
-				<div>
-					<QRCodeCanvas value={`https://linksy-live.vercel.app/${slug}`} size={200} />
-				</div>
+				<QRCodeCanvas value={`https://linksy-live.vercel.app/${slug}`} size={200} />
+
 				<p className="text-sm text-muted-foreground">Scan this QR code to visit your Linksy profile!</p>
-				<div className="flex gap-2">
-					<button className="btn bg-primary" onClick={() => handleDownloadQRCode(slug)}>
+
+				<div className="input-group">
+					<button onClick={() => handleDownloadQRCode(slug)} className="btn bg-primary">
 						Download QR Code
 					</button>
 					<button className="btn bg-danger" onClick={onClose}>

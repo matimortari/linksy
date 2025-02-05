@@ -5,8 +5,9 @@ import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 
 export default function SupportBannerForm() {
-	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
 	const { settings } = useUserStore()
+
+	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
 
 	const { control, handleSubmit, reset } = useForm<SupportBannerFormData>({
 		defaultValues: {

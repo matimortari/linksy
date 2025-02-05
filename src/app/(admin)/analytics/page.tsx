@@ -9,7 +9,7 @@ export default function Analytics() {
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
-			<div className="card md:w-full">
+			<main className="card md:w-full">
 				<header className="space-y-1">
 					<h2>Analytics</h2>
 					<h5>View your profile analytics.</h5>
@@ -17,18 +17,18 @@ export default function Analytics() {
 
 				<hr className="my-4" />
 
-				<main className="flex flex-col gap-4">
-					<div className="section-container">
+				<div className="flex flex-col gap-4">
+					<section className="section-container">
 						<AnalyticsCharts />
-					</div>
+					</section>
 
-					<div className="section-container">
+					<section className="section-container">
 						<h3>Clicks By Link</h3>
 						<h6 className="text-muted-foreground">Your most visited links & social buttons.</h6>
 						<ClicksByLink />
-					</div>
-				</main>
-			</div>
+					</section>
+				</div>
+			</main>
 		</div>
 	)
 }

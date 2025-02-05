@@ -24,8 +24,9 @@ export default function Login() {
 			</div>
 
 			<main className="relative z-10 flex flex-col items-center justify-between md:p-8">
-				<motion.section
-					className="card gap-4 text-center shadow-xl"
+				{/* Sign In form */}
+				<motion.div
+					className="popover gap-4 text-center"
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
@@ -51,7 +52,7 @@ export default function Login() {
 							<Icon icon="simple-icons:github" className="icon size-5" />
 						</button>
 					</div>
-				</motion.section>
+				</motion.div>
 			</main>
 		</div>
 	)

@@ -37,8 +37,13 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 	return (
 		<div className="animate-slide-in fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
 			<div ref={dialogRef} className="popover m-12 min-w-96 max-w-full">
-				{title && <h2 className="font-bold">{title}</h2>}
-				<div>{children}</div>
+				<header>
+					<h2 className="font-bold">{title}</h2>
+				</header>
+
+				<hr className="mb-4 mt-2" />
+
+				<main>{children}</main>
 			</div>
 		</div>
 	)
