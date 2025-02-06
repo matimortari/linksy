@@ -40,7 +40,7 @@ export default function Preview() {
 	}
 
 	return (
-		<div className="my-6 flex h-full flex-col items-center gap-2">
+		<div className="my-6 flex h-full max-h-[480px] flex-col items-center gap-2">
 			<h2 className="hidden md:block">Preview</h2>
 			<button
 				className={`btn fixed bottom-12 z-20 transform md:hidden ${isVisible ? "bg-card" : "bg-primary"}`}
@@ -114,7 +114,7 @@ export default function Preview() {
 
 			{/* Desktop Preview */}
 			<div
-				className="card m-2 hidden min-h-96 overflow-hidden md:block md:w-[300px]"
+				className="popover m-2 hidden min-h-96 overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
 				style={{ backgroundColor: settings?.backgroundColor }}
 			>
 				<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">

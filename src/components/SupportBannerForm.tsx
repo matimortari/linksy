@@ -41,6 +41,7 @@ export default function SupportBannerForm() {
 						</select>
 					)}
 				/>
+
 				<div className="input-group">
 					<button type="submit" disabled={isPending} className="btn bg-primary">
 						<Icon icon="material-symbols:volunteer-activism-outline" className="icon text-xl" />

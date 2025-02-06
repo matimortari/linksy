@@ -63,7 +63,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 								} hover:bg-muted`}
 							>
 								<Icon icon={icon} className="text-xl" />
-								<h6 className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</h6>
+								<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
 							</button>
 						))}
 					</div>

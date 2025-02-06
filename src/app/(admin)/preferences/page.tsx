@@ -35,19 +35,20 @@ export default function Preferences() {
 				<div className="flex flex-col gap-4">
 					<section className="section-container">
 						<h3>Appearance</h3>
-						<h6 className="text-muted-foreground">Customize the Appearance for Your Page.</h6>
+						<h6 className="text-muted-foreground">Customize the appearance for your page.</h6>
 						<AppearanceForm />
 					</section>
 
 					<section className="section-container">
 						<h3>Support Banner</h3>
-						<h6 className="text-muted-foreground">Show Your Support for Important Causes.</h6>
+						<h6 className="text-muted-foreground">Show your support for important causes.</h6>
 						<SupportBannerForm />
 					</section>
 
 					<section className="section-container border-danger">
 						<h3>Delete Account</h3>
 						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
+
 						<div className="input-group">
 							<button onClick={handleDeleteAccount} className="btn bg-danger">
 								Delete Account

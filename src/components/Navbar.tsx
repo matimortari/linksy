@@ -29,7 +29,7 @@ function Logo() {
 
 function UserCard({ slug, description, image, setIsDialogOpen }) {
 	return (
-		<div className="my-4 flex flex-row items-center gap-2">
+		<div className="my-4 flex flex-row items-center gap-4 md:gap-2">
 			<div className="relative">
 				<Image src={image} alt={slug} width={50} height={50} className="rounded-full border" />
 				<button
@@ -41,8 +41,8 @@ function UserCard({ slug, description, image, setIsDialogOpen }) {
 			</div>
 
 			<div className="flex w-full flex-col gap-1 overflow-hidden">
-				<Link href={`/${slug}`} className="w-full">
-					<h5 className="w-full truncate text-sm font-semibold hover:underline">{`@${slug}`}</h5>
+				<Link href={`/${slug}`} className="w-full truncate">
+					<span className="w-full truncate text-xs font-medium hover:underline">{`@${slug}`}</span>
 				</Link>
 				<p className="break-all text-xs text-muted-foreground md:hidden">{description}</p>
 			</div>

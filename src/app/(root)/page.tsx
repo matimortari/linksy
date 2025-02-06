@@ -52,7 +52,7 @@ export default function Home() {
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 
-			<main className="relative z-10 flex flex-col items-center px-4 py-8 md:px-12">
+			<main className="relative z-10 flex flex-col items-center px-4 py-8 md:px-12 md:py-0">
 				<div className="flex w-full flex-col items-center md:flex-row">
 					{/* Intro section */}
 					<motion.section
@@ -106,7 +106,7 @@ export default function Home() {
 									<span className="rounded-full bg-muted p-2">
 										<Icon icon={feature.icon} className="icon size-4" />
 									</span>
-									<h4 className="font-bold">{feature.title}</h4>
+									<h4>{feature.title}</h4>
 								</div>
 								<p className="text-sm text-muted-foreground">{feature.description}</p>
 							</div>
