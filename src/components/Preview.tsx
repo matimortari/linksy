@@ -39,6 +39,14 @@ export default function Preview() {
 		setIsVisible((prev) => !prev)
 	}
 
+	// Apply background style based on settings
+	const backgroundStyle =
+		settings?.backgroundType === "GRADIENT"
+			? {
+					background: `linear-gradient(to bottom, ${settings?.backgroundGradientStart}, ${settings?.backgroundGradientEnd})`
+			  }
+			: { backgroundColor: settings?.backgroundColor }
+
 	return (
 		<div className="my-6 flex h-full max-h-[480px] flex-col items-center gap-2">
 			<h2 className="hidden md:block">Preview</h2>
@@ -55,10 +63,19 @@ export default function Preview() {
 				className={`fixed left-0 top-0 z-10 size-full bg-background transition-all duration-300 ${
 					isVisible ? "block" : "hidden"
 				} md:hidden`}
-				style={{ backgroundColor: settings?.backgroundColor }}
+				style={backgroundStyle}
 			>
 				<div className="flex flex-col items-center justify-center gap-4 py-6 text-center">
-					{image && <Image src={image} alt={slug} width={80} height={80} className="icon rounded-full" />}
+					{image && (
+						<Image
+							src={image}
+							alt={slug}
+							width={80}
+							height={80}
+							className="icon"
+							style={{ borderRadius: settings?.profilePictureRadius }}
+						/>
+					)}
 					<p
 						className="text-center"
 						style={{
@@ -86,6 +103,7 @@ export default function Preview() {
 									buttonId={b.id}
 									settings={settings}
 									userId={session?.user.id}
+									shadowWeight={settings.buttonShadowWeight}
 								/>
 							))}
 						</ul>
@@ -103,22 +121,34 @@ export default function Preview() {
 									linkId={l.id}
 									settings={settings}
 									userId={session?.user.id}
+									shadowWeight={settings.linkShadowWeight}
 								/>
 							))}
 						</ul>
 					) : (
 						<p className="text-center text-muted-foreground">No links yet.</p>
 					)}
+
+					{settings?.showCopyButton && <button className="mt-4 rounded border p-2">Copy Profile Link</button>}
 				</div>
 			</div>
 
 			{/* Desktop Preview */}
 			<div
 				className="popover m-2 hidden min-h-96 overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
-				style={{ backgroundColor: settings?.backgroundColor }}
+				style={backgroundStyle}
 			>
 				<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
-					{image && <Image src={image} alt={slug} width={80} height={80} className="icon rounded-full" />}
+					{image && (
+						<Image
+							src={image}
+							alt={slug}
+							width={80}
+							height={80}
+							className="icon"
+							style={{ borderRadius: settings?.profilePictureRadius }}
+						/>
+					)}
 					<p
 						className="text-center"
 						style={{
@@ -146,6 +176,7 @@ export default function Preview() {
 									buttonId={b.id}
 									settings={settings}
 									userId={session?.user.id}
+									shadowWeight={settings.buttonShadowWeight}
 								/>
 							))}
 						</ul>
@@ -163,12 +194,15 @@ export default function Preview() {
 									linkId={l.id}
 									settings={settings}
 									userId={session?.user.id}
+									shadowWeight={settings.linkShadowWeight}
 								/>
 							))}
 						</ul>
 					) : (
 						<p className="text-center text-muted-foreground">No links yet.</p>
 					)}
+
+					{settings?.showCopyButton && <button className="mt-4 rounded border p-2">Copy Profile Link</button>}
 				</div>
 			</div>
 		</div>

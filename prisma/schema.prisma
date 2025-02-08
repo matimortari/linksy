@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum BackgroundType {
+  FLAT
+  GRADIENT
+}
+
 enum SupportBanner {
   NONE
   LGBTQ_RIGHTS
@@ -85,22 +90,29 @@ model UserSettings {
   id                         Int           @id @default(autoincrement())
   userId                     String        @unique
   backgroundColor            String        @default("#e7e5e5")
+  backgroundType             String        @default("FLAT")
+  backgroundGradientStart    String        @default("#ffffff")
+  backgroundGradientEnd      String        @default("#ffffff")
+  profilePictureRadius       String        @default("0.5rem")
   slugTextColor              String        @default("#1e1e1e")
   slugTextWeight             String        @default("500")
   slugTextSize               String        @default("1rem")
   headerTextColor            String        @default("#1e1e1e")
   linkBackgroundColor        String        @default("#ffffff")
   linkTextColor              String        @default("#1e1e1e")
-  linkShadowColor            String        @default("#e7e5e5")
   isLinkShadow               Boolean       @default(false)
+  linkShadowColor            String        @default("#e7e5e5")
+  linkShadowWeight           String        @default("500")
   linkHoverBackgroundColor   String        @default("#eeeeee")
   linkBorderRadius           String        @default("0.5rem")
   linkPadding                String        @default("0.5rem")
   buttonBackgroundColor      String        @default("#ffffff")
-  buttonShadowColor          String        @default("#e7e5e5")
   isButtonShadow             Boolean       @default(false)
+  buttonShadowColor          String        @default("#e7e5e5")
+  buttonShadowWeight         String        @default("500")
   buttonIconColor            String        @default("#1e1e1e")
   buttonHoverBackgroundColor String        @default("#eeeeee")
+  showCopyButton             Boolean       @default(true)
   supportBanner              SupportBanner @default(NONE)
   user                       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

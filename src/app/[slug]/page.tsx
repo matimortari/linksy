@@ -32,11 +32,28 @@ export default async function UserPage({ params }: Readonly<{ params: { slug: st
 	await trackPageVisit(userId)
 	await updateClickStats(userId)
 
+	// Set the background style dynamically based on user settings
+	const backgroundStyle =
+		settings?.backgroundType === "GRADIENT"
+			? {
+					background: `linear-gradient(to bottom, ${settings?.backgroundGradientStart}, ${settings?.backgroundGradientEnd})`
+			  }
+			: { backgroundColor: settings?.backgroundColor }
+
 	return (
-		<div className="min-h-screen p-12" style={{ backgroundColor: settings?.backgroundColor }}>
-			<div className="flex flex-col items-center justify-center gap-3 text-center">
+		<div className="min-h-screen p-12" style={backgroundStyle}>
+			<div className={`flex flex-col items-center justify-center gap-3 text-center`}>
 				{settings && settings.supportBanner !== "NONE" && <SupportBanner bannerType={settings.supportBanner} />}
-				{image && <Image src={image} alt={slug} width={100} height={100} className="icon rounded-full" />}
+				{image && (
+					<Image
+						src={image}
+						alt={slug}
+						width={100}
+						height={100}
+						className="icon"
+						style={{ borderRadius: settings?.profilePictureRadius }}
+					/>
+				)}
 				<p
 					style={{
 						color: settings?.slugTextColor,
@@ -53,25 +70,45 @@ export default async function UserPage({ params }: Readonly<{ params: { slug: st
 					</p>
 				)}
 
+				{/* Buttons Section */}
 				{userButtons.length > 0 ? (
 					<ul className="my-2 flex flex-row justify-center gap-2">
-						{userButtons.map((b: Button) => (
-							<UserButton key={b.id} url={b.url} icon={b.icon} settings={settings} buttonId={b.id} userId={userId} />
+						{userButtons.map((b) => (
+							<UserButton
+								key={b.id}
+								url={b.url}
+								icon={b.icon}
+								settings={settings}
+								buttonId={b.id}
+								userId={userId}
+								shadowWeight={settings?.buttonShadowWeight || "medium"}
+							/>
 						))}
 					</ul>
 				) : (
 					<hr />
 				)}
 
+				{/* Links Section */}
 				{userLinks.length > 0 ? (
 					<ul className="space-y-4">
-						{userLinks.map((l: Link) => (
-							<UserLink key={l.id} url={l.url} title={l.title} settings={settings} linkId={l.id} userId={userId} />
+						{userLinks.map((l) => (
+							<UserLink
+								key={l.id}
+								url={l.url}
+								title={l.title}
+								settings={settings}
+								linkId={l.id}
+								userId={userId}
+								shadowWeight={settings?.linkShadowWeight || "medium"}
+							/>
 						))}
 					</ul>
 				) : (
 					<p className="text-center text-muted-foreground">No links yet.</p>
 				)}
+
+				{settings?.showCopyButton && <button className="mt-4 rounded border p-2">Copy Profile Link</button>}
 			</div>
 		</div>
 	)

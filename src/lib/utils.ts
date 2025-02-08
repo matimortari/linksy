@@ -7,22 +7,29 @@ import { db } from "./db"
 // Default settings for new accounts
 export const defaultSettings = {
 	backgroundColor: "#e7e5e5",
+	backgroundType: "FLAT",
+	backgroundGradientStart: "#ffffff",
+	backgroundGradientEnd: "#ffffff",
+	profilePictureRadius: "0.5rem",
 	slugTextColor: "#1e1e1e",
 	slugTextWeight: "500",
 	slugTextSize: "1rem",
 	headerTextColor: "#1e1e1e",
 	linkBackgroundColor: "#ffffff",
 	linkTextColor: "#1e1e1e",
-	linkShadowColor: "#e7e5e5",
 	isLinkShadow: false,
+	linkShadowColor: "#e7e5e5",
+	linkShadowWeight: "500",
 	linkHoverBackgroundColor: "#eeeeee",
 	linkBorderRadius: "0.5rem",
 	linkPadding: "0.5rem",
 	buttonBackgroundColor: "#ffffff",
-	buttonShadowColor: "#e7e5e5",
 	isButtonShadow: false,
+	buttonShadowColor: "#e7e5e5",
+	buttonShadowWeight: "500",
 	buttonIconColor: "#1e1e1e",
 	buttonHoverBackgroundColor: "#eeeeee",
+	showCopyButton: true,
 	supportBanner: SupportBanner.NONE
 }
 

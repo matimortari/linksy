@@ -14,7 +14,7 @@ type UserStore = {
 	setButtons: (buttons: Button[]) => void
 	setLinks: (links: Link[]) => void
 	setSettings: (settings: Partial<UserSettings>) => void
-	setUserData: (userData: { slug: string; description: string; image: string }) => void // New method to set all user data at once
+	setUserData: (userData: { slug: string; description: string; image: string }) => void // Set all user data at once
 }
 
 export const useUserStore = create<UserStore>((set) => ({

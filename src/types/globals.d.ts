@@ -19,22 +19,29 @@ interface Button {
 
 interface UserSettings {
 	backgroundColor: string
+	backgroundType: string
+	backgroundGradientStart: string
+	backgroundGradientEnd: string
+	profilePictureRadius: string
 	slugTextColor: string
 	slugTextWeight: string
 	slugTextSize: string
 	headerTextColor: string
 	linkBackgroundColor: string
 	linkTextColor: string
-	linkShadowColor: string
 	isLinkShadow: boolean
+	linkShadowColor: string
+	linkShadowWeight: string
 	linkHoverBackgroundColor: string
 	linkBorderRadius: string
 	linkPadding: string
 	buttonBackgroundColor: string
-	buttonShadowColor: string
 	isButtonShadow: boolean
+	buttonShadowColor: string
+	buttonShadowWeight: string
 	buttonIconColor: string
 	buttonHoverBackgroundColor: string
+	showCopyButton: boolean
 	supportBanner: string
 }
 
@@ -65,22 +72,30 @@ interface LinkFormData {
 
 interface SettingsFormData {
 	backgroundColor: string
+	backgroundType: string
+	backgroundGradientStart: string
+	backgroundGradientEnd: string
+	profilePictureRadius: string
 	slugTextColor: string
-	headerTextColor: string
-	slugTextSize: string
 	slugTextWeight: string
-	buttonBackgroundColor: string
-	buttonIconColor: string
-	buttonHoverBackgroundColor: string
-	isButtonShadow: boolean
-	buttonShadowColor: string
+	slugTextSize: string
+	headerTextColor: string
 	linkBackgroundColor: string
 	linkTextColor: string
-	linkHoverBackgroundColor: string
 	isLinkShadow: boolean
 	linkShadowColor: string
+	linkShadowWeight: string
+	linkHoverBackgroundColor: string
 	linkBorderRadius: string
 	linkPadding: string
+	buttonBackgroundColor: string
+	isButtonShadow: boolean
+	buttonShadowColor: string
+	buttonShadowWeight: string
+	buttonIconColor: string
+	buttonHoverBackgroundColor: string
+	showCopyButton: boolean
+	supportBanner: string
 }
 
 interface SupportBannerFormData {

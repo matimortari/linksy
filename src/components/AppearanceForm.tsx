@@ -1,11 +1,19 @@
-import { PADDING_OPTIONS, RADIUS_OPTIONS, SLUG_FONT_SIZES, SLUG_FONT_WEIGHTS } from "@/src/data/formConfig"
+import {
+	BACKGROUND_TYPE_OPTIONS,
+	BUTTON_SHADOW_WEIGHTS,
+	LINK_SHADOW_WEIGHTS,
+	PADDING_OPTIONS,
+	RADIUS_OPTIONS,
+	SLUG_FONT_SIZES,
+	SLUG_FONT_WEIGHTS
+} from "@/src/data/formConfig"
 import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
 import { useGetSettings } from "@/src/hooks/useQueries"
 import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { CheckboxInput, ColorInput, RadioOptions } from "./Inputs"
+import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "./Inputs"
 
 export default function AppearanceForm() {
 	const { settings, setSettings } = useUserStore()
@@ -25,7 +33,7 @@ export default function AppearanceForm() {
 	}, [userSettings, reset])
 
 	useEffect(() => {
-		const subscription = watch((updatedSettings) => setSettings(updatedSettings)) // Update global state from Zustand store
+		const subscription = watch((updatedSettings) => setSettings(updatedSettings))
 		return () => subscription.unsubscribe()
 	}, [setSettings, watch])
 
@@ -42,36 +50,78 @@ export default function AppearanceForm() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
 			<section>
-				<h4>General Settings</h4>
-				<hr className="my-2" />
-
 				<div className="flex flex-col gap-2 md:flex-row">
 					<div className="card w-full">
+						<h4>Main Page - Theme</h4>
+						<hr className="my-2" />
+
+						<Controller
+							name="backgroundType"
+							control={control}
+							render={({ field }) => (
+								<SelectInput id="backgroundType" label="Background Type" options={BACKGROUND_TYPE_OPTIONS} {...field} />
+							)}
+						/>
+
 						<Controller
 							name="backgroundColor"
 							control={control}
 							render={({ field }) => <ColorInput id="backgroundColor" label="Main Page Background Color" {...field} />}
 						/>
+
+						<Controller
+							name="backgroundGradientStart"
+							control={control}
+							render={({ field }) => (
+								<ColorInput id="backgroundGradientStart" label="Gradient Start Color" {...field} />
+							)}
+						/>
+
+						<Controller
+							name="backgroundGradientEnd"
+							control={control}
+							render={({ field }) => <ColorInput id="backgroundGradientEnd" label="Gradient End Color" {...field} />}
+						/>
+
+						<Controller
+							name="profilePictureRadius"
+							control={control}
+							render={({ field }) => (
+								<RadioOptions label="Profile Picture Radius" options={RADIUS_OPTIONS} {...field} />
+							)}
+						/>
+
+						<Controller
+							name="showCopyButton"
+							control={control}
+							render={({ field }) => (
+								<CheckboxInput id="showCopyButton" label="Show Copy Button" checked={field.value} {...field} />
+							)}
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div className="flex flex-col gap-2 md:flex-row">
+					<div className="card w-full">
+						<h4>Main Page - Fonts</h4>
+						<hr className="my-2" />
+
 						<Controller
 							name="slugTextColor"
 							control={control}
 							render={({ field }) => <ColorInput id="slugTextColor" label="Username Font Color" {...field} />}
 						/>
-						<Controller
-							name="headerTextColor"
-							control={control}
-							render={({ field }) => <ColorInput id="headerTextColor" label="Header Font Color" {...field} />}
-						/>
-					</div>
 
-					<div className="card w-full">
 						<Controller
 							name="slugTextSize"
 							control={control}
 							render={({ field }) => <RadioOptions label="Username Font Size" options={SLUG_FONT_SIZES} {...field} />}
 						/>
+
 						<Controller
 							name="slugTextWeight"
 							control={control}
@@ -79,72 +129,22 @@ export default function AppearanceForm() {
 								<RadioOptions label="Username Font Weight" options={SLUG_FONT_WEIGHTS} {...field} />
 							)}
 						/>
-					</div>
-				</div>
-			</section>
 
-			<section>
-				<h4>Social Buttons</h4>
-				<hr className="my-2" />
-
-				<div className="flex flex-col gap-2 md:flex-row">
-					<div className="card w-full">
 						<Controller
-							name="buttonBackgroundColor"
+							name="headerTextColor"
 							control={control}
-							render={({ field }) => (
-								<ColorInput id="buttonBackgroundColor" label="Social Button Background Color" {...field} />
-							)}
-						/>
-						<Controller
-							name="buttonIconColor"
-							control={control}
-							render={({ field }) => <ColorInput id="buttonIconColor" label="Social Button Icon Color" {...field} />}
-						/>
-						<Controller
-							name="buttonHoverBackgroundColor"
-							control={control}
-							render={({ field }) => (
-								<ColorInput id="buttonHoverBackgroundColor" label="Social Button Hover Background Color" {...field} />
-							)}
-						/>
-					</div>
-
-					<div className="card w-full">
-						<Controller
-							name="isButtonShadow"
-							control={control}
-							render={({ field }) => (
-								<CheckboxInput
-									id="isButtonShadow"
-									label="Enable Social Button Shadow"
-									checked={field.value}
-									{...field}
-								/>
-							)}
-						/>
-						<Controller
-							name="buttonShadowColor"
-							control={control}
-							render={({ field }) => (
-								<ColorInput
-									id="buttonShadowColor"
-									label="Social Button Shadow Color"
-									disabled={!watch("isButtonShadow")}
-									{...field}
-								/>
-							)}
+							render={({ field }) => <ColorInput id="headerTextColor" label="Header Text Color" {...field} />}
 						/>
 					</div>
 				</div>
 			</section>
 
 			<section>
-				<h4>Links</h4>
-				<hr className="my-2" />
-
 				<div className="flex flex-col gap-2 md:flex-row">
 					<div className="card w-full">
+						<h4>Links - Theme</h4>
+						<hr className="my-2" />
+
 						<Controller
 							name="linkBackgroundColor"
 							control={control}
@@ -170,6 +170,7 @@ export default function AppearanceForm() {
 								<CheckboxInput id="isLinkShadow" label="Enable Link Shadow" checked={field.value} {...field} />
 							)}
 						/>
+
 						<Controller
 							name="linkShadowColor"
 							control={control}
@@ -182,8 +183,25 @@ export default function AppearanceForm() {
 								/>
 							)}
 						/>
+
+						<Controller
+							name="linkShadowWeight"
+							control={control}
+							render={({ field }) => (
+								<RadioOptions
+									label="Link Shadow Weight"
+									options={LINK_SHADOW_WEIGHTS}
+									disabled={!watch("isLinkShadow")}
+									{...field}
+								/>
+							)}
+						/>
 					</div>
+
 					<div className="card w-full">
+						<h4>Links - Shape & Padding</h4>
+						<hr className="my-2" />
+
 						<Controller
 							name="linkBorderRadius"
 							control={control}
@@ -193,6 +211,73 @@ export default function AppearanceForm() {
 							name="linkPadding"
 							control={control}
 							render={({ field }) => <RadioOptions label="Link Padding" options={PADDING_OPTIONS} {...field} />}
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div className="flex flex-col gap-2 md:flex-row">
+					<div className="card w-full">
+						<h4>Social Buttons - Theme</h4>
+						<hr className="my-2" />
+
+						<Controller
+							name="buttonBackgroundColor"
+							control={control}
+							render={({ field }) => (
+								<ColorInput id="buttonBackgroundColor" label="Social Button Background Color" {...field} />
+							)}
+						/>
+						<Controller
+							name="buttonIconColor"
+							control={control}
+							render={({ field }) => <ColorInput id="buttonIconColor" label="Social Button Icon Color" {...field} />}
+						/>
+						<Controller
+							name="buttonHoverBackgroundColor"
+							control={control}
+							render={({ field }) => (
+								<ColorInput id="buttonHoverBackgroundColor" label="Social Button Hover Background Color" {...field} />
+							)}
+						/>
+
+						<Controller
+							name="isButtonShadow"
+							control={control}
+							render={({ field }) => (
+								<CheckboxInput
+									id="isButtonShadow"
+									label="Enable Social Button Shadow"
+									checked={field.value}
+									{...field}
+								/>
+							)}
+						/>
+						<Controller
+							name="buttonShadowColor"
+							control={control}
+							render={({ field }) => (
+								<ColorInput
+									id="buttonShadowColor"
+									label="Social Button Shadow Color"
+									disabled={!watch("isButtonShadow")}
+									{...field}
+								/>
+							)}
+						/>
+
+						<Controller
+							name="buttonShadowWeight"
+							control={control}
+							render={({ field }) => (
+								<RadioOptions
+									label="Button Shadow Weight"
+									options={BUTTON_SHADOW_WEIGHTS}
+									disabled={!watch("isButtonShadow")}
+									{...field}
+								/>
+							)}
 						/>
 					</div>
 				</div>
