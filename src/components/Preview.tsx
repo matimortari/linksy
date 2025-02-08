@@ -71,12 +71,10 @@ export default function Preview() {
 							alt={slug}
 							width={80}
 							height={80}
-							className="icon"
 							style={{ borderRadius: settings?.profilePictureRadius }}
 						/>
 					)}
 					<p
-						className="text-center"
 						style={{
 							color: settings?.slugTextColor,
 							fontWeight: settings?.slugTextWeight,
@@ -86,11 +84,7 @@ export default function Preview() {
 						@{slug}
 					</p>
 
-					{description && (
-						<p className="text-center" style={{ color: settings?.headerTextColor }}>
-							{description}
-						</p>
-					)}
+					{description && <p style={{ color: settings?.headerTextColor }}>{description}</p>}
 
 					{buttons && buttons.length > 0 ? (
 						<ul className="my-2 flex flex-row justify-center gap-2">
@@ -102,7 +96,6 @@ export default function Preview() {
 									buttonId={b.id}
 									settings={settings}
 									userId={session?.user.id}
-									shadowWeight={settings.buttonShadowWeight}
 								/>
 							))}
 						</ul>
@@ -120,7 +113,6 @@ export default function Preview() {
 									linkId={l.id}
 									settings={settings}
 									userId={session?.user.id}
-									shadowWeight={settings.linkShadowWeight}
 								/>
 							))}
 						</ul>
@@ -144,7 +136,6 @@ export default function Preview() {
 							alt={slug}
 							width={80}
 							height={80}
-							className="icon"
 							style={{ borderRadius: settings?.profilePictureRadius }}
 						/>
 					)}
@@ -175,7 +166,6 @@ export default function Preview() {
 									buttonId={b.id}
 									settings={settings}
 									userId={session?.user.id}
-									shadowWeight={settings.buttonShadowWeight}
 								/>
 							))}
 						</ul>
@@ -193,15 +183,12 @@ export default function Preview() {
 									linkId={l.id}
 									settings={settings}
 									userId={session?.user.id}
-									shadowWeight={settings.linkShadowWeight}
 								/>
 							))}
 						</ul>
 					) : (
 						<p className="text-center text-muted-foreground">No links yet.</p>
 					)}
-
-					{settings?.showCopyButton && <button className="mt-4 rounded border p-2">Copy Profile Link</button>}
 				</div>
 			</div>
 		</div>

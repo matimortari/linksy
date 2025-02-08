@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { trackClick } from "../services/analyticsService"
 
-export default function UserButton({ url, icon, settings, buttonId, userId, shadowWeight }) {
+export default function UserButton({ url, icon, settings, buttonId, userId }) {
 	const [isHovered, setIsHovered] = useState(false)
 
 	const shadowStyles = {
@@ -27,7 +27,7 @@ export default function UserButton({ url, icon, settings, buttonId, userId, shad
 					className="flex size-10 items-center justify-center rounded-full"
 					style={{
 						backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
-						boxShadow: settings.isButtonShadow ? shadowStyles[shadowWeight] : "none",
+						boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
 						transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 					}}
 					onMouseEnter={() => setIsHovered(true)}

@@ -23,7 +23,7 @@ export default function AppearanceForm() {
 	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()
 
 	const { control, handleSubmit, reset, watch } = useForm<SettingsFormData>({
-		defaultValues: settings
+		defaultValues: settings || {}
 	})
 
 	useEffect(() => {
@@ -68,12 +68,14 @@ export default function AppearanceForm() {
 						<Controller
 							name="backgroundColor"
 							control={control}
+							disabled={watch("backgroundType") === "GRADIENT"}
 							render={({ field }) => <ColorInput id="backgroundColor" label="Main Page Background Color" {...field} />}
 						/>
 
 						<Controller
 							name="backgroundGradientStart"
 							control={control}
+							disabled={watch("backgroundType") === "FLAT"}
 							render={({ field }) => (
 								<ColorInput id="backgroundGradientStart" label="Gradient Start Color" {...field} />
 							)}
@@ -81,6 +83,7 @@ export default function AppearanceForm() {
 
 						<Controller
 							name="backgroundGradientEnd"
+							disabled={watch("backgroundType") === "FLAT"}
 							control={control}
 							render={({ field }) => <ColorInput id="backgroundGradientEnd" label="Gradient End Color" {...field} />}
 						/>
