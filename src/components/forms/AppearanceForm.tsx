@@ -3,8 +3,10 @@ import {
 	BUTTON_SHADOW_WEIGHTS,
 	HEADER_FONT_SIZES,
 	HEADER_FONT_WEIGHTS,
+	LINK_FONT_SIZES,
+	LINK_FONT_WEIGHTS,
+	LINK_PADDING_OPTIONS,
 	LINK_SHADOW_WEIGHTS,
-	PADDING_OPTIONS,
 	RADIUS_OPTIONS,
 	SLUG_FONT_SIZES,
 	SLUG_FONT_WEIGHTS
@@ -190,13 +192,38 @@ export default function AppearanceForm() {
 							render={({ field }) => <ColorInput id="linkTextColor" label="Link Font Color" {...field} />}
 						/>
 						<Controller
+							name="linkTextSize"
+							control={control}
+							render={({ field }) => <RadioOptions label="Link Font Size" options={LINK_FONT_SIZES} {...field} />}
+						/>
+						<Controller
+							name="linkTextWeight"
+							control={control}
+							render={({ field }) => <RadioOptions label="Link Font Weight" options={LINK_FONT_WEIGHTS} {...field} />}
+						/>
+
+						<Controller
+							name="linkBorderRadius"
+							control={control}
+							render={({ field }) => <RadioOptions label="Link Corner Radius" options={RADIUS_OPTIONS} {...field} />}
+						/>
+						<Controller
+							name="linkPadding"
+							control={control}
+							render={({ field }) => <RadioOptions label="Link Padding" options={LINK_PADDING_OPTIONS} {...field} />}
+						/>
+					</div>
+
+					<div className="card w-full">
+						<h4>Links - Hover & Shadows</h4>
+						<hr className="my-2" />
+						<Controller
 							name="linkHoverBackgroundColor"
 							control={control}
 							render={({ field }) => (
 								<ColorInput id="linkHoverBackgroundColor" label="Link Hover Background Color" {...field} />
 							)}
 						/>
-
 						<Controller
 							name="isLinkShadow"
 							control={control}
@@ -229,22 +256,6 @@ export default function AppearanceForm() {
 							)}
 						/>
 					</div>
-
-					<div className="card w-full">
-						<h4>Links - Shape & Padding</h4>
-						<hr className="my-2" />
-
-						<Controller
-							name="linkBorderRadius"
-							control={control}
-							render={({ field }) => <RadioOptions label="Link Corner Radius" options={RADIUS_OPTIONS} {...field} />}
-						/>
-						<Controller
-							name="linkPadding"
-							control={control}
-							render={({ field }) => <RadioOptions label="Link Padding" options={PADDING_OPTIONS} {...field} />}
-						/>
-					</div>
 				</div>
 			</section>
 
@@ -266,6 +277,12 @@ export default function AppearanceForm() {
 							control={control}
 							render={({ field }) => <ColorInput id="buttonIconColor" label="Social Button Icon Color" {...field} />}
 						/>
+					</div>
+
+					<div className="card w-full">
+						<h4>Social Buttons - Hover & Shadows</h4>
+						<hr className="my-2" />
+
 						<Controller
 							name="buttonHoverBackgroundColor"
 							control={control}

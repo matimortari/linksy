@@ -31,6 +31,8 @@ interface UserSettings {
 	headerTextSize: string
 	linkBackgroundColor: string
 	linkTextColor: string
+	linkTextWeight: string
+	linkTextSize: string
 	isLinkShadow: boolean
 	linkShadowColor: string
 	linkShadowWeight: string
@@ -86,6 +88,8 @@ interface SettingsFormData {
 	headerTextSize: string
 	linkBackgroundColor: string
 	linkTextColor: string
+	linkTextWeight: string
+	linkTextSize: string
 	isLinkShadow: boolean
 	linkShadowColor: string
 	linkShadowWeight: string

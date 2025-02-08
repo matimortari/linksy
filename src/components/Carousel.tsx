@@ -30,7 +30,15 @@ function CarouselLink({ title, settings }) {
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
-				<p style={{ color: settings.linkTextColor }}>{title}</p>
+				<p
+					style={{
+						color: settings.linkTextColor,
+						fontWeight: settings?.linkTextWeight,
+						fontSize: settings?.linkTextSize
+					}}
+				>
+					{title}
+				</p>
 			</div>
 		</li>
 	)

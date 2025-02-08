@@ -3,13 +3,6 @@ export const BACKGROUND_TYPE_OPTIONS = [
 	{ value: "GRADIENT", label: "Gradient" }
 ]
 
-export const SLUG_FONT_SIZES = [
-	{ label: "Small", value: "0.9rem" },
-	{ label: "Medium", value: "1.10rem" },
-	{ label: "Large", value: "1.25rem" },
-	{ label: "Extra Large", value: "1.5rem" }
-]
-
 export const SLUG_FONT_WEIGHTS = [
 	{ label: "Light", value: "400" },
 	{ label: "Normal", value: "500" },
@@ -18,8 +11,8 @@ export const SLUG_FONT_WEIGHTS = [
 	{ label: "Extrabold", value: "800" }
 ]
 
-export const HEADER_FONT_SIZES = [
-	{ label: "Small", value: "0.9rem" },
+export const SLUG_FONT_SIZES = [
+	{ label: "Small", value: "1rem" },
 	{ label: "Medium", value: "1.10rem" },
 	{ label: "Large", value: "1.25rem" },
 	{ label: "Extra Large", value: "1.5rem" }
@@ -33,18 +26,24 @@ export const HEADER_FONT_WEIGHTS = [
 	{ label: "Extrabold", value: "700" }
 ]
 
-export const RADIUS_OPTIONS = [
-	{ label: "None", value: "0rem" },
-	{ label: "Small", value: "0.5rem" },
-	{ label: "Medium", value: "1rem" },
-	{ label: "Large", value: "5rem" }
+export const HEADER_FONT_SIZES = [
+	{ label: "Small", value: "0.9rem" },
+	{ label: "Medium", value: "1.1rem" },
+	{ label: "Large", value: "1.25rem" },
+	{ label: "Extra Large", value: "1.5rem" }
 ]
 
-export const PADDING_OPTIONS = [
-	{ label: "Small", value: "0.25rem" },
-	{ label: "Medium", value: "0.5rem" },
-	{ label: "Large", value: "0.75rem" },
-	{ label: "Extra Large", value: "0.9rem" }
+export const LINK_FONT_WEIGHTS = [
+	{ label: "Light", value: "400" },
+	{ label: "Normal", value: "500" },
+	{ label: "Semibold", value: "600" },
+	{ label: "Bold", value: "700" }
+]
+
+export const LINK_FONT_SIZES = [
+	{ label: "Small", value: "0.8rem" },
+	{ label: "Medium", value: "0.9rem" },
+	{ label: "Large", value: "1rem" }
 ]
 
 export const LINK_SHADOW_WEIGHTS = [
@@ -57,6 +56,19 @@ export const BUTTON_SHADOW_WEIGHTS = [
 	{ label: "Light", value: "light" },
 	{ label: "Medium", value: "medium" },
 	{ label: "Heavy", value: "heavy" }
+]
+
+export const LINK_PADDING_OPTIONS = [
+	{ label: "Small", value: "0.5rem" },
+	{ label: "Medium", value: "0.75rem" },
+	{ label: "Large", value: "0.85rem" }
+]
+
+export const RADIUS_OPTIONS = [
+	{ label: "None", value: "0rem" },
+	{ label: "Small", value: "0.5rem" },
+	{ label: "Medium", value: "1rem" },
+	{ label: "Large", value: "5rem" }
 ]
 
 export const SOCIAL_ICONS: { [key: string]: string } = {

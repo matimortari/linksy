@@ -41,7 +41,15 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 			>
 				<Link href={url} target="_blank" rel="noopener noreferrer">
 					<button onClick={handleClick}>
-						<p style={{ color: settings.linkTextColor }}>{title}</p>
+						<p
+							style={{
+								color: settings.linkTextColor,
+								fontWeight: settings?.linkTextWeight,
+								fontSize: settings?.linkTextSize
+							}}
+						>
+							{title}
+						</p>
 					</button>
 				</Link>
 
