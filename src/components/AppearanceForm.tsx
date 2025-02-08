@@ -16,6 +16,7 @@ import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "./Inputs"
+import ThemeForm from "./ThemeForm"
 
 export default function AppearanceForm() {
 	const { settings, setSettings } = useUserStore()
@@ -53,10 +54,12 @@ export default function AppearanceForm() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+			<ThemeForm reset={reset} setSettings={setSettings} />
+
 			<section>
 				<div className="flex flex-col gap-2 md:flex-row">
 					<div className="card w-full">
-						<h4>Main Page - Theme</h4>
+						<h4>Main Page - Theme Options</h4>
 						<hr className="my-2" />
 
 						<Controller
@@ -86,6 +89,12 @@ export default function AppearanceForm() {
 							control={control}
 							render={({ field }) => <ColorInput id="backgroundGradientEnd" label="Gradient End Color" {...field} />}
 						/>
+					</div>
+
+					<div className="card w-full">
+						<h4>Main Page - Other Options</h4>
+						<hr className="my-2" />
+
 						<Controller
 							name="profilePictureRadius"
 							control={control}
@@ -97,7 +106,12 @@ export default function AppearanceForm() {
 							name="showCopyButton"
 							control={control}
 							render={({ field }) => (
-								<CheckboxInput id="showCopyButton" label="Show Copy Button" checked={field.value} {...field} />
+								<CheckboxInput
+									id="showCopyButton"
+									label="Show 'Copy to Clipboard' Button"
+									checked={field.value}
+									{...field}
+								/>
 							)}
 						/>
 					</div>
@@ -107,7 +121,7 @@ export default function AppearanceForm() {
 			<section>
 				<div className="flex flex-col gap-2 md:flex-row">
 					<div className="card w-full">
-						<h4>Username - Theme</h4>
+						<h4>Username - Font & Theme</h4>
 						<hr className="my-2" />
 
 						<Controller
@@ -130,7 +144,7 @@ export default function AppearanceForm() {
 					</div>
 
 					<div className="card w-full">
-						<h4>Header - Theme</h4>
+						<h4>Header - Font & Theme</h4>
 						<hr className="my-2" />
 
 						<Controller
