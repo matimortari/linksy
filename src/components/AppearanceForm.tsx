@@ -6,7 +6,7 @@ import {
 	RADIUS_OPTIONS,
 	SLUG_FONT_SIZES,
 	SLUG_FONT_WEIGHTS
-} from "@/src/data/formConfig"
+} from "@/src/config/preferencesConfig"
 import { useResetSettings, useUpdateSettings } from "@/src/hooks/useMutations"
 import { useGetSettings } from "@/src/hooks/useQueries"
 import { useUserStore } from "@/src/hooks/useUserStore"

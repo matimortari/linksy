@@ -1,4 +1,4 @@
-import { SOCIAL_ICONS } from "@/src/data/formConfig"
+import { SOCIAL_ICONS } from "@/src/config/preferencesConfig"
 import { useAddButton } from "@/src/hooks/useMutations"
 import { buttonFormSchema } from "@/src/lib/formSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"

@@ -1,6 +1,6 @@
 "use client"
 
-import { previewPresets } from "@/src/data/previewPresets"
+import { carouselPresets } from "@/src/config/carouselPresets"
 import { Icon } from "@iconify/react"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
@@ -9,14 +9,20 @@ import { useEffect, useState } from "react"
 function CarouselLink({ title, settings }) {
 	const [isHovered, setIsHovered] = useState(false)
 
+	const shadowStyles = {
+		none: "none",
+		light: `0 2px 4px ${settings.linkShadowColor}`,
+		medium: `0 4px 6px ${settings.linkShadowColor}`,
+		heavy: `0 6px 10px ${settings.linkShadowColor}`
+	}
+
 	return (
-		<li className="flex flex-col items-center justify-center">
-			<button
-				tabIndex={0}
-				className="min-w-32 max-w-72 text-center"
+		<li className="flex flex-col items-center justify-center gap-4">
+			<div
+				className="flex min-w-32 max-w-72 cursor-pointer items-center justify-center text-center"
 				style={{
 					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
-					boxShadow: settings.isLinkShadow ? `0 4px 6px ${settings.linkShadowColor}` : "none",
+					boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
 					borderRadius: settings.linkBorderRadius,
 					padding: settings.linkPadding,
 					transition: "background-color 0.3s ease, box-shadow 0.3s ease"
@@ -24,10 +30,8 @@ function CarouselLink({ title, settings }) {
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
-				<p className="truncate font-medium" style={{ color: settings.linkTextColor }}>
-					{title}
-				</p>
-			</button>
+				<p style={{ color: settings.linkTextColor }}>{title}</p>
+			</div>
 		</li>
 	)
 }
@@ -35,41 +39,54 @@ function CarouselLink({ title, settings }) {
 function CarouselButton({ icon, settings }) {
 	const [isHovered, setIsHovered] = useState(false)
 
+	const shadowStyles = {
+		none: "none",
+		light: `0 2px 4px ${settings.buttonShadowColor}`,
+		medium: `0 4px 6px ${settings.buttonShadowColor}`,
+		heavy: `0 6px 10px ${settings.buttonShadowColor}`
+	}
+
 	return (
 		<li className="flex flex-row items-center justify-center">
-			<button
-				tabIndex={0}
+			<div
 				className="flex size-10 cursor-pointer items-center justify-center rounded-full"
 				style={{
 					backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
-					boxShadow: settings.isButtonShadow ? `0 4px 6px ${settings.buttonShadowColor}` : "none",
+					boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
 					transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 				}}
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
-			</button>
+			</div>
 		</li>
 	)
 }
 
 function CarouselCard({ presetId = 0 }) {
-	const { description, links, image, buttons, slug, settings } = previewPresets[presetId]
+	const { description, links, image, buttons, slug, settings } = carouselPresets[presetId]
+
+	const backgroundStyle =
+		settings?.backgroundType === "GRADIENT"
+			? {
+					background: `linear-gradient(to bottom, ${settings?.backgroundGradientStart}, ${settings?.backgroundGradientEnd})`
+			  }
+			: { backgroundColor: settings?.backgroundColor }
 
 	return (
 		<div className="rounded-2xl border shadow-xl">
 			<div className="relative w-64 rounded-2xl md:w-[300px]">
-				<div
-					className="relative grid place-content-center rounded-2xl px-4 py-2"
-					style={{
-						backgroundColor: settings.backgroundColor
-					}}
-				>
+				<div className="relative grid place-content-center rounded-2xl px-4 py-2" style={backgroundStyle}>
 					<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
-						<Image src={image} alt={slug} width={100} height={100} className="icon rounded-full" />
+						<Image
+							src={image}
+							alt={slug}
+							width={100}
+							height={100}
+							style={{ borderRadius: settings?.profilePictureRadius }}
+						/>
 						<p
-							className="text-center"
 							style={{
 								color: settings.slugTextColor,
 								fontWeight: settings.slugTextWeight,
@@ -78,9 +95,7 @@ function CarouselCard({ presetId = 0 }) {
 						>
 							@{slug}
 						</p>
-						<p className="text-center" style={{ color: settings.headerTextColor }}>
-							{description}
-						</p>
+						<p style={{ color: settings.headerTextColor }}>{description}</p>
 
 						<ul className="my-2 flex flex-row justify-center gap-2">
 							{buttons.map((button) => (
@@ -106,7 +121,7 @@ export default function Carousel() {
 	const [currentIndex, setCurrentIndex] = useState(0)
 
 	const nextCard = () => {
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % previewPresets.length)
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselPresets.length)
 	}
 
 	useEffect(() => {

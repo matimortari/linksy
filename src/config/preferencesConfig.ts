@@ -4,14 +4,13 @@ export const BACKGROUND_TYPE_OPTIONS = [
 ]
 
 export const SLUG_FONT_SIZES = [
-	{ label: "Small", value: "1rem" },
-	{ label: "Medium", value: "1.25rem" },
-	{ label: "Large", value: "1.5rem" },
-	{ label: "Extra Large", value: "1.75rem" }
+	{ label: "Small", value: "0.9rem" },
+	{ label: "Medium", value: "1.10rem" },
+	{ label: "Large", value: "1.25rem" },
+	{ label: "Extra Large", value: "1.5rem" }
 ]
 
 export const SLUG_FONT_WEIGHTS = [
-	{ label: "Extralight", value: "300" },
 	{ label: "Light", value: "400" },
 	{ label: "Normal", value: "500" },
 	{ label: "Semibold", value: "600" },
@@ -29,8 +28,8 @@ export const RADIUS_OPTIONS = [
 export const PADDING_OPTIONS = [
 	{ label: "Small", value: "0.25rem" },
 	{ label: "Medium", value: "0.5rem" },
-	{ label: "Large", value: "1rem" },
-	{ label: "Extra Large", value: "1.25rem" }
+	{ label: "Large", value: "0.75rem" },
+	{ label: "Extra Large", value: "0.9rem" }
 ]
 
 export const LINK_SHADOW_WEIGHTS = [

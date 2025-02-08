@@ -10,13 +10,15 @@ import { useUserStore } from "@/src/hooks/useUserStore"
 export default function Profile() {
 	useAuth()
 
+	const { slug } = useUserStore()
+
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card md:w-8/12">
 				<header className="mb-4 space-y-1">
 					<h2>My Profile</h2>
 					<h5>
-						Welcome back, <span className="font-bold text-accent">{useUserStore((state) => state.slug)}</span>!
+						Welcome back, <span className="font-bold text-accent">{slug}</span>!
 					</h5>
 				</header>
 

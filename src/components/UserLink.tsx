@@ -10,9 +10,9 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 
 	const shadowStyles = {
 		none: "none",
-		light: `0 2px 4px ${settings.linkShadowColor}`,
-		medium: `0 4px 6px ${settings.linkShadowColor}`,
-		heavy: `0 6px 10px ${settings.linkShadowColor}`
+		light: `0px 1px 2px ${settings.linkShadowColor}`,
+		medium: `0 2px 6px ${settings.linkShadowColor}`,
+		heavy: `1px 3px 10px ${settings.linkShadowColor}`
 	}
 
 	const handleClick = async () => {
@@ -28,7 +28,7 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 	return (
 		<li className="flex flex-col items-center justify-center gap-4">
 			<div
-				className="relative flex min-w-32 max-w-72 items-center justify-between px-4 text-center"
+				className="flex min-w-32 max-w-72 items-center justify-center text-center"
 				style={{
 					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
 					boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",

@@ -10,9 +10,9 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 
 	const shadowStyles = {
 		none: "none",
-		light: `0 2px 4px ${settings.buttonShadowColor}`,
-		medium: `0 4px 6px ${settings.buttonShadowColor}`,
-		heavy: `0 6px 10px ${settings.buttonShadowColor}`
+		light: `0px 1px 2px ${settings.buttonShadowColor}`,
+		medium: `0 2px 6px ${settings.buttonShadowColor}`,
+		heavy: `1px 3px 10px ${settings.buttonShadowColor}`
 	}
 
 	const handleClick = async () => {
