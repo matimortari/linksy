@@ -31,10 +31,12 @@ export default function Login() {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, ease: "easeOut" }}
 				>
-					<div className="m-8 flex flex-col gap-4 text-center">
+					<div className="m-8 flex flex-col items-center gap-4 text-center">
+						<Image src="/logo.png" alt="Logo" width={70} height={70} />
+
 						<h1 className={`${bowlby.className}`}>Sign In</h1>
 
-						<hr className="my-2" />
+						<hr className="my-2 w-full" />
 
 						<h3 className={`${lato.className} mb-4 text-muted-foreground`}>
 							Sign in with your preferred provider to continue.
