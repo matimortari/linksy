@@ -34,9 +34,7 @@ const config = {
 				success: "var(--success)",
 				border: "var(--border)",
 				input: "var(--input)",
-				ring: "var(--ring)",
-				google: "#DB4437", // Google Sigin Button
-				github: "#333333" // GitHub Sigin Button
+				ring: "var(--ring)"
 			}
 		}
 	}

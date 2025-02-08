@@ -31,7 +31,7 @@ export default function Preview() {
 
 		return () => {
 			window.removeEventListener("keydown", handleKeyDown)
-			document.body.style.overflow = "" // Ensure scroll is restored on cleanup
+			document.body.style.overflow = ""
 		}
 	}, [isVisible])
 
@@ -39,7 +39,6 @@ export default function Preview() {
 		setIsVisible((prev) => !prev)
 	}
 
-	// Apply background style based on settings
 	const backgroundStyle =
 		settings?.backgroundType === "GRADIENT"
 			? {

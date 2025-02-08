@@ -40,13 +40,13 @@ export default function Login() {
 
 					<div className="flex flex-row items-center justify-center gap-4 p-8">
 						<button
-							className="flex items-center justify-center rounded-full border bg-google p-3 text-white"
+							className="flex items-center justify-center rounded-full border bg-[#db4437] p-3 text-white"
 							onClick={() => signIn("google")}
 						>
 							<Icon icon="simple-icons:google" className="icon size-5" />
 						</button>
 						<button
-							className="flex items-center justify-center rounded-full border bg-github p-3 text-white"
+							className="flex items-center justify-center rounded-full border bg-[#333333] p-3 text-white"
 							onClick={() => signIn("github")}
 						>
 							<Icon icon="simple-icons:github" className="icon size-5" />

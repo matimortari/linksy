@@ -14,7 +14,6 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 		resolver: zodResolver(buttonFormSchema)
 	})
 
-	// Reset form fields when dialog is opened
 	useEffect(() => {
 		if (isOpen) {
 			reset()

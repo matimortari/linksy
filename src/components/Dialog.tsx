@@ -16,7 +16,6 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 			}
 		}
 
-		// Prevent scrolling when dialog is open
 		if (isOpen) {
 			document.documentElement.style.overflow = "hidden"
 			window.addEventListener("keydown", handleKeyDown)

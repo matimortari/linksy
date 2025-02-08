@@ -32,7 +32,6 @@ export default async function UserPage({ params }: Readonly<{ params: { slug: st
 	await trackPageVisit(userId)
 	await updateClickStats(userId)
 
-	// Set the background style dynamically based on user settings
 	const backgroundStyle =
 		settings?.backgroundType === "GRADIENT"
 			? {

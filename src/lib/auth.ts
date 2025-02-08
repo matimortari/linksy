@@ -1,10 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { UserButton, UserLink } from "@prisma/client"
+import { UserButton, UserLink, UserSettings } from "@prisma/client"
 import { Account, Profile, SessionStrategy } from "next-auth"
 import GitHubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import { db } from "./db"
-import { defaultSettings, generateSlug } from "./utils"
+import { generateSlug } from "./utils"
 
 // Extend the default session with custom properties
 declare module "next-auth" {
@@ -12,8 +12,8 @@ declare module "next-auth" {
 		user: {
 			id: number
 			slug: string
-			description: string
-			image: string
+			description: string | null
+			image: string | null
 			buttons: UserButton[]
 			links: UserLink[]
 			settings: UserSettings
@@ -21,7 +21,7 @@ declare module "next-auth" {
 	}
 }
 
-// Set up the authentication options for NextAuth.js
+// Set up the authentication options for Auth.js
 export const authOptions = {
 	providers: [
 		GitHubProvider({
@@ -56,10 +56,7 @@ export const authOptions = {
 				})
 
 				await db.userSettings.create({
-					data: {
-						userId: newUser.id,
-						...defaultSettings
-					}
+					data: { userId: newUser.id }
 				})
 			} else {
 				await db.user.update({
@@ -95,7 +92,7 @@ export const authOptions = {
 				const settings = await db.userSettings.findUnique({
 					where: { userId: dbUser.id }
 				})
-				session.user.settings = settings || defaultSettings
+				session.user.settings = settings as UserSettings
 			}
 
 			return session

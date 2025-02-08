@@ -1,37 +1,7 @@
-import { SupportBanner } from "@prisma/client"
 import { getServerSession } from "next-auth"
 import { NextResponse } from "next/server"
 import { authOptions } from "./auth"
 import { db } from "./db"
-
-// Default settings for new accounts
-export const defaultSettings = {
-	backgroundColor: "#e7e5e5",
-	backgroundType: "FLAT",
-	backgroundGradientStart: "#ffffff",
-	backgroundGradientEnd: "#ffffff",
-	profilePictureRadius: "0.5rem",
-	slugTextColor: "#1e1e1e",
-	slugTextWeight: "500",
-	slugTextSize: "1rem",
-	headerTextColor: "#1e1e1e",
-	linkBackgroundColor: "#ffffff",
-	linkTextColor: "#1e1e1e",
-	isLinkShadow: false,
-	linkShadowColor: "#e7e5e5",
-	linkShadowWeight: "500",
-	linkHoverBackgroundColor: "#eeeeee",
-	linkBorderRadius: "0.5rem",
-	linkPadding: "0.5rem",
-	buttonBackgroundColor: "#ffffff",
-	isButtonShadow: false,
-	buttonShadowColor: "#e7e5e5",
-	buttonShadowWeight: "500",
-	buttonIconColor: "#1e1e1e",
-	buttonHoverBackgroundColor: "#eeeeee",
-	showCopyButton: true,
-	supportBanner: SupportBanner.NONE
-}
 
 // Helper function to format a date string
 export function formatDate(dateString: Date) {
@@ -45,7 +15,7 @@ export function formatDate(dateString: Date) {
 	return formattedDate.charAt(0).toLowerCase() + formattedDate.slice(1)
 }
 
-// Helper function to generate a random slug
+// Generate a random slug
 export function generateSlug(base: string = "") {
 	const randomString = Math.random().toString(36).substring(2, 10)
 
@@ -55,7 +25,7 @@ export function generateSlug(base: string = "") {
 		.replace(/[^a-z0-9-]/g, "")}-${randomString}`
 }
 
-// Helper function to get the session or return an unauthorized JSON response
+// Get the session or return an unauthorized JSON response
 export async function getSessionOrUnauthorized() {
 	const session = await getServerSession(authOptions)
 	if (!session?.user) {

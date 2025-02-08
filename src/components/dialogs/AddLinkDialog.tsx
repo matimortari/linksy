@@ -12,7 +12,6 @@ export default function AddLinkDialog({ isOpen, onClose, onAddLink }) {
 		resolver: zodResolver(linkFormSchema)
 	})
 
-	// Reset form fields when dialog is opened
 	useEffect(() => {
 		if (isOpen) {
 			reset()

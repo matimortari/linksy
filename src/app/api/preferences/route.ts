@@ -1,5 +1,5 @@
 import { db } from "@/src/lib/db"
-import { defaultSettings, getSessionOrUnauthorized } from "@/src/lib/utils"
+import { getSessionOrUnauthorized } from "@/src/lib/utils"
 import { NextRequest, NextResponse } from "next/server"
 
 // GET method for getting user settings
@@ -27,12 +27,18 @@ export async function PUT(req: NextRequest) {
 		return NextResponse.json({ error: "User settings not found" }, { status: 404 })
 	}
 
+	// Reset by deleting and recreating the settings
+	if (Object.keys(settingsData).length === 0) {
+		await db.userSettings.delete({ where: { userId: session.user.id } })
+		const newSettings = await db.userSettings.create({ data: { userId: session.user.id } })
+
+		return NextResponse.json({ message: "Settings reset to default", settings: newSettings }, { status: 200 })
+	}
+
 	const updatedSettings = await db.userSettings.update({
 		where: { userId: session.user.id },
-		data: Object.keys(settingsData).length === 0 ? defaultSettings : { ...currentSettings, ...settingsData }
+		data: settingsData
 	})
 
-	const message = Object.keys(settingsData).length === 0 ? "Settings reset to default" : "Settings updated successfully"
-
-	return NextResponse.json({ message, settings: updatedSettings }, { status: 200 })
+	return NextResponse.json({ message: "Settings updated successfully", settings: updatedSettings }, { status: 200 })
 }

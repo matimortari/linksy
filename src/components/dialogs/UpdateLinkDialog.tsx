@@ -12,7 +12,6 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 		resolver: zodResolver(linkFormSchema)
 	})
 
-	// Set form fields to current link values when dialog is opened
 	useEffect(() => {
 		if (isOpen && currentLink) {
 			reset(currentLink)

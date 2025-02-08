@@ -10,7 +10,6 @@ export default function UpdateUserDialog({ isOpen, onClose, currentUser, onUpdat
 
 	const { register, handleSubmit, setValue } = useForm<{ description: string; slug: string; image: string }>()
 
-	// Set form fields to current user values when dialog is opened
 	useEffect(() => {
 		if (isOpen && currentUser) {
 			setValue("description", currentUser.description || "")
