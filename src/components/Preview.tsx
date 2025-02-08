@@ -49,11 +49,12 @@ export default function Preview() {
 	return (
 		<div className="my-6 flex h-full max-h-[480px] flex-col items-center gap-2">
 			<h2 className="hidden md:block">Preview</h2>
+
 			<button
-				className={`btn fixed bottom-12 z-20 transform md:hidden ${isVisible ? "bg-card" : "bg-primary"}`}
+				className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
 				onClick={togglePreview}
 			>
-				<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} className="icon" />
+				<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} className="icon size-6" />
 				{isVisible ? "Close Preview" : "Preview"}
 			</button>
 
@@ -129,8 +130,6 @@ export default function Preview() {
 					) : (
 						<p className="text-center text-muted-foreground">No links yet.</p>
 					)}
-
-					{settings?.showCopyButton && <button className="mt-4 rounded border p-2">Copy Profile Link</button>}
 				</div>
 			</div>
 
@@ -150,7 +149,6 @@ export default function Preview() {
 						/>
 					)}
 					<p
-						className="text-center"
 						style={{
 							color: settings?.slugTextColor,
 							fontWeight: settings?.slugTextWeight,
@@ -162,7 +160,6 @@ export default function Preview() {
 
 					{description && (
 						<p
-							className="text-center"
 							style={{
 								color: settings?.headerTextColor,
 								fontWeight: settings?.headerTextWeight,

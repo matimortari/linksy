@@ -15,7 +15,7 @@ import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
 import { useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "./Inputs"
+import { CheckboxInput, ColorInput, RadioOptions, SelectInput } from "../Inputs"
 import ThemeForm from "./ThemeForm"
 
 export default function AppearanceForm() {
@@ -54,6 +54,11 @@ export default function AppearanceForm() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+			<header className="my-2">
+				<h3>Appearance</h3>
+				<h6 className="text-muted-foreground">Customize the appearance for your page.</h6>
+			</header>
+
 			<ThemeForm reset={reset} setSettings={setSettings} />
 
 			<section>

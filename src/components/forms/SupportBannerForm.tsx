@@ -26,7 +26,12 @@ export default function SupportBannerForm() {
 	}
 
 	return (
-		<form className="flex max-w-xs flex-row gap-2" onSubmit={handleSubmit(onSubmit)}>
+		<form className="flex max-w-xs flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+			<header className="my-2">
+				<h3>Support Banner</h3>
+				<h6 className="text-muted-foreground">Show your support for important causes.</h6>
+			</header>
+
 			<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 				<Controller
 					name="supportBanner"

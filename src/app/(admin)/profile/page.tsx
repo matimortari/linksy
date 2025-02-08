@@ -28,14 +28,10 @@ export default function Profile() {
 
 				<div className="flex flex-col gap-4">
 					<section className="section-container">
-						<h3>My Links</h3>
-						<h6 className="text-muted-foreground">Manage your social links.</h6>
 						<LinkList />
 					</section>
 
 					<section className="section-container">
-						<h3>My Social Buttons</h3>
-						<h6 className="text-muted-foreground">Manage your social buttons.</h6>
 						<ButtonList />
 					</section>
 				</div>

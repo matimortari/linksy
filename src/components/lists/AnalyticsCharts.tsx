@@ -23,8 +23,11 @@ export default function AnalyticsCharts() {
 
 	return (
 		<div className="flex flex-col gap-2">
-			<h3>Analytics Summary</h3>
-			<h6 className="text-muted-foreground">Your Key Metrics.</h6>
+			<header className="my-2">
+				<h3>Analytics Summary</h3>
+				<h6 className="text-muted-foreground">Your Key Metrics.</h6>
+			</header>
+
 			<div className="my-2 grid grid-cols-2 gap-4 md:grid-cols-4">
 				<div className="flex flex-row items-center gap-2">
 					<Icon icon="material-symbols:table-eye" className="size-6 text-accent" />
@@ -61,18 +64,21 @@ export default function AnalyticsCharts() {
 
 			<hr />
 
-			<h3>Profile Views</h3>
-			<h6 className="text-muted-foreground">Total views of your profile page over time.</h6>
+			<header className="my-2">
+				<h3>Profile Views</h3>
+				<h6 className="text-muted-foreground">Total views of your profile page over time.</h6>
+			</header>
+
 			{totalViews === 0 || !hasEnoughData ? (
-				<div className="card my-1 text-center font-semibold text-muted-foreground">
-					{totalViews === 0 ? "Not enough data yet." : "Only one data point available."}
-				</div>
+				<div className="card my-1 text-center font-semibold text-muted-foreground">Not enough data yet.</div>
 			) : (
 				<ResponsiveContainer height={200}>
-					<BarChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-						<XAxis dataKey="date" className="text-xs" />
-						<YAxis className="text-xs" />
+					<BarChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
+						<XAxis dataKey="date" />
+						<YAxis />
+
 						<Tooltip
+							cursor={false}
 							wrapperClassName="popover text-xs"
 							labelClassName="text-foreground font-semibold"
 							contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
@@ -86,46 +92,52 @@ export default function AnalyticsCharts() {
 
 			<div className="my-2 flex flex-col justify-between gap-2 md:flex-row">
 				<div className="flex w-full flex-col gap-2">
-					<h3 className="subtitle">Link Clicks</h3>
-					<h6 className="text-muted-foreground">Total clicks on your links over time.</h6>
+					<header className="my-2">
+						<h3 className="subtitle">Link Clicks</h3>
+						<h6 className="text-muted-foreground">Total clicks on your links over time.</h6>
+					</header>
+
 					{totalClicks === 0 || !hasEnoughData ? (
-						<div className="card my-1 text-center font-semibold text-muted-foreground">
-							{totalClicks === 0 ? "Not enough data yet." : "Only one data point available."}
-						</div>
+						<div className="card my-1 text-center font-semibold text-muted-foreground">Not enough data yet.</div>
 					) : (
 						<ResponsiveContainer height={200}>
-							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-								<XAxis dataKey="date" className="text-xs" />
-								<YAxis className="text-xs" />
+							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
+								<XAxis dataKey="date" />
+								<YAxis />
+								<Line type="monotone" dataKey="linkClicks" name="Link Clicks" stroke="#31589c" />
+
 								<Tooltip
+									cursor={false}
 									wrapperClassName="popover text-xs"
 									labelClassName="text-foreground font-semibold"
 									contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
 								/>
-								<Line type="monotone" dataKey="linkClicks" name="Link Clicks" stroke="#31589c" />
 							</LineChart>
 						</ResponsiveContainer>
 					)}
 				</div>
 
 				<div className="flex w-full flex-col gap-2">
-					<h3 className="subtitle">Button Clicks</h3>
-					<h6 className="text-muted-foreground">Total clicks on your social buttons over time.</h6>
+					<header className="my-2">
+						<h3 className="subtitle">Button Clicks</h3>
+						<h6 className="text-muted-foreground">Total clicks on your social buttons over time.</h6>
+					</header>
+
 					{totalClicks === 0 || !hasEnoughData ? (
-						<div className="card my-1 text-center font-semibold text-muted-foreground">
-							{totalClicks === 0 ? "Not enough data yet." : "Only one data point available."}
-						</div>
+						<div className="card my-1 text-center font-semibold text-muted-foreground">Not enough data yet.</div>
 					) : (
 						<ResponsiveContainer height={200}>
-							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-								<XAxis dataKey="date" className="text-xs" />
-								<YAxis className="text-xs" />
+							<LineChart data={filteredStats} margin={{ top: 20, right: 20, left: 0, bottom: 10 }} className="text-xs">
+								<XAxis dataKey="date" />
+								<YAxis />
+								<Line type="monotone" dataKey="buttonClicks" name="Button Clicks" stroke="#31589c" />
+
 								<Tooltip
+									cursor={false}
 									wrapperClassName="popover text-xs"
 									labelClassName="text-foreground font-semibold"
 									contentStyle={{ backgroundColor: "var(--background)", border: "none" }}
 								/>
-								<Line type="monotone" dataKey="buttonClicks" name="Button Clicks" stroke="#31589c" />
 							</LineChart>
 						</ResponsiveContainer>
 					)}

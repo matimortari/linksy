@@ -27,6 +27,11 @@ export default function ButtonList() {
 
 	return (
 		<>
+			<header className="my-2">
+				<h3>My Social Buttons</h3>
+				<h6 className="text-muted-foreground">Manage your social buttons.</h6>
+			</header>
+
 			{userButtons == 0 ? (
 				<h4 className="my-2 text-center text-muted-foreground">No social buttons here yet. Get started!</h4>
 			) : (

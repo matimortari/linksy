@@ -8,7 +8,7 @@ import Image from "next/image"
 import { redirect } from "next/navigation"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
-const lato = Lato({ subsets: ["latin"], weight: "900" })
+const lato = Lato({ subsets: ["latin"], weight: "400" })
 
 export default function Login() {
 	const { status } = useSession()
@@ -19,38 +19,42 @@ export default function Login() {
 
 	return (
 		<div className="relative min-h-screen">
-			<div className="absolute inset-x-0 bottom-0 z-0 hidden opacity-20 md:block md:h-3/6">
+			<div className="absolute inset-x-0 bottom-0 hidden opacity-20 md:block md:h-3/6">
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 
-			<main className="relative z-10 flex flex-col items-center justify-between md:p-8">
-				{/* Sign In form */}
+			<main className="relative z-10 flex flex-col items-center px-4 py-8 md:px-12 md:py-0">
+				{/* Sign-in form */}
 				<motion.div
-					className="popover gap-4 text-center"
-					initial={{ opacity: 0, y: 20 }}
+					className="popover"
+					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
+					transition={{ duration: 0.8, ease: "easeOut" }}
 				>
-					<div className="flex flex-col items-center gap-4 p-8">
+					<div className="m-8 flex flex-col gap-4 text-center">
 						<h1 className={`${bowlby.className}`}>Sign In</h1>
-						<h4 className={`${lato.className} text-muted-foreground`}>Sign in with your preferred provider.</h4>
-					</div>
 
-					<hr />
+						<hr className="my-2" />
 
-					<div className="flex flex-row items-center justify-center gap-4 p-8">
-						<button
-							className="flex items-center justify-center rounded-full border bg-[#db4437] p-3 text-white"
-							onClick={() => signIn("google")}
-						>
-							<Icon icon="simple-icons:google" className="icon size-5" />
-						</button>
-						<button
-							className="flex items-center justify-center rounded-full border bg-[#333333] p-3 text-white"
-							onClick={() => signIn("github")}
-						>
-							<Icon icon="simple-icons:github" className="icon size-5" />
-						</button>
+						<h3 className={`${lato.className} mb-4 text-muted-foreground`}>
+							Sign in with your preferred provider to continue.
+						</h3>
+
+						<div className="flex flex-row items-center justify-center gap-4">
+							<button
+								className="flex items-center justify-center rounded-full border bg-[#db4437] p-4 text-white"
+								onClick={() => signIn("google")}
+							>
+								<Icon icon="simple-icons:google" className="icon size-6" />
+							</button>
+
+							<button
+								className="flex items-center justify-center rounded-full border bg-[#333333] p-4 text-white"
+								onClick={() => signIn("github")}
+							>
+								<Icon icon="simple-icons:github" className="icon size-6" />
+							</button>
+						</div>
 					</div>
 				</motion.div>
 			</main>

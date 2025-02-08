@@ -1,26 +1,13 @@
 "use client"
 
-import AppearanceForm from "@/src/components/AppearanceForm"
+import AppearanceForm from "@/src/components/forms/AppearanceForm"
+import DeleteAccountForm from "@/src/components/forms/DeleteAccountForm"
+import SupportBannerForm from "@/src/components/forms/SupportBannerForm"
 import Preview from "@/src/components/Preview"
-import SupportBannerForm from "@/src/components/SupportBannerForm"
 import useAuth from "@/src/hooks/useAuth"
-import { deleteAccount } from "@/src/services/userService"
 
 export default function Preferences() {
 	useAuth()
-
-	const handleDeleteAccount = async () => {
-		const confirm = window.confirm("Are you sure you want to delete your account?")
-		if (!confirm) return false
-		else {
-			const response = await deleteAccount()
-			if (response.error) {
-				alert(response.error)
-			} else {
-				window.location.href = "/"
-			}
-		}
-	}
 
 	return (
 		<div className="flex w-full flex-col gap-4 md:flex-row">
@@ -34,26 +21,15 @@ export default function Preferences() {
 
 				<div className="flex flex-col gap-4">
 					<section className="section-container">
-						<h3>Appearance</h3>
-						<h6 className="text-muted-foreground">Customize the appearance for your page.</h6>
 						<AppearanceForm />
 					</section>
 
 					<section className="section-container">
-						<h3>Support Banner</h3>
-						<h6 className="text-muted-foreground">Show your support for important causes.</h6>
 						<SupportBannerForm />
 					</section>
 
 					<section className="section-container border-danger">
-						<h3>Delete Account</h3>
-						<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
-
-						<div className="input-group">
-							<button onClick={handleDeleteAccount} className="btn bg-danger">
-								Delete Account
-							</button>
-						</div>
+						<DeleteAccountForm />
 					</section>
 				</div>
 			</main>

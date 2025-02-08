@@ -24,7 +24,7 @@ export default function Header() {
 
 			<div className="flex flex-row items-center justify-end gap-2">
 				<button onClick={handleThemeToggle} className="btn bg-card">
-					<Icon icon={theme === "light" ? "radix-icons:sun" : "radix-icons:moon"} className="icon size-6" />
+					<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
 				</button>
 				<Link href="/login" className="btn bg-card">
 					<Icon icon="material-symbols:login" className="icon size-6" />

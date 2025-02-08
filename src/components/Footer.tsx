@@ -3,7 +3,9 @@ import Link from "next/link"
 
 export default function Footer() {
 	return (
-		<footer className="flex flex-col items-center justify-between gap-4 p-4 md:flex-row">
+		<footer className="flex flex-col items-center justify-between gap-2 p-8 md:flex-row">
+			<hr className="my-2 w-full" />
+
 			<div className="mx-4 whitespace-nowrap font-light text-muted-foreground">
 				<p>© 2025 Matheus Mortari. All rights reserved.</p>
 			</div>

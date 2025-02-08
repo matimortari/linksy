@@ -23,8 +23,6 @@ export default function Analytics() {
 					</section>
 
 					<section className="section-container">
-						<h3>Clicks By Link</h3>
-						<h6 className="text-muted-foreground">Your most visited links & social buttons.</h6>
 						<ClicksByLink />
 					</section>
 				</div>

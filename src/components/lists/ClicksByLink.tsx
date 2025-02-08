@@ -7,6 +7,11 @@ export default function ClicksByLink() {
 
 	return (
 		<>
+			<header className="my-2">
+				<h3>Clicks By Link</h3>
+				<h6 className="text-muted-foreground">Your most visited links & social buttons.</h6>
+			</header>
+
 			{!items || items.length === 0 ? (
 				<h4 className="my-2 text-center text-muted-foreground">No links or buttons available yet.</h4>
 			) : (

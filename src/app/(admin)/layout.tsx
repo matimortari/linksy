@@ -27,7 +27,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
 
 			<body className={`${inter.className}`}>
 				<Providers session={session}>
-					<div className="flex min-h-screen flex-col px-4 pt-4 md:flex-row">
+					<div className="flex min-h-screen flex-col p-4 md:flex-row">
 						<aside className="md:w-2/12">
 							<Navbar />
 						</aside>

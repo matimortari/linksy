@@ -84,8 +84,9 @@ export default function Navbar() {
 
 					<nav className="flex flex-row items-center justify-end gap-2">
 						<button onClick={handleThemeToggle} className="btn bg-card">
-							<Icon icon={theme === "light" ? "radix-icons:sun" : "radix-icons:moon"} className="icon size-6" />
+							<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
 						</button>
+
 						<button onClick={() => setIsNavOpen(!isNavOpen)} className="btn bg-card">
 							{isNavOpen ? (
 								<Icon icon="mdi:close" className="icon size-6" />
@@ -93,6 +94,7 @@ export default function Navbar() {
 								<Icon icon="mdi:menu" className="icon size-6" />
 							)}
 						</button>
+
 						<button onClick={handleSignOut} className="btn bg-card">
 							<Icon icon="material-symbols:logout" className="icon size-6" />
 						</button>
@@ -125,7 +127,7 @@ export default function Navbar() {
 					<div className="flex flex-col overflow-y-auto">
 						<nav className="w-full space-y-2">
 							<button onClick={handleThemeToggle} className="btn flex w-full justify-start gap-2 bg-card">
-								<Icon icon={theme === "light" ? "radix-icons:sun" : "radix-icons:moon"} className="icon size-6" />
+								<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
 								<span>Toggle Theme</span>
 							</button>
 
