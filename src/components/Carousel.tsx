@@ -95,7 +95,15 @@ function CarouselCard({ presetId = 0 }) {
 						>
 							@{slug}
 						</p>
-						<p style={{ color: settings.headerTextColor }}>{description}</p>
+						<p
+							style={{
+								color: settings?.headerTextColor,
+								fontWeight: settings?.headerTextWeight,
+								fontSize: settings?.headerTextSize
+							}}
+						>
+							{description}
+						</p>
 
 						<ul className="my-2 flex flex-row justify-center gap-2">
 							{buttons.map((button) => (

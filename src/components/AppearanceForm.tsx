@@ -1,6 +1,8 @@
 import {
 	BACKGROUND_TYPE_OPTIONS,
 	BUTTON_SHADOW_WEIGHTS,
+	HEADER_FONT_SIZES,
+	HEADER_FONT_WEIGHTS,
 	LINK_SHADOW_WEIGHTS,
 	PADDING_OPTIONS,
 	RADIUS_OPTIONS,
@@ -64,14 +66,12 @@ export default function AppearanceForm() {
 								<SelectInput id="backgroundType" label="Background Type" options={BACKGROUND_TYPE_OPTIONS} {...field} />
 							)}
 						/>
-
 						<Controller
 							name="backgroundColor"
 							control={control}
 							disabled={watch("backgroundType") === "GRADIENT"}
 							render={({ field }) => <ColorInput id="backgroundColor" label="Main Page Background Color" {...field} />}
 						/>
-
 						<Controller
 							name="backgroundGradientStart"
 							control={control}
@@ -80,14 +80,12 @@ export default function AppearanceForm() {
 								<ColorInput id="backgroundGradientStart" label="Gradient Start Color" {...field} />
 							)}
 						/>
-
 						<Controller
 							name="backgroundGradientEnd"
 							disabled={watch("backgroundType") === "FLAT"}
 							control={control}
 							render={({ field }) => <ColorInput id="backgroundGradientEnd" label="Gradient End Color" {...field} />}
 						/>
-
 						<Controller
 							name="profilePictureRadius"
 							control={control}
@@ -95,7 +93,6 @@ export default function AppearanceForm() {
 								<RadioOptions label="Profile Picture Radius" options={RADIUS_OPTIONS} {...field} />
 							)}
 						/>
-
 						<Controller
 							name="showCopyButton"
 							control={control}
@@ -110,7 +107,7 @@ export default function AppearanceForm() {
 			<section>
 				<div className="flex flex-col gap-2 md:flex-row">
 					<div className="card w-full">
-						<h4>Main Page - Fonts</h4>
+						<h4>Username - Theme</h4>
 						<hr className="my-2" />
 
 						<Controller
@@ -118,13 +115,11 @@ export default function AppearanceForm() {
 							control={control}
 							render={({ field }) => <ColorInput id="slugTextColor" label="Username Font Color" {...field} />}
 						/>
-
 						<Controller
 							name="slugTextSize"
 							control={control}
 							render={({ field }) => <RadioOptions label="Username Font Size" options={SLUG_FONT_SIZES} {...field} />}
 						/>
-
 						<Controller
 							name="slugTextWeight"
 							control={control}
@@ -132,11 +127,28 @@ export default function AppearanceForm() {
 								<RadioOptions label="Username Font Weight" options={SLUG_FONT_WEIGHTS} {...field} />
 							)}
 						/>
+					</div>
+
+					<div className="card w-full">
+						<h4>Header - Theme</h4>
+						<hr className="my-2" />
 
 						<Controller
 							name="headerTextColor"
 							control={control}
 							render={({ field }) => <ColorInput id="headerTextColor" label="Header Text Color" {...field} />}
+						/>
+						<Controller
+							name="headerTextSize"
+							control={control}
+							render={({ field }) => <RadioOptions label="Header Text Size" options={HEADER_FONT_SIZES} {...field} />}
+						/>
+						<Controller
+							name="headerTextWeight"
+							control={control}
+							render={({ field }) => (
+								<RadioOptions label="Header Text Weight" options={HEADER_FONT_WEIGHTS} {...field} />
+							)}
 						/>
 					</div>
 				</div>
@@ -173,7 +185,6 @@ export default function AppearanceForm() {
 								<CheckboxInput id="isLinkShadow" label="Enable Link Shadow" checked={field.value} {...field} />
 							)}
 						/>
-
 						<Controller
 							name="linkShadowColor"
 							control={control}
@@ -186,7 +197,6 @@ export default function AppearanceForm() {
 								/>
 							)}
 						/>
-
 						<Controller
 							name="linkShadowWeight"
 							control={control}
@@ -244,7 +254,6 @@ export default function AppearanceForm() {
 								<ColorInput id="buttonHoverBackgroundColor" label="Social Button Hover Background Color" {...field} />
 							)}
 						/>
-
 						<Controller
 							name="isButtonShadow"
 							control={control}
@@ -269,7 +278,6 @@ export default function AppearanceForm() {
 								/>
 							)}
 						/>
-
 						<Controller
 							name="buttonShadowWeight"
 							control={control}

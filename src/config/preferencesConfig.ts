@@ -18,6 +18,21 @@ export const SLUG_FONT_WEIGHTS = [
 	{ label: "Extrabold", value: "800" }
 ]
 
+export const HEADER_FONT_SIZES = [
+	{ label: "Small", value: "0.9rem" },
+	{ label: "Medium", value: "1.10rem" },
+	{ label: "Large", value: "1.25rem" },
+	{ label: "Extra Large", value: "1.5rem" }
+]
+
+export const HEADER_FONT_WEIGHTS = [
+	{ label: "Light", value: "300" },
+	{ label: "Normal", value: "400" },
+	{ label: "Semibold", value: "500" },
+	{ label: "Bold", value: "600" },
+	{ label: "Extrabold", value: "700" }
+]
+
 export const RADIUS_OPTIONS = [
 	{ label: "None", value: "0rem" },
 	{ label: "Small", value: "0.5rem" },

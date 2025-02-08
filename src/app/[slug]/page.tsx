@@ -61,7 +61,17 @@ export default async function UserPage({ params }: Readonly<{ params: { slug: st
 				>
 					@{slug}
 				</p>
-				{description && <p style={{ color: settings?.headerTextColor }}>{description}</p>}
+				{description && (
+					<p
+						style={{
+							color: settings?.headerTextColor,
+							fontWeight: settings?.headerTextWeight,
+							fontSize: settings?.headerTextSize
+						}}
+					>
+						{description}
+					</p>
+				)}
 
 				{/* Buttons Section */}
 				{userButtons.length > 0 ? (

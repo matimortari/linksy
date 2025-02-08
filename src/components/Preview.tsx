@@ -84,7 +84,17 @@ export default function Preview() {
 						@{slug}
 					</p>
 
-					{description && <p style={{ color: settings?.headerTextColor }}>{description}</p>}
+					{description && (
+						<p
+							style={{
+								color: settings?.headerTextColor,
+								fontWeight: settings?.headerTextWeight,
+								fontSize: settings?.headerTextSize
+							}}
+						>
+							{description}
+						</p>
+					)}
 
 					{buttons && buttons.length > 0 ? (
 						<ul className="my-2 flex flex-row justify-center gap-2">
@@ -151,7 +161,14 @@ export default function Preview() {
 					</p>
 
 					{description && (
-						<p className="text-center" style={{ color: settings?.headerTextColor }}>
+						<p
+							className="text-center"
+							style={{
+								color: settings?.headerTextColor,
+								fontWeight: settings?.headerTextWeight,
+								fontSize: settings?.headerTextSize
+							}}
+						>
 							{description}
 						</p>
 					)}

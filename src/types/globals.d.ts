@@ -27,6 +27,8 @@ interface UserSettings {
 	slugTextWeight: string
 	slugTextSize: string
 	headerTextColor: string
+	headerTextWeight: string
+	headerTextSize: string
 	linkBackgroundColor: string
 	linkTextColor: string
 	isLinkShadow: boolean
@@ -80,6 +82,8 @@ interface SettingsFormData {
 	slugTextWeight: string
 	slugTextSize: string
 	headerTextColor: string
+	headerTextWeight: string
+	headerTextSize: string
 	linkBackgroundColor: string
 	linkTextColor: string
 	isLinkShadow: boolean
