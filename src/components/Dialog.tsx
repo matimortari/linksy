@@ -8,6 +8,13 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 			if (e.key === "Escape") {
 				onClose()
 			}
+			if (e.key === "Enter" && e.target instanceof HTMLInputElement) {
+				const form = e.target.form
+				if (form) {
+					e.preventDefault()
+					form.requestSubmit()
+				}
+			}
 		}
 
 		const handleClickOutside = (e: MouseEvent) => {
@@ -20,6 +27,11 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 			document.documentElement.style.overflow = "hidden"
 			window.addEventListener("keydown", handleKeyDown)
 			document.addEventListener("mousedown", handleClickOutside)
+
+			setTimeout(() => {
+				const firstInput = dialogRef.current?.querySelector("input, textarea, select, button") as HTMLElement | null
+				firstInput?.focus()
+			}, 50)
 		} else {
 			document.documentElement.style.overflow = ""
 		}
@@ -35,14 +47,14 @@ export default function Dialog({ isOpen, onClose, title, children }) {
 
 	return (
 		<div className="animate-slide-in fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-			<div ref={dialogRef} className="popover m-12 min-w-96 max-w-full">
+			<div ref={dialogRef} className="popover m-12 min-w-96 max-w-full outline-none">
 				<header>
 					<h2>{title}</h2>
 				</header>
 
 				<hr className="mb-4 mt-2" />
 
-				<main>{children}</main>
+				{children}
 			</div>
 		</div>
 	)

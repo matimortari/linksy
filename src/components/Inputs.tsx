@@ -27,7 +27,7 @@ export function SelectInput({ id, label, value, onChange, options }) {
 				{label}
 			</label>
 			<select id={id} value={value} onChange={onChange} className="mt-2 block w-full rounded-2xl border p-2 text-sm">
-				{options.map((option) => (
+				{options.map((option: any) => (
 					<option key={option.value} value={option.value} className="bg-card text-muted-foreground">
 						{option.label}
 					</option>

@@ -1,5 +1,5 @@
+import { themePresets } from "@/src/config/themePresets"
 import { useEffect, useState } from "react"
-import { themePresets } from "../../config/themePresets"
 
 export default function ThemeForm({ reset, setSettings }) {
 	const [selectedTheme, setSelectedTheme] = useState<string>("")
