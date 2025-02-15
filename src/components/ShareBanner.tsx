@@ -43,13 +43,13 @@ function ShareDropdown({ isOpen, onClose }) {
 			{isOpen && (
 				<div className="animate-slide-in popover absolute right-0 top-full">
 					<div className="flex flex-col items-start gap-2 text-xs font-semibold">
-						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleCopyLink}>
+						<button onClick={handleCopyLink} className="rounded-2xl p-2 hover:bg-muted">
 							Copy Link
 						</button>
-						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleShareTwitter}>
+						<button onClick={handleShareTwitter} className="rounded-2xl p-2 hover:bg-muted">
 							Share on X
 						</button>
-						<button className="rounded-2xl p-2 hover:bg-muted" onClick={handleQRCode}>
+						<button onClick={handleQRCode} className="rounded-2xl p-2 hover:bg-muted">
 							Get QR Code
 						</button>
 					</div>
@@ -78,15 +78,15 @@ export default function ShareBanner() {
 
 	return (
 		<div className="relative mt-2 flex max-w-lg flex-row justify-between gap-2 rounded-2xl border bg-muted p-2">
-			<div className="flex w-full flex-col gap-1 overflow-hidden">
-				<p className="text-base font-semibold text-foreground">Share your Linksy Page:</p>
-				<Link href={`/${slug}`} className="truncate text-xs font-medium">
+			<div className="flex w-full flex-col gap-1 overflow-x-hidden">
+				<h4 className="text-foreground">Share your Linksy Page:</h4>
+				<Link href={`/${slug}`} title={`linksy-live.vercel.app/${slug}`} className="truncate text-xs font-medium">
 					<span>linksy-live.vercel.app/{slug}</span>
 				</Link>
 			</div>
 
 			<div className="input-group">
-				<button type="button" className="btn bg-card text-foreground" onClick={toggleDropdown}>
+				<button onClick={toggleDropdown} title="See sharing options" className="btn bg-card text-foreground">
 					Share Now
 				</button>
 			</div>

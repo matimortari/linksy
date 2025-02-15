@@ -13,7 +13,7 @@ export default function Preferences() {
 		<div className="flex w-full flex-col gap-4 md:flex-row">
 			<main className="card md:w-8/12">
 				<header className="space-y-1">
-					<h2>Preferences</h2>
+					<h1>Preferences</h1>
 					<h5>Manage your profile.</h5>
 				</header>
 

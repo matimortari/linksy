@@ -20,19 +20,16 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 	}
 
 	return (
-		<li className="flex flex-row items-center justify-center">
-			<Link href={url} target="_blank" rel="noopener noreferrer">
-				<button
-					onClick={handleClick}
-					className="flex size-10 items-center justify-center rounded-full"
-					style={{
-						backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
-						boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
-						transition: "background-color 0.3s ease, box-shadow 0.3s ease"
-					}}
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-				>
+		<li
+			className="flex size-10 items-center justify-center rounded-full"
+			style={{
+				backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
+				boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
+				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
+			}}
+		>
+			<Link href={url} target="_blank" rel="noopener noreferrer" className="flex items-center">
+				<button onClick={handleClick} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
 					{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
 				</button>
 			</Link>

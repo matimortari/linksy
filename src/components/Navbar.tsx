@@ -21,7 +21,7 @@ const navLinks = [
 function Logo() {
 	return (
 		<Link href="/" className="flex flex-row items-center justify-start gap-2">
-			<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
+			<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon" />
 			<span className={`text-2xl ${chau.className}`}>Linksy</span>
 		</Link>
 	)
@@ -31,17 +31,18 @@ function UserCard({ slug, description, image, setIsDialogOpen }) {
 	return (
 		<div className="my-4 flex flex-row items-center gap-4 md:gap-2">
 			<div className="relative">
-				<Image src={image} alt={slug} width={50} height={50} className="rounded-full border" />
+				{image && <Image src={image} alt={slug} width={50} height={50} className="rounded-full border" />}
 				<button
 					onClick={() => setIsDialogOpen(true)}
+					title="Edit Profile Information"
 					className="absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
 				>
 					<Icon icon="mdi:square-edit-outline" className="icon size-4" />
 				</button>
 			</div>
 
-			<div className="flex w-full flex-col gap-1 overflow-hidden">
-				<Link href={`/${slug}`} className="w-full truncate">
+			<div className="flex w-full flex-col gap-1 overflow-x-hidden">
+				<Link href={`/${slug}`} title={`linksy-live.vercel.app/${slug}`} className="w-full truncate">
 					<span className="w-full truncate text-xs font-medium hover:underline">{`@${slug}`}</span>
 				</Link>
 				<p className="break-all text-xs text-muted-foreground md:hidden">{description}</p>
@@ -57,6 +58,11 @@ export default function Navbar() {
 	const [isNavOpen, setIsNavOpen] = useState(false)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [currentUser, setCurrentUser] = useState<UserFormData | null>(null)
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 
 	const handleSignOut = async () => {
 		await signOut({ redirect: true, callbackUrl: "/" })
@@ -75,6 +81,10 @@ export default function Navbar() {
 		setCurrentUser({ slug, description, image })
 	}, [slug, description, image])
 
+	const themeIcon = !mounted ? null : theme === "light" ? "radix-icons:moon" : "radix-icons:sun"
+
+	const themeTitle = !mounted ? "Loading..." : `Switch to ${theme === "light" ? "dark" : "light"} mode`
+
 	return (
 		<>
 			{/* Top navbar for mobile */}
@@ -83,8 +93,8 @@ export default function Navbar() {
 					<Logo />
 
 					<nav className="flex flex-row items-center justify-end gap-2">
-						<button onClick={handleThemeToggle} className="btn bg-card">
-							<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
+						<button onClick={handleThemeToggle} title={themeTitle} className="btn bg-card">
+							{themeIcon && <Icon icon={themeIcon} className="icon size-6" />}
 						</button>
 
 						<button onClick={() => setIsNavOpen(!isNavOpen)} className="btn bg-card">
@@ -105,7 +115,7 @@ export default function Navbar() {
 					<div className="flex flex-col p-4">
 						<nav className="flex flex-row items-center justify-center gap-2 ">
 							{navLinks.map((item) => (
-								<Link key={item.label} href={item.href} className="btn bg-card">
+								<Link key={item.label} href={item.href} title={item.label} className="btn bg-card">
 									<Icon icon={item.icon} className="icon size-6" />
 									{item.label}
 								</Link>
@@ -126,21 +136,28 @@ export default function Navbar() {
 
 					<div className="flex flex-col overflow-y-auto">
 						<nav className="w-full space-y-2">
-							<button onClick={handleThemeToggle} className="btn flex w-full justify-start gap-2 bg-card">
-								<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
-								<span>Toggle Theme</span>
+							<button
+								onClick={handleThemeToggle}
+								title={themeTitle}
+								className="btn flex w-full justify-start gap-2 bg-card"
+							>
+								{themeIcon && <Icon icon={themeIcon} className="icon size-6" />}
+								<span>{mounted ? (theme === "light" ? "Dark" : "Light") : ""} Mode</span>
 							</button>
 
 							{navLinks.map((item) => (
-								<div key={item.label}>
-									<Link href={item.href} className="btn flex w-full justify-start gap-2 bg-card">
-										<Icon icon={item.icon} className="icon size-6" />
-										{item.label}
-									</Link>
-								</div>
+								<Link
+									key={item.label}
+									href={item.href}
+									title={item.label}
+									className="btn flex w-full justify-start gap-2 bg-card"
+								>
+									<Icon icon={item.icon} className="icon size-6" />
+									{item.label}
+								</Link>
 							))}
 
-							<button onClick={handleSignOut} className="btn flex w-full justify-start gap-2 bg-card">
+							<button onClick={handleSignOut} title="Sign Out" className="btn flex w-full justify-start gap-2 bg-card">
 								<Icon icon="material-symbols:logout" className="icon size-6" />
 								<p className="hidden md:block">Sign Out</p>
 							</button>

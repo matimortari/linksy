@@ -24,7 +24,7 @@ export default function AnalyticsCharts() {
 	return (
 		<div className="flex flex-col gap-2">
 			<header className="my-2">
-				<h3>Analytics Summary</h3>
+				<h2>Analytics Summary</h2>
 				<h6 className="text-muted-foreground">Your Key Metrics.</h6>
 			</header>
 

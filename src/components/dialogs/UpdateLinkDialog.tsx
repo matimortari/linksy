@@ -29,27 +29,41 @@ export default function UpdateLinkDialog({ isOpen, onClose, currentLink, onUpdat
 	}
 
 	return (
-		<Dialog title="Update Link" isOpen={isOpen} onClose={onClose}>
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
-				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+		<Dialog isOpen={isOpen} onClose={onClose} title="Update Link">
+			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="title" className="text-sm font-semibold text-muted-foreground">
 						Title:
 					</label>
-					<input id="title" type="text" {...register("title")} className="flex-1" />
+					<input
+						id="title"
+						type="text"
+						placeholder="Link title..."
+						{...register("title")}
+						className="flex-1 rounded-2xl border"
+					/>
 				</div>
 
-				<div className="flex flex-row items-center gap-2 rounded-2xl border p-1 pl-2">
+				<hr />
+
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input id="url" type="url" {...register("url")} className="flex-1" />
+					<input
+						id="url"
+						type="url"
+						placeholder="URL for the link..."
+						{...register("url")}
+						className="flex-1 rounded-2xl border"
+					/>
 				</div>
 
 				<div className="input-group">
-					<button type="submit" className="btn bg-primary" disabled={isPending}>
+					<button type="submit" disabled={isPending} title="Update Link" className="btn bg-primary">
 						{isPending ? "Updating..." : "Update Link"}
 					</button>
-					<button type="button" onClick={onClose} className="btn bg-danger">
+					<button onClick={onClose} title="Cancel" className="btn bg-danger">
 						Cancel
 					</button>
 				</div>

@@ -36,38 +36,61 @@ export default function UpdateUserDialog({ isOpen, onClose, currentUser, onUpdat
 	}
 
 	return (
-		<Dialog title="Update User" isOpen={isOpen} onClose={onClose}>
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
-				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+		<Dialog isOpen={isOpen} onClose={onClose} title="Update Profile">
+			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="slug" className="text-sm font-semibold text-muted-foreground">
 						Slug:
 					</label>
-					<input id="slug" type="text" {...register("slug")} className="flex-1" />
+					<input
+						id="slug"
+						type="text"
+						placeholder="Your unique identifier"
+						{...register("slug")}
+						className="flex-1 rounded-2xl border"
+					/>
 				</div>
 
-				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+				<hr />
+
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="description" className="text-sm font-semibold text-muted-foreground">
 						Description:
 					</label>
-					<input id="description" type="text" {...register("description")} className="flex-1" />
+					<input
+						id="description"
+						type="text"
+						placeholder="A short bio about yourself"
+						{...register("description")}
+						className="flex-1 rounded-2xl border"
+					/>
 				</div>
 
-				<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+				<hr />
+
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="image" className="text-sm font-semibold text-muted-foreground">
 						Image URL:
 					</label>
-					<input id="image" type="url" {...register("image")} className="flex-1" placeholder="Enter image URL" />
+					<input
+						id="image"
+						type="url"
+						placeholder="URL for your profile picture"
+						{...register("image")}
+						className="flex-1 rounded-2xl border"
+					/>
 				</div>
 
 				<div className="input-group">
 					<button
 						type="submit"
+						disabled={isSlugPending || isDescriptionPending || isImagePending}
+						title="Update Profile"
 						className="btn bg-primary sm:w-auto"
-						disabled={isDescriptionPending || isSlugPending || isImagePending}
 					>
-						{isDescriptionPending || isSlugPending || isImagePending ? "Updating..." : "Update User Info"}
+						{isSlugPending || isDescriptionPending || isImagePending ? "Updating..." : "Update Profile"}
 					</button>
-					<button type="button" onClick={onClose} className="btn bg-danger">
+					<button onClick={onClose} title="Cancel" className="btn bg-danger">
 						Cancel
 					</button>
 				</div>

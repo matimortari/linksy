@@ -37,7 +37,7 @@ export default function LinkList() {
 	return (
 		<>
 			<header className="my-2">
-				<h3>My Links</h3>
+				<h2>My Links</h2>
 				<h6 className="text-muted-foreground">Manage your social links.</h6>
 			</header>
 
@@ -59,10 +59,11 @@ export default function LinkList() {
 												setCurrentLink(l)
 												setIsUpdateDialogOpen(true)
 											}}
+											title="Edit Link"
 										>
 											<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
 										</button>
-										<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)}>
+										<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)} title="Remove Link">
 											<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
 										</button>
 									</div>
@@ -76,7 +77,7 @@ export default function LinkList() {
 			)}
 
 			<div className="input-group justify-end">
-				<button onClick={() => setIsAddDialogOpen(true)} className="btn bg-primary">
+				<button onClick={() => setIsAddDialogOpen(true)} title="Add Link" className="btn bg-primary">
 					Add Link
 				</button>
 			</div>

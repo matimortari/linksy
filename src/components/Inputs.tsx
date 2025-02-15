@@ -52,7 +52,7 @@ export function RadioOptions({ options, name, value, onChange, label, disabled =
 							onChange={onChange}
 							disabled={disabled}
 						/>
-						<span className={`font-normal ${disabled ? "text-muted line-through" : ""}`}>{option.label}</span>
+						<span className={disabled ? "text-muted line-through" : ""}>{option.label}</span>
 					</label>
 				))}
 			</div>

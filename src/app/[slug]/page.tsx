@@ -40,7 +40,7 @@ export default async function UserPage({ params }: Readonly<{ params: { slug: st
 			: { backgroundColor: settings?.backgroundColor }
 
 	return (
-		<div style={backgroundStyle} className="min-h-screen p-12">
+		<div style={backgroundStyle} className="min-h-screen p-12 pb-24">
 			<div className="flex flex-col items-center justify-center gap-3 text-center">
 				{settings && settings.supportBanner !== "NONE" && <SupportBanner bannerType={settings.supportBanner} />}
 				{image && (

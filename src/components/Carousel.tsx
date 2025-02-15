@@ -18,7 +18,7 @@ function CarouselLink({ title, settings }) {
 
 	return (
 		<li className="flex flex-col items-center justify-center gap-4">
-			<div
+			<button
 				className="flex min-w-32 max-w-72 cursor-pointer items-center justify-center text-center"
 				style={{
 					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
@@ -39,7 +39,7 @@ function CarouselLink({ title, settings }) {
 				>
 					{title}
 				</p>
-			</div>
+			</button>
 		</li>
 	)
 }
@@ -56,7 +56,7 @@ function CarouselButton({ icon, settings }) {
 
 	return (
 		<li className="flex flex-row items-center justify-center">
-			<div
+			<button
 				className="flex size-10 cursor-pointer items-center justify-center rounded-full"
 				style={{
 					backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
@@ -67,7 +67,7 @@ function CarouselButton({ icon, settings }) {
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
-			</div>
+			</button>
 		</li>
 	)
 }
@@ -83,51 +83,41 @@ function CarouselCard({ presetId = 0 }) {
 			: { backgroundColor: settings?.backgroundColor }
 
 	return (
-		<div className="rounded-2xl border shadow-xl">
-			<div className="relative w-64 rounded-2xl md:w-[300px]">
-				<div className="relative grid place-content-center rounded-2xl px-4 py-2" style={backgroundStyle}>
-					<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
-						<Image
-							src={image}
-							alt={slug}
-							width={100}
-							height={100}
-							style={{ borderRadius: settings?.profilePictureRadius }}
-						/>
-						<p
-							style={{
-								color: settings.slugTextColor,
-								fontWeight: settings.slugTextWeight,
-								fontSize: settings.slugTextSize
-							}}
-						>
-							@{slug}
-						</p>
-						<p
-							style={{
-								color: settings?.headerTextColor,
-								fontWeight: settings?.headerTextWeight,
-								fontSize: settings?.headerTextSize
-							}}
-						>
-							{description}
-						</p>
+		<div className="popover relative w-64 md:w-[300px]" style={backgroundStyle}>
+			<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
+				<Image src={image} alt={slug} width={80} height={80} style={{ borderRadius: settings?.profilePictureRadius }} />
+				<p
+					style={{
+						color: settings.slugTextColor,
+						fontWeight: settings.slugTextWeight,
+						fontSize: settings.slugTextSize
+					}}
+				>
+					@{slug}
+				</p>
+				<p
+					style={{
+						color: settings?.headerTextColor,
+						fontWeight: settings?.headerTextWeight,
+						fontSize: settings?.headerTextSize
+					}}
+				>
+					{description}
+				</p>
 
-						<ul className="my-2 flex flex-row justify-center gap-2">
-							{buttons.map((button) => (
-								<CarouselButton key={button.id} icon={button.icon} settings={settings} />
-							))}
-						</ul>
+				<ul className="my-2 flex flex-row justify-center gap-2">
+					{buttons.map((button) => (
+						<CarouselButton key={button.id} icon={button.icon} settings={settings} />
+					))}
+				</ul>
 
-						<hr />
+				<hr />
 
-						<ul className="space-y-4 overflow-auto">
-							{links.map((link) => (
-								<CarouselLink key={link.id} title={link.title} settings={settings} />
-							))}
-						</ul>
-					</div>
-				</div>
+				<ul className="space-y-4 overflow-auto">
+					{links.map((link) => (
+						<CarouselLink key={link.id} title={link.title} settings={settings} />
+					))}
+				</ul>
 			</div>
 		</div>
 	)
@@ -146,7 +136,7 @@ export default function Carousel() {
 	}, [])
 
 	return (
-		<div className="animate-float relative flex h-[480px] select-none items-center justify-center">
+		<div className="animate-float relative my-4 flex h-[480px] select-none items-center justify-center">
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={currentIndex}

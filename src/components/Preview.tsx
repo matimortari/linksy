@@ -47,12 +47,11 @@ export default function Preview() {
 			: { backgroundColor: settings?.backgroundColor }
 
 	return (
-		<div className="my-6 flex h-full max-h-[480px] flex-col items-center gap-2">
-			<h2 className="hidden md:block">Preview</h2>
-
+		<div className="my-6 flex h-full max-h-[560px] flex-col items-center gap-2">
+			{/* Preview toggle for mobile */}
 			<button
-				className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
 				onClick={togglePreview}
+				className={`btn fixed bottom-8 z-20 transform p-2 md:hidden ${isVisible ? "bg-card" : "bg-secondary"}`}
 			>
 				<Icon icon={isVisible ? "mdi:eye-off" : "mdi:eye"} className="icon size-6" />
 				{isVisible ? "Close Preview" : "Preview"}
@@ -135,7 +134,7 @@ export default function Preview() {
 
 			{/* Desktop Preview */}
 			<div
-				className="popover m-2 hidden min-h-96 overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
+				className="popover preview-scrollbar m-2 hidden overflow-y-auto overflow-x-hidden md:block md:w-[300px] "
 				style={backgroundStyle}
 			>
 				<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">

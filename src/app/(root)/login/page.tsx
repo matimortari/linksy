@@ -36,25 +36,27 @@ export default function Login() {
 
 						<h1 className={`${bowlby.className}`}>Sign In</h1>
 
-						<hr className="my-2 w-full" />
+						<hr className="w-full" />
 
-						<h3 className={`${lato.className} mb-4 text-muted-foreground`}>
+						<h4 className={`${lato.className} mb-4 text-muted-foreground`}>
 							Sign in with your preferred provider to continue.
-						</h3>
+						</h4>
 
 						<div className="flex flex-row items-center justify-center gap-4">
 							<button
-								className="flex items-center justify-center rounded-full border bg-[#db4437] p-4 text-white"
 								onClick={() => signIn("google")}
+								title="Sign In with Google"
+								className="flex items-center justify-center rounded-full border bg-[#db4437] p-4 text-white"
 							>
-								<Icon icon="simple-icons:google" className="icon size-6" />
+								<Icon icon="simple-icons:google" className="icon size-5" />
 							</button>
 
 							<button
-								className="flex items-center justify-center rounded-full border bg-[#333333] p-4 text-white"
 								onClick={() => signIn("github")}
+								title="Sign In with GitHub"
+								className="flex items-center justify-center rounded-full border bg-[#333333] p-4 text-white"
 							>
-								<Icon icon="simple-icons:github" className="icon size-6" />
+								<Icon icon="simple-icons:github" className="icon size-5" />
 							</button>
 						</div>
 					</div>

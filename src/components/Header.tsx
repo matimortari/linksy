@@ -23,10 +23,14 @@ export default function Header() {
 			</Link>
 
 			<div className="flex flex-row items-center justify-end gap-2">
-				<button onClick={handleThemeToggle} className="btn bg-card">
+				<button
+					onClick={handleThemeToggle}
+					title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+					className="btn bg-card"
+				>
 					<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
 				</button>
-				<Link href="/login" className="btn bg-card">
+				<Link href="/login" title="Sign In" className="btn bg-card">
 					<Icon icon="material-symbols:login" className="icon size-6" />
 				</Link>
 			</div>

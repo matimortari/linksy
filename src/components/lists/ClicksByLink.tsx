@@ -8,7 +8,7 @@ export default function ClicksByLink() {
 	return (
 		<>
 			<header className="my-2">
-				<h3>Clicks By Link</h3>
+				<h2>Clicks By Link</h2>
 				<h6 className="text-muted-foreground">Your most visited links & social buttons.</h6>
 			</header>
 

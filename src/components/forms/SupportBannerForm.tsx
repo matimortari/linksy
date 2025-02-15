@@ -28,7 +28,7 @@ export default function SupportBannerForm() {
 	return (
 		<form className="flex max-w-xs flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
 			<header className="my-2">
-				<h3>Support Banner</h3>
+				<h2>Support Banner</h2>
 				<h6 className="text-muted-foreground">Show your support for important causes.</h6>
 			</header>
 
@@ -48,7 +48,7 @@ export default function SupportBannerForm() {
 				/>
 
 				<div className="input-group">
-					<button type="submit" disabled={isPending} className="btn bg-primary">
+					<button type="submit" disabled={isPending} title="Update Support Banner" className="btn bg-primary">
 						<Icon icon="material-symbols:volunteer-activism-outline" className="icon text-xl" />
 						{isPending ? "Updating..." : "Update Banner"}
 					</button>

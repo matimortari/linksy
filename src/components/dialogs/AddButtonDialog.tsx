@@ -47,16 +47,16 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 	}
 
 	return (
-		<Dialog title="Add New Social Button" isOpen={isOpen} onClose={onClose}>
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-4">
+		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
+			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
 				<div className="my-2 flex flex-col space-y-2">
-					<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9 md:overflow-visible">
+					<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
 							<button
 								key={platform}
-								tabIndex={0}
 								onClick={() => handlePlatformSelect(platform)}
 								onKeyDown={(e) => handleKeyDown(e, platform)}
+								tabIndex={0}
 								className={`flex flex-col items-center justify-center rounded-lg border p-2 ${
 									selectedPlatform === platform ? "bg-muted" : "bg-transparent"
 								} hover:bg-muted`}
@@ -68,18 +68,26 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 					</div>
 				</div>
 
-				<div className="flex w-full flex-row items-center gap-2 rounded-2xl border p-1 pl-2 md:w-72">
+				<hr />
+
+				<div className="flex flex-col gap-2 p-1 pl-2">
 					<label htmlFor="url" className="text-sm font-semibold text-muted-foreground">
 						URL:
 					</label>
-					<input id="url" type="url" {...register("url")} className="flex-1" />
+					<input
+						id="url"
+						type="url"
+						placeholder="URL for the social button"
+						{...register("url")}
+						className="flex-1 rounded-2xl border md:w-1/2"
+					/>
 				</div>
 
 				<div className="input-group">
-					<button type="submit" disabled={isPending} className="btn bg-primary">
+					<button type="submit" disabled={isPending} title="Add Button" className="btn bg-primary">
 						{isPending ? "Adding..." : "Add Button"}
 					</button>
-					<button type="button" onClick={onClose} className="btn bg-danger">
+					<button onClick={onClose} title="Cancel" className="btn bg-danger">
 						Cancel
 					</button>
 				</div>

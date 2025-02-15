@@ -26,39 +26,35 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 	}
 
 	return (
-		<li className="flex flex-col items-center justify-center gap-4">
-			<div
-				className="flex min-w-32 max-w-72 items-center justify-center text-center"
-				style={{
-					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
-					boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
-					borderRadius: settings.linkBorderRadius,
-					padding: settings.linkPadding,
-					transition: "background-color 0.3s ease, box-shadow 0.3s ease"
-				}}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
-				<Link href={url} target="_blank" rel="noopener noreferrer">
-					<button onClick={handleClick}>
-						<p
-							style={{
-								color: settings.linkTextColor,
-								fontWeight: settings?.linkTextWeight,
-								fontSize: settings?.linkTextSize
-							}}
-						>
-							{title}
-						</p>
-					</button>
-				</Link>
+		<li
+			className="flex w-full min-w-32 max-w-72 items-center justify-between px-4 text-center"
+			style={{
+				backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
+				boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
+				borderRadius: settings.linkBorderRadius,
+				padding: settings.linkPadding,
+				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
+			}}
+		>
+			<Link href={url} target="_blank" rel="noopener noreferrer" className="flex-grow text-center">
+				<button onClick={handleClick} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+					<span
+						style={{
+							color: settings.linkTextColor,
+							fontWeight: settings?.linkTextWeight,
+							fontSize: settings?.linkTextSize
+						}}
+					>
+						{title}
+					</span>
+				</button>
+			</Link>
 
-				{settings?.showCopyButton && (
-					<button onClick={handleCopy} className="ml-4">
-						<Icon icon="mdi:content-copy" style={{ color: settings.linkTextColor }} />
-					</button>
-				)}
-			</div>
+			{settings?.showCopyButton && (
+				<button onClick={handleCopy} className="ml-2 flex-shrink-0">
+					<Icon icon="mdi:content-copy" style={{ color: settings.linkTextColor }} />
+				</button>
+			)}
 		</li>
 	)
 }

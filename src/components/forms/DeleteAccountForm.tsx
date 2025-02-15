@@ -17,11 +17,12 @@ export default function DeleteAccountForm() {
 	return (
 		<>
 			<header className="my-2">
-				<h3>Delete Account</h3>
+				<h2>Delete Account</h2>
 				<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
 			</header>
+
 			<div className="input-group">
-				<button onClick={handleDeleteAccount} className="btn bg-danger">
+				<button onClick={handleDeleteAccount} title="Delete Account" className="btn bg-danger">
 					Delete Account
 				</button>
 			</div>

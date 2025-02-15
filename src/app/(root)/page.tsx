@@ -62,7 +62,7 @@ export default function Home() {
 						transition={{ duration: 0.6 }}
 					>
 						<div className="space-y-6 text-center md:text-start">
-							<h3 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗</h3>
+							<h3 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h3>
 							<h1 className={`${bowlby.className} max-w-md text-4xl md:text-5xl`}>Keep all your stuff together!</h1>
 							<p className={`${lato.className} max-w-lg text-muted-foreground`}>
 								Welcome to <span className="font-bold text-accent">Linksy</span>! Your links, profiles, contact info,
@@ -101,7 +101,7 @@ export default function Home() {
 
 					<div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">
 						{features.map((feature) => (
-							<div key={feature.id} className="card icon flex select-none flex-col gap-2 shadow-xl">
+							<div key={feature.id} className="card flex select-none flex-col gap-2 shadow-xl">
 								<div className="flex items-center gap-2">
 									<span className="rounded-full bg-muted p-2">
 										<Icon icon={feature.icon} className="icon size-4" />
