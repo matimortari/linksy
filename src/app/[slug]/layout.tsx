@@ -8,11 +8,26 @@ import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default async function SlugLayout({ children }: Readonly<{ children: ReactNode }>) {
+type Params = Promise<{ slug: string }>
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+	const { slug } = await params
+
+	const metadata: Metadata = {
+		title: slug ? `${slug} | Linksy` : "Linksy",
+		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
+	}
+
+	return metadata
+}
+
+export default async function SlugLayout({ children, params }: { children: ReactNode; params: Params }) {
+	const { slug } = await params
+
 	const session = await getServerSession(authOptions)
 
 	const metadata: Metadata = {
-		title: session?.user?.slug ? `${session.user.slug} | Linksy` : "Linksy",
+		title: slug ? `${slug} | Linksy` : "Linksy",
 		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
 	}
 

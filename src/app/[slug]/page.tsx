@@ -5,8 +5,10 @@ import { db } from "@/src/lib/db"
 import { trackPageVisit, updateClickStats } from "@/src/lib/utils"
 import Image from "next/image"
 
-export default async function UserPage({ params }: Readonly<{ params: { slug: string } }>) {
-	const { slug } = params
+type Params = Promise<{ slug: string }>
+
+export default async function Page({ params }: { params: Params }) {
+	const { slug } = await params
 
 	const user = await db.user.findUnique({
 		where: { slug },
