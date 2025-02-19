@@ -109,3 +109,45 @@ interface SettingsFormData {
 interface SupportBannerFormData {
 	supportBanner: string
 }
+
+// Define common interfaces
+interface OptionType {
+	value: string
+	label: string
+}
+
+// Checkbox Input Props
+interface CheckboxInputProps {
+	id: string
+	label: string
+	checked?: boolean
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+// Color Input Props
+interface ColorInputProps {
+	id: string
+	label: string
+	value?: string
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+	disabled?: boolean
+}
+
+// Select Input Props
+interface SelectInputProps {
+	id: string
+	label: string
+	value: string
+	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+	options: OptionType[]
+}
+
+// Radio Options Props
+interface RadioOptionsProps {
+	options: OptionType[]
+	name: string
+	value: string
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+	label: string
+	disabled?: boolean
+}
