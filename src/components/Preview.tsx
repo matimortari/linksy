@@ -8,6 +8,18 @@ import { useUserStore } from "../hooks/useUserStore"
 import UserButton from "./UserButton"
 import UserLink from "./UserLink"
 
+function HeaderBar() {
+	return (
+		<>
+			<div className="absolute left-1/2 right-3 top-2 h-[6px] w-[80px] -translate-x-1/2 rounded-full bg-black" />
+			<div className="absolute right-4 top-2 flex items-center gap-2 text-foreground">
+				<Icon icon="mdi:signal" className="size-4" />
+				<Icon icon="mdi:wifi" className="size-4" />
+			</div>
+		</>
+	)
+}
+
 export default function Preview() {
 	const { slug, description, image, settings, links, buttons } = useUserStore()
 	const { data: session } = useSession()
@@ -74,6 +86,7 @@ export default function Preview() {
 							style={{ borderRadius: settings?.profilePictureRadius }}
 						/>
 					)}
+
 					<p
 						style={{
 							color: settings?.slugTextColor,
@@ -134,9 +147,11 @@ export default function Preview() {
 
 			{/* Desktop Preview */}
 			<div
-				className="popover preview-scrollbar m-2 hidden overflow-y-auto overflow-x-hidden md:block md:w-[300px] "
+				className="popover preview-scrollbar relative m-2 hidden min-h-[480px] overflow-y-auto overflow-x-hidden md:block md:w-[300px]"
 				style={backgroundStyle}
 			>
+				<HeaderBar />
+
 				<div className="flex flex-col items-center justify-center gap-2 py-6 text-center">
 					{image && (
 						<Image
