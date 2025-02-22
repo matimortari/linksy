@@ -3,7 +3,6 @@ import Footer from "@/src/components/Footer"
 import Header from "@/src/components/Header"
 import { authOptions } from "@/src/lib/auth"
 import "@/src/styles/globals.css"
-import "@/src/styles/inputs.css"
 import type { Metadata } from "next"
 import { getServerSession } from "next-auth"
 import { Inter } from "next/font/google"
@@ -28,7 +27,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 			<body className={`${inter.className}`}>
 				<Providers session={session}>
 					<Header />
-					{children}
+					<main>{children}</main>
 					<Footer />
 				</Providers>
 			</body>

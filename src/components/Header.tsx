@@ -5,15 +5,26 @@ import { useTheme } from "next-themes"
 import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
 
 export default function Header() {
 	const { theme, setTheme } = useTheme()
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 
 	const handleThemeToggle = () => {
 		setTheme(theme === "light" ? "dark" : "light")
 	}
+
+	if (!mounted) return null
+
+	const themeIcon = theme === "light" ? "radix-icons:moon" : "radix-icons:sun"
+	const themeTitle = `Switch to ${theme === "light" ? "dark" : "light"} mode`
 
 	return (
 		<div className="flex w-full items-center justify-between p-4">
@@ -23,12 +34,8 @@ export default function Header() {
 			</Link>
 
 			<div className="flex flex-row items-center justify-end gap-2">
-				<button
-					onClick={handleThemeToggle}
-					title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-					className="btn bg-card"
-				>
-					<Icon icon={theme === "light" ? "radix-icons:moon" : "radix-icons:sun"} className="icon size-6" />
+				<button onClick={handleThemeToggle} title={themeTitle} className="btn bg-card">
+					<Icon icon={themeIcon} className="icon size-6" />
 				</button>
 				<Link href="/login" title="Sign In" className="btn bg-card">
 					<Icon icon="material-symbols:login" className="icon size-6" />

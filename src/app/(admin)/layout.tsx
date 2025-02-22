@@ -10,28 +10,31 @@ import { ReactNode } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export async function generateMetadata(): Promise<Metadata> {
+	const session = await getServerSession(authOptions)
+
+	const userSlug = session?.user?.slug
+	const title = userSlug ? `${userSlug} | Linksy` : "Linksy"
+	const description = "Keep all your stuff together! Share your links in one page and share it with your audience."
+
+	return {
+		title,
+		description
+	}
+}
+
 export default async function AdminLayout({ children }: Readonly<{ children: ReactNode }>) {
 	const session = await getServerSession(authOptions)
 
-	const metadata: Metadata = {
-		title: session?.user?.slug ? `${session.user.slug} | Linksy` : "Linksy",
-		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
-	}
-
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				<title>{String(metadata.title)}</title>
-				<meta name="description" content={metadata.description ?? ""} />
-			</head>
-
-			<body className={`${inter.className}`}>
+			<body className={inter.className}>
 				<Providers session={session}>
 					<div className="flex min-h-screen flex-col p-4 md:flex-row">
 						<aside className="md:w-2/12">
 							<Navbar />
 						</aside>
-						{children}
+						<main className="flex-1">{children}</main>
 					</div>
 				</Providers>
 			</body>

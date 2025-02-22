@@ -21,25 +21,15 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 	return metadata
 }
 
-export default async function SlugLayout({ children, params }: { children: ReactNode; params: Params }) {
-	const { slug } = await params
-
+export default async function SlugLayout({ children }: { children: ReactNode }) {
 	const session = await getServerSession(authOptions)
-
-	const metadata: Metadata = {
-		title: slug ? `${slug} | Linksy` : "Linksy",
-		description: "Keep all your stuff together! Share your links in one page and share it with your audience."
-	}
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head>
-				<title>{String(metadata.title)}</title>
-				<meta name="description" content={metadata.description ?? ""} />
-			</head>
-
 			<body className={inter.className}>
-				<Providers session={session}>{children}</Providers>
+				<Providers session={session}>
+					<main>{children}</main>
+				</Providers>
 			</body>
 		</html>
 	)
