@@ -8,10 +8,15 @@ import AddButtonDialog from "../dialogs/AddButtonDialog"
 
 export default function ButtonList() {
 	const { buttons, setButtons } = useUserStore()
-	const { data: userButtons } = useGetButtons()
+
+	const { data: userButtons = [] } = useGetButtons()
 	const { mutate: deleteButton } = useDeleteButton()
 
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+
+	const handleAddButton = (newButton: Button) => {
+		setButtons([...buttons, newButton])
+	}
 
 	const handleDeleteButton = (id: number) => {
 		deleteButton(id, {
@@ -19,10 +24,6 @@ export default function ButtonList() {
 				setButtons(buttons.filter((b: Button) => b.id !== id))
 			}
 		})
-	}
-
-	const handleAddButton = (newButton: Button) => {
-		setButtons([...buttons, newButton])
 	}
 
 	return (
@@ -36,19 +37,19 @@ export default function ButtonList() {
 				<h4 className="my-2 text-center text-muted-foreground">No social buttons here yet. Get started!</h4>
 			) : (
 				<ul className="flex flex-row gap-2">
-					{userButtons?.map((b: Button) => (
+					{userButtons.map((b: Button) => (
 						<li key={b.id} className="card relative">
 							<Link href={b.url} title={b.platform} target="_blank" rel="noopener noreferrer">
-								<Icon icon={b.icon} className="m-1 size-6" />
+								<Icon icon={b.icon} width={25} height={25} className="m-1" />
 							</Link>
 
-							{b.id !== undefined && (
+							{b.id && (
 								<button
-									onClick={() => b.id !== undefined && handleDeleteButton(b.id)}
+									onClick={() => b.id && handleDeleteButton(b.id)}
 									title="Remove Social Button"
 									className="absolute bottom-0 right-0 p-1"
 								>
-									<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+									<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger" />
 								</button>
 							)}
 						</li>
@@ -58,6 +59,7 @@ export default function ButtonList() {
 
 			<div className="input-group justify-end">
 				<button onClick={() => setIsAddDialogOpen(true)} title="Add Social Button" className="btn bg-primary">
+					<Icon icon="mdi:shape-circle-plus" width={20} height={20} />
 					Add Social Button
 				</button>
 			</div>

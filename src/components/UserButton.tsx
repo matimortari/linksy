@@ -30,7 +30,7 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 		>
 			<Link href={url} target="_blank" rel="noopener noreferrer" className="flex items-center">
 				<button onClick={handleClick} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-					{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
+					{icon && <Icon icon={icon} width={20} height={20} style={{ color: settings.buttonIconColor }} />}
 				</button>
 			</Link>
 		</li>

@@ -35,10 +35,10 @@ export default function Header() {
 
 			<div className="flex flex-row items-center justify-end gap-2">
 				<button onClick={handleThemeToggle} title={themeTitle} className="btn bg-card">
-					<Icon icon={themeIcon} className="icon size-6" />
+					<Icon icon={themeIcon} width={25} height={25} />
 				</button>
 				<Link href="/login" title="Sign In" className="btn bg-card">
-					<Icon icon="material-symbols:login" className="icon size-6" />
+					<Icon icon="material-symbols:login" width={25} height={25} />
 				</Link>
 			</div>
 		</div>

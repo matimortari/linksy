@@ -1,4 +1,5 @@
 import { deleteAccount } from "@/src/services/userService"
+import { Icon } from "@iconify/react"
 
 export default function DeleteAccountForm() {
 	const handleDeleteAccount = async () => {
@@ -23,6 +24,7 @@ export default function DeleteAccountForm() {
 
 			<div className="input-group">
 				<button onClick={handleDeleteAccount} title="Delete Account" className="btn bg-danger">
+					<Icon icon="mdi:user-remove" width={20} height={20} />
 					Delete Account
 				</button>
 			</div>

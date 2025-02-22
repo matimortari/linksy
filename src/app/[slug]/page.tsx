@@ -3,11 +3,15 @@ import UserButton from "@/src/components/UserButton"
 import UserLink from "@/src/components/UserLink"
 import { db } from "@/src/lib/db"
 import { trackPageVisit, updateClickStats } from "@/src/lib/utils"
+import { Chau_Philomene_One } from "next/font/google"
 import Image from "next/image"
+import Link from "next/link"
 
 type Params = Promise<{ slug: string }>
 
-export default async function Page({ params }: { params: Params }) {
+const chau = Chau_Philomene_One({ subsets: ["latin"], weight: "400" })
+
+export default async function slugPage({ params }: { params: Params }) {
 	const { slug } = await params
 
 	const user = await db.user.findUnique({
@@ -21,10 +25,14 @@ export default async function Page({ params }: { params: Params }) {
 
 	if (!user) {
 		return (
-			<div className="main-container">
-				<div className="mb-2 flex flex-col items-center justify-center gap-3">
-					<p className="text-center text-muted-foreground">User `{slug}` not found.</p>
+			<div className="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
+				<div className="flex flex-col items-center justify-center gap-12">
+					<p className="text-center text-2xl text-muted-foreground">User `{slug}` not found.</p>
 				</div>
+				<Link href="/" className="flex flex-row items-center justify-start gap-2">
+					<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
+					<span className={`text-2xl ${chau.className}`}>Linksy</span>
+				</Link>
 			</div>
 		)
 	}
@@ -74,8 +82,6 @@ export default async function Page({ params }: { params: Params }) {
 						{description}
 					</p>
 				)}
-
-				{/* Buttons Section */}
 				{userButtons.length > 0 ? (
 					<ul className="my-2 flex flex-row justify-center gap-2">
 						{userButtons.map((b) => (
@@ -85,8 +91,6 @@ export default async function Page({ params }: { params: Params }) {
 				) : (
 					<hr />
 				)}
-
-				{/* Links Section */}
 				{userLinks.length > 0 ? (
 					<ul className="space-y-4">
 						{userLinks.map((l) => (

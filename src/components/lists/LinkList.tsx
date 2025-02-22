@@ -10,7 +10,7 @@ import UpdateLinkDialog from "../dialogs/UpdateLinkDialog"
 export default function LinkList() {
 	const { links, setLinks } = useUserStore()
 
-	const { data: userLinks } = useGetLinks()
+	const { data: userLinks = [] } = useGetLinks()
 	const { mutate: deleteLink } = useDeleteLink()
 
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
@@ -45,11 +45,11 @@ export default function LinkList() {
 				<h4 className="my-2 text-center text-muted-foreground">No links here yet. Get started!</h4>
 			) : (
 				<ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
-					{userLinks?.map((l: Link) => (
+					{userLinks.map((l: Link) => (
 						<li key={l.id} className="card">
 							<div className="flex flex-col gap-2">
 								<div className="flex flex-row items-center gap-4">
-									<Link href={l.url} target="_blank" rel="noopener noreferrer" className="truncate">
+									<Link href={l.url} target="_blank" rel="noopener noreferrer" className="w-full overflow-hidden">
 										<h4 className="truncate">{l.title}</h4>
 									</Link>
 
@@ -61,10 +61,10 @@ export default function LinkList() {
 											}}
 											title="Edit Link"
 										>
-											<Icon icon="mdi:circle-edit-outline" className="icon size-5 text-accent" />
+											<Icon icon="mdi:circle-edit-outline" width={20} height={20} className="text-accent" />
 										</button>
-										<button onClick={() => l.id !== undefined && handleDeleteLink(l.id)} title="Remove Link">
-											<Icon icon="mdi:remove-circle-outline" className="icon size-5 text-danger" />
+										<button onClick={() => l.id && handleDeleteLink(l.id)} title="Remove Link">
+											<Icon icon="mdi:remove-circle-outline" width={20} height={20} className="text-danger" />
 										</button>
 									</div>
 								</div>
@@ -78,12 +78,12 @@ export default function LinkList() {
 
 			<div className="input-group justify-end">
 				<button onClick={() => setIsAddDialogOpen(true)} title="Add Link" className="btn bg-primary">
+					<Icon icon="mdi:link-plus" width={20} height={20} />
 					Add Link
 				</button>
 			</div>
 
 			<AddLinkDialog isOpen={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} onAddLink={handleAddLink} />
-
 			{currentLink && (
 				<UpdateLinkDialog
 					isOpen={isUpdateDialogOpen}

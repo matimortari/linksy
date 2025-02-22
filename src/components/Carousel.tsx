@@ -66,7 +66,7 @@ function CarouselButton({ icon, settings }) {
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
-				{icon && <Icon icon={icon} className="size-5" style={{ color: settings.buttonIconColor }} />}
+				<Icon icon={icon} width={20} height={20} style={{ color: settings.buttonIconColor }} />
 			</button>
 		</li>
 	)

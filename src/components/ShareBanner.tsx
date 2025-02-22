@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useUserStore } from "../hooks/useUserStore"
@@ -43,13 +44,16 @@ function ShareDropdown({ isOpen, onClose }) {
 			{isOpen && (
 				<div className="animate-slide-in popover absolute right-0 top-full">
 					<div className="flex flex-col items-start gap-2 text-xs font-semibold">
-						<button onClick={handleCopyLink} className="rounded-2xl p-2 hover:bg-muted">
+						<button onClick={handleCopyLink} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+							<Icon icon="mdi:clipboard-multiple-outline" width={20} height={20} />
 							Copy Link
 						</button>
-						<button onClick={handleShareTwitter} className="rounded-2xl p-2 hover:bg-muted">
+						<button onClick={handleShareTwitter} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+							<Icon icon="simple-icons:x" width={20} height={20} />
 							Share on X
 						</button>
-						<button onClick={handleQRCode} className="rounded-2xl p-2 hover:bg-muted">
+						<button onClick={handleQRCode} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+							<Icon icon="mdi:qrcode" width={20} height={20} />
 							Get QR Code
 						</button>
 					</div>
@@ -87,6 +91,7 @@ export default function ShareBanner() {
 
 			<div className="input-group">
 				<button onClick={toggleDropdown} title="See sharing options" className="btn bg-card text-foreground">
+					<Icon icon="mdi:share-variant" width={20} height={20} />
 					Share Now
 				</button>
 			</div>

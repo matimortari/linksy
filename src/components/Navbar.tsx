@@ -37,7 +37,7 @@ function UserCard({ slug, description, image, setIsDialogOpen }) {
 					title="Edit Profile Information"
 					className="absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
 				>
-					<Icon icon="mdi:square-edit-outline" className="icon size-4" />
+					<Icon icon="mdi:square-edit-outline" width={15} height={15} />
 				</button>
 			</div>
 
@@ -94,19 +94,19 @@ export default function Navbar() {
 
 					<nav className="flex flex-row items-center justify-end gap-2">
 						<button onClick={handleThemeToggle} title={themeTitle} className="btn bg-card">
-							{themeIcon && <Icon icon={themeIcon} className="icon size-6" />}
+							{themeIcon && <Icon icon={themeIcon} width={25} height={25} />}
 						</button>
 
 						<button onClick={() => setIsNavOpen(!isNavOpen)} className="btn bg-card">
 							{isNavOpen ? (
-								<Icon icon="mdi:close" className="icon size-6" />
+								<Icon icon="mdi:close" width={25} height={25} />
 							) : (
-								<Icon icon="mdi:menu" className="icon size-6" />
+								<Icon icon="mdi:menu" width={25} height={25} />
 							)}
 						</button>
 
 						<button onClick={handleSignOut} className="btn bg-card">
-							<Icon icon="material-symbols:logout" className="icon size-6" />
+							<Icon icon="material-symbols:logout" width={25} height={25} />
 						</button>
 					</nav>
 				</div>
@@ -116,7 +116,7 @@ export default function Navbar() {
 						<nav className="flex flex-row items-center justify-center gap-2 ">
 							{navLinks.map((item) => (
 								<Link key={item.label} href={item.href} title={item.label} className="btn bg-card">
-									<Icon icon={item.icon} className="icon size-6" />
+									<Icon icon={item.icon} width={25} height={25} />
 									{item.label}
 								</Link>
 							))}
@@ -141,7 +141,7 @@ export default function Navbar() {
 								title={themeTitle}
 								className="btn flex w-full justify-start gap-2 bg-card"
 							>
-								{themeIcon && <Icon icon={themeIcon} className="icon size-6" />}
+								{themeIcon && <Icon icon={themeIcon} width={25} height={25} />}
 								<span>{mounted ? (theme === "light" ? "Dark" : "Light") : ""} Mode</span>
 							</button>
 
@@ -152,13 +152,13 @@ export default function Navbar() {
 									title={item.label}
 									className="btn flex w-full justify-start gap-2 bg-card"
 								>
-									<Icon icon={item.icon} className="icon size-6" />
+									<Icon icon={item.icon} width={25} height={25} />
 									{item.label}
 								</Link>
 							))}
 
 							<button onClick={handleSignOut} title="Sign Out" className="btn flex w-full justify-start gap-2 bg-card">
-								<Icon icon="material-symbols:logout" className="icon size-6" />
+								<Icon icon="material-symbols:logout" width={25} height={25} />
 								<p className="hidden md:block">Sign Out</p>
 							</button>
 						</nav>

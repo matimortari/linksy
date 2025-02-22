@@ -30,7 +30,7 @@ export default function AnalyticsCharts() {
 
 			<div className="my-2 grid grid-cols-2 gap-4 md:grid-cols-4">
 				<div className="flex flex-row items-center gap-2">
-					<Icon icon="material-symbols:table-eye" className="size-6 text-accent" />
+					<Icon icon="material-symbols:table-eye" width={25} height={25} className="icon text-accent" />
 					<div className="flex flex-col items-start">
 						<p className="text-xs text-muted-foreground">Total Page Views</p>
 						<p className="font-semibold md:text-lg">{totalViews}</p>
@@ -38,7 +38,7 @@ export default function AnalyticsCharts() {
 				</div>
 
 				<div className="flex flex-row items-center gap-2">
-					<Icon icon="material-symbols:ads-click" className="size-6 text-accent" />
+					<Icon icon="material-symbols:ads-click" width={25} height={25} className="icon text-accent" />
 					<div className="flex flex-col items-start">
 						<p className="text-xs text-muted-foreground">Total Link Clicks</p>
 						<p className="font-semibold md:text-lg">{totalClicks}</p>
@@ -46,7 +46,7 @@ export default function AnalyticsCharts() {
 				</div>
 
 				<div className="flex flex-row items-center gap-2">
-					<Icon icon="material-symbols:percent" className="size-6 text-accent" />
+					<Icon icon="material-symbols:percent" width={25} height={25} className="icon text-accent" />
 					<div className="flex flex-col items-start">
 						<p className="text-xs text-muted-foreground">Click Rate</p>
 						<p className="font-semibold md:text-lg">{clickRate}%</p>
@@ -54,7 +54,7 @@ export default function AnalyticsCharts() {
 				</div>
 
 				<div className="flex flex-row items-center gap-2">
-					<Icon icon="material-symbols:calendar-month" className="size-6 text-accent" />
+					<Icon icon="material-symbols:calendar-month" width={25} height={25} className="icon text-accent" />
 					<div className="flex flex-col items-start">
 						<p className="text-xs text-muted-foreground">Joined On</p>
 						<p className="font-semibold md:text-lg">{formatDate(userData?.createdAt)}</p>

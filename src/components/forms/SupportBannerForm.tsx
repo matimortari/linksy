@@ -49,7 +49,7 @@ export default function SupportBannerForm() {
 
 				<div className="input-group">
 					<button type="submit" disabled={isPending} title="Update Support Banner" className="btn bg-primary">
-						<Icon icon="material-symbols:volunteer-activism-outline" className="icon text-xl" />
+						<Icon icon="material-symbols:volunteer-activism-outline" width={20} height={20} />
 						{isPending ? "Updating..." : "Update Banner"}
 					</button>
 				</div>

@@ -61,7 +61,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 									selectedPlatform === platform ? "bg-muted" : "bg-transparent"
 								} hover:bg-muted`}
 							>
-								<Icon icon={icon} className="text-xl" />
+								<Icon icon={icon} width={20} height={20} />
 								<span className="mt-1 text-center text-xs">{platform.charAt(0).toUpperCase() + platform.slice(1)}</span>
 							</button>
 						))}

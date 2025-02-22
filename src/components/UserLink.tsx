@@ -52,7 +52,7 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 
 			{settings?.showCopyButton && (
 				<button onClick={handleCopy} className="ml-2 flex-shrink-0">
-					<Icon icon="mdi:content-copy" style={{ color: settings.linkTextColor }} />
+					<Icon icon="mdi:content-copy" width={15} height={15} style={{ color: settings.linkTextColor }} />
 				</button>
 			)}
 		</li>

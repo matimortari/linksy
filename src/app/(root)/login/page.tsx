@@ -48,7 +48,7 @@ export default function Login() {
 								title="Sign In with Google"
 								className="flex items-center justify-center rounded-full border bg-[#db4437] p-4 text-white"
 							>
-								<Icon icon="simple-icons:google" className="icon size-5" />
+								<Icon icon="simple-icons:google" width={25} height={25} />
 							</button>
 
 							<button
@@ -56,7 +56,7 @@ export default function Login() {
 								title="Sign In with GitHub"
 								className="flex items-center justify-center rounded-full border bg-[#333333] p-4 text-white"
 							>
-								<Icon icon="simple-icons:github" className="icon size-5" />
+								<Icon icon="simple-icons:github" width={25} height={25} />
 							</button>
 						</div>
 					</div>

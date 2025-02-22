@@ -306,7 +306,7 @@ export default function AppearanceForm() {
 
 			<div className="input-group justify-end">
 				<button type="submit" disabled={pendingUpdate} title="Update Appearance" className="btn bg-primary">
-					<Icon icon="material-symbols:update" className="icon text-xl" />
+					<Icon icon="material-symbols:update" width={20} height={20} />
 					{pendingUpdate ? "Updating..." : "Update Appearance"}
 				</button>
 				<button
@@ -315,7 +315,7 @@ export default function AppearanceForm() {
 					title="Reset To Default Appearance"
 					className="btn bg-danger"
 				>
-					<Icon icon="material-symbols:device-reset" className="icon text-xl" />
+					<Icon icon="material-symbols:device-reset" width={20} height={20} />
 					{pendingReset ? "Updating..." : "Reset To Default"}
 				</button>
 			</div>

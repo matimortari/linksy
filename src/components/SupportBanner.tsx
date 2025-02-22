@@ -22,7 +22,7 @@ export default function SupportBanner({ bannerType }) {
 			className={`${styleClass} fixed bottom-0 z-50 flex w-screen items-center justify-between px-8 py-4 text-white`}
 		>
 			<div className="flex items-center gap-4 text-start text-sm">
-				<Icon icon={BANNER_ICONS[bannerType]} className="icon size-10 text-white" />
+				<Icon icon={BANNER_ICONS[bannerType]} width={35} height={35} className="icon text-white" />
 				<div>
 					<h4 className="font-bold">{message}</h4>
 					<p>{description}</p>

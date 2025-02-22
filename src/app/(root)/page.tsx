@@ -104,7 +104,7 @@ export default function Home() {
 							<div key={feature.id} className="card flex select-none flex-col gap-2 shadow-xl">
 								<div className="flex items-center gap-2">
 									<span className="rounded-full bg-muted p-2">
-										<Icon icon={feature.icon} className="icon size-4" />
+										<Icon icon={feature.icon} width={20} height={20} />
 									</span>
 									<h4>{feature.title}</h4>
 								</div>
