@@ -86,7 +86,7 @@ export default function UpdateUserDialog({ isOpen, onClose, currentUser, onUpdat
 						type="submit"
 						disabled={isSlugPending || isDescriptionPending || isImagePending}
 						title="Update Profile"
-						className="btn bg-primary sm:w-auto"
+						className="btn bg-success"
 					>
 						{isSlugPending || isDescriptionPending || isImagePending ? "Updating..." : "Update Profile"}
 					</button>

@@ -24,8 +24,18 @@ export default function AppearanceForm() {
 	const { settings, setSettings } = useUserStore()
 
 	const { data: userSettings, refetch: refetchSettings } = useGetSettings()
-	const { mutate: resetSettingsMutation, isPending: pendingReset } = useResetSettings()
-	const { mutate: updateSettingsMutation, isPending: pendingUpdate } = useUpdateSettings()
+	const {
+		mutate: resetSettingsMutation,
+		isSuccess: isResetSuccess,
+		isError: resetError,
+		error: resetErrorMessage
+	} = useResetSettings()
+	const {
+		mutate: updateSettingsMutation,
+		isSuccess: isUpdateSuccess,
+		isError: updateError,
+		error: updateErrorMessage
+	} = useUpdateSettings()
 
 	const { control, handleSubmit, reset, watch } = useForm<SettingsFormData>({
 		defaultValues: settings || {}
@@ -305,18 +315,27 @@ export default function AppearanceForm() {
 			</div>
 
 			<div className="input-group justify-end">
-				<button type="submit" disabled={pendingUpdate} title="Update Appearance" className="btn bg-primary">
+				{(isUpdateSuccess || isResetSuccess) && (
+					<p className="mx-2 text-sm font-semibold text-success">Appearance updated!</p>
+				)}
+				{resetError && (
+					<p className="mx-2 text-sm font-semibold text-danger">
+						Error resetting settings: {resetErrorMessage?.message || "Unknown error"}
+					</p>
+				)}
+				{updateError && (
+					<p className="mx-2 text-sm font-semibold text-danger">
+						Error updating settings: {updateErrorMessage?.message || "Unknown error"}
+					</p>
+				)}
+
+				<button type="submit" title="Update Appearance" className="btn bg-primary">
 					<Icon icon="material-symbols:update" width={20} height={20} />
-					{pendingUpdate ? "Updating..." : "Update Appearance"}
+					Update Appearance
 				</button>
-				<button
-					onClick={handleReset}
-					disabled={pendingReset}
-					title="Reset To Default Appearance"
-					className="btn bg-danger"
-				>
+				<button onClick={handleReset} title="Reset To Default Appearance" className="btn bg-danger">
 					<Icon icon="material-symbols:device-reset" width={20} height={20} />
-					{pendingReset ? "Updating..." : "Reset To Default"}
+					Reset Appearance
 				</button>
 			</div>
 		</form>

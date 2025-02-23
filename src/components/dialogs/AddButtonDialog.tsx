@@ -1,5 +1,4 @@
 import { SOCIAL_ICONS } from "@/src/config/preferencesConfig"
-import { useAddButton } from "@/src/hooks/useMutations"
 import { buttonFormSchema } from "@/src/lib/formSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Icon } from "@iconify/react"
@@ -7,9 +6,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import Dialog from "../Dialog"
 
-export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
-	const { mutate: addButton, isPending } = useAddButton()
-
+export default function AddButtonDialog({ isOpen, onClose, onSubmit }) {
 	const { register, handleSubmit, watch, setValue, reset } = useForm<ButtonFormData>({
 		resolver: zodResolver(buttonFormSchema)
 	})
@@ -23,16 +20,8 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 	const selectedPlatform = watch("platform")
 	const icon = selectedPlatform ? SOCIAL_ICONS[selectedPlatform] : ""
 
-	const onSubmit = (data: ButtonFormData) => {
-		addButton(
-			{ platform: data.platform, icon, url: data.url },
-			{
-				onSuccess: () => {
-					onAddButton({ platform: data.platform, icon, url: data.url })
-					onClose()
-				}
-			}
-		)
+	const handleFormSubmit = (data: ButtonFormData) => {
+		onSubmit({ platform: data.platform, icon, url: data.url })
 	}
 
 	const handlePlatformSelect = (platform: string) => {
@@ -48,7 +37,7 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 
 	return (
 		<Dialog isOpen={isOpen} onClose={onClose} title="Add New Social Button">
-			<form onSubmit={handleSubmit(onSubmit)} className="my-4 flex flex-col gap-2">
+			<form onSubmit={handleSubmit(handleFormSubmit)} className="my-4 flex flex-col gap-2">
 				<div className="my-2 flex flex-col space-y-2">
 					<div className="grid max-h-48 grid-cols-3 gap-1 overflow-y-auto md:max-h-full md:grid-cols-9">
 						{Object.entries(SOCIAL_ICONS).map(([platform, icon]) => (
@@ -84,8 +73,8 @@ export default function AddButtonDialog({ isOpen, onClose, onAddButton }) {
 				</div>
 
 				<div className="input-group">
-					<button type="submit" disabled={isPending} title="Add Button" className="btn bg-primary">
-						{isPending ? "Adding..." : "Add Button"}
+					<button type="submit" title="Add Button" className="btn bg-success">
+						Add Button
 					</button>
 					<button onClick={onClose} title="Cancel" className="btn bg-danger">
 						Cancel

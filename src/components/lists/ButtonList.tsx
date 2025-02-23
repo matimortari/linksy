@@ -1,4 +1,4 @@
-import { useDeleteButton } from "@/src/hooks/useMutations"
+import { useAddButton, useDeleteButton } from "@/src/hooks/useMutations"
 import { useGetButtons } from "@/src/hooks/useQueries"
 import { useUserStore } from "@/src/hooks/useUserStore"
 import { Icon } from "@iconify/react"
@@ -10,12 +10,18 @@ export default function ButtonList() {
 	const { buttons, setButtons } = useUserStore()
 
 	const { data: userButtons = [] } = useGetButtons()
-	const { mutate: deleteButton } = useDeleteButton()
+	const { mutate: addButton, isSuccess: isAddSuccess, isError: isAddError, error: addError } = useAddButton()
+	const { mutate: deleteButton, isError: isDeleteError, error: deleteError } = useDeleteButton()
 
 	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
 
 	const handleAddButton = (newButton: Button) => {
-		setButtons([...buttons, newButton])
+		addButton(newButton, {
+			onSuccess: () => {
+				setButtons([...buttons, newButton])
+				setIsAddDialogOpen(false)
+			}
+		})
 	}
 
 	const handleDeleteButton = (id: number) => {
@@ -33,7 +39,7 @@ export default function ButtonList() {
 				<h6 className="text-muted-foreground">Manage your social buttons.</h6>
 			</header>
 
-			{userButtons == 0 ? (
+			{userButtons.length === 0 ? (
 				<h4 className="my-2 text-center text-muted-foreground">No social buttons here yet. Get started!</h4>
 			) : (
 				<ul className="flex flex-row gap-2">
@@ -58,17 +64,25 @@ export default function ButtonList() {
 			)}
 
 			<div className="input-group justify-end">
+				{isAddSuccess && <p className="mx-2 text-sm font-semibold text-success">Button added!</p>}
+				{isAddError && (
+					<p className="mx-2 text-sm font-semibold text-danger">
+						Error adding button: {addError?.message || "Unknown error"}
+					</p>
+				)}
+				{isDeleteError && (
+					<p className="mx-2 text-sm font-semibold text-danger">
+						Error deleting button: {deleteError?.message || "Unknown error"}
+					</p>
+				)}
+
 				<button onClick={() => setIsAddDialogOpen(true)} title="Add Social Button" className="btn bg-primary">
 					<Icon icon="mdi:shape-circle-plus" width={20} height={20} />
 					Add Social Button
 				</button>
 			</div>
 
-			<AddButtonDialog
-				isOpen={isAddDialogOpen}
-				onClose={() => setIsAddDialogOpen(false)}
-				onAddButton={handleAddButton}
-			/>
+			<AddButtonDialog isOpen={isAddDialogOpen} onClose={() => setIsAddDialogOpen(false)} onSubmit={handleAddButton} />
 		</>
 	)
 }

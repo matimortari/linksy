@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form"
 export default function SupportBannerForm() {
 	const { settings } = useUserStore()
 
-	const { mutate: updateBannerMutation, isPending } = useUpdateSupportBanner()
+	const { mutate: updateBannerMutation, isSuccess, isError, error } = useUpdateSupportBanner()
 
 	const { control, handleSubmit, reset } = useForm<SupportBannerFormData>({
 		defaultValues: {
@@ -49,9 +49,16 @@ export default function SupportBannerForm() {
 			</div>
 
 			<div className="input-group justify-end">
-				<button type="submit" disabled={isPending} title="Update Support Banner" className="btn bg-primary">
+				{isSuccess && <p className="mx-2 text-sm font-semibold text-success">Support banner updated!</p>}
+				{isError && (
+					<p className="mx-2 text-sm font-semibold text-danger">
+						Error updating support banner: {error?.message || "Unknown error"}
+					</p>
+				)}
+
+				<button type="submit" title="Update Support Banner" className="btn bg-primary">
 					<Icon icon="material-symbols:volunteer-activism-outline" width={20} height={20} />
-					{isPending ? "Updating..." : "Update Banner"}
+					Update Banner
 				</button>
 			</div>
 		</form>

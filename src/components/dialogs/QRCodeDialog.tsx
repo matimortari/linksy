@@ -21,7 +21,7 @@ export default function QRCodeDialog({ isOpen, slug, onClose }) {
 				<p className="text-muted-foreground">Scan this QR code to visit your Linksy profile!</p>
 
 				<div className="input-group">
-					<button onClick={() => handleDownloadQRCode(slug)} title="Download Your QR Code" className="btn bg-primary">
+					<button onClick={() => handleDownloadQRCode(slug)} title="Download Your QR Code" className="btn bg-success">
 						Download QR Code
 					</button>
 					<button onClick={onClose} title="Cancel" className="btn bg-danger">
