@@ -28,7 +28,7 @@ export default function UserButton({ url, icon, settings, buttonId, userId }) {
 				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
 			}}
 		>
-			<Link href={url} target="_blank" rel="noopener noreferrer" className="flex items-center">
+			<Link href={url} target="_blank" rel="noopener noreferrer">
 				<button onClick={handleClick} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
 					{icon && <Icon icon={icon} width={20} height={20} style={{ color: settings.buttonIconColor }} />}
 				</button>

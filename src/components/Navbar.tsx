@@ -29,15 +29,15 @@ function Logo() {
 
 function UserCard({ slug, description, image, setIsDialogOpen }) {
 	return (
-		<div className="my-4 flex flex-row items-center gap-4 md:gap-2">
+		<div className="my-4 flex flex-row items-center gap-4">
 			<div className="relative">
-				{image && <Image src={image} alt={slug} width={50} height={50} className="rounded-full border" />}
+				{image && <Image src={image} alt={slug} width={60} height={60} className="rounded-full border" />}
 				<button
 					onClick={() => setIsDialogOpen(true)}
 					title="Edit Profile Information"
 					className="absolute -bottom-2 -right-2 rounded-full border bg-accent p-1"
 				>
-					<Icon icon="mdi:square-edit-outline" width={15} height={15} />
+					<Icon icon="mdi:square-edit-outline" width={20} height={20} />
 				</button>
 			</div>
 

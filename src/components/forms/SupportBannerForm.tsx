@@ -26,13 +26,13 @@ export default function SupportBannerForm() {
 	}
 
 	return (
-		<form className="flex max-w-xs flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+		<form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
 			<header className="my-2">
 				<h2>Support Banner</h2>
 				<h6 className="text-muted-foreground">Show your support for important causes.</h6>
 			</header>
 
-			<div className="flex flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
+			<div className="flex max-w-xs flex-row items-center gap-2 rounded-2xl border bg-card p-1 pl-2">
 				<Controller
 					name="supportBanner"
 					control={control}
@@ -46,13 +46,13 @@ export default function SupportBannerForm() {
 						</select>
 					)}
 				/>
+			</div>
 
-				<div className="input-group">
-					<button type="submit" disabled={isPending} title="Update Support Banner" className="btn bg-primary">
-						<Icon icon="material-symbols:volunteer-activism-outline" width={20} height={20} />
-						{isPending ? "Updating..." : "Update Banner"}
-					</button>
-				</div>
+			<div className="input-group justify-end">
+				<button type="submit" disabled={isPending} title="Update Support Banner" className="btn bg-primary">
+					<Icon icon="material-symbols:volunteer-activism-outline" width={20} height={20} />
+					{isPending ? "Updating..." : "Update Banner"}
+				</button>
 			</div>
 		</form>
 	)

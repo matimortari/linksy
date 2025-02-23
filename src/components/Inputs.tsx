@@ -1,6 +1,6 @@
 export function CheckboxInput({ id, label, checked = false, onChange }: CheckboxInputProps) {
 	return (
-		<div className="my-4 flex items-center space-x-2">
+		<div className="my-4 flex flex-row items-center gap-2">
 			<input id={id} type="checkbox" checked={checked} onChange={onChange} />
 			<label htmlFor={id} className="text-sm font-semibold">
 				{label}
@@ -11,7 +11,7 @@ export function CheckboxInput({ id, label, checked = false, onChange }: Checkbox
 
 export function ColorInput({ id, label, value = "#000000", onChange, disabled = false }: ColorInputProps) {
 	return (
-		<div className="my-4 flex items-center space-x-2">
+		<div className="my-4 flex flex-row items-center gap-2">
 			<input id={id} type="color" value={value} onChange={onChange} disabled={disabled} />
 			<label htmlFor={id} className={`text-sm font-semibold ${disabled ? "text-muted line-through" : ""}`}>
 				{label}
@@ -43,7 +43,7 @@ export function RadioOptions({ options, name, value, onChange, label, disabled =
 			<p className={`mb-2 text-sm font-semibold ${disabled ? "text-muted line-through" : ""}`}>{label}</p>
 			<div className="space-y-1">
 				{options.map((option) => (
-					<label key={option.value} className="flex items-center space-x-2 text-xs">
+					<label key={option.value} className="flex flex-row items-center gap-2 text-xs">
 						<input
 							type="radio"
 							name={name}

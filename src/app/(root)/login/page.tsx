@@ -23,10 +23,10 @@ export default function Login() {
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 
-			<main className="relative z-10 flex flex-col items-center px-4 py-8 md:px-12 md:py-0">
+			<main className="relative z-10 flex flex-col items-center px-4 py-12 md:px-12 md:py-0">
 				{/* Sign-in form */}
 				<motion.div
-					className="popover"
+					className="card shadow-2xl"
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, ease: "easeOut" }}
@@ -39,14 +39,14 @@ export default function Login() {
 						<hr className="w-full" />
 
 						<h4 className={`${lato.className} mb-4 text-muted-foreground`}>
-							Sign in with your preferred provider to continue.
+							Sign in with Google or GitHub to continue.
 						</h4>
 
 						<div className="flex flex-row items-center justify-center gap-4">
 							<button
 								onClick={() => signIn("google")}
 								title="Sign In with Google"
-								className="flex items-center justify-center rounded-full border bg-[#db4437] p-4 text-white"
+								className="rounded-full border bg-[#db4437] p-4 text-white"
 							>
 								<Icon icon="simple-icons:google" width={25} height={25} />
 							</button>
@@ -54,7 +54,7 @@ export default function Login() {
 							<button
 								onClick={() => signIn("github")}
 								title="Sign In with GitHub"
-								className="flex items-center justify-center rounded-full border bg-[#333333] p-4 text-white"
+								className="rounded-full border bg-[#333333] p-4 text-white"
 							>
 								<Icon icon="simple-icons:github" width={25} height={25} />
 							</button>

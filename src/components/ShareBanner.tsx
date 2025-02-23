@@ -9,13 +9,13 @@ function ShareDropdown({ isOpen, onClose }) {
 
 	const [isQrCodeDialogOpen, setIsQrCodeDialogOpen] = useState(false)
 
-	const handleCopyLink = () => {
+	const handleCopy = () => {
 		const pageUrl = `https://linksy-live.vercel.app/${slug}`
 		navigator.clipboard.writeText(pageUrl)
 		alert("Link copied to clipboard!")
 	}
 
-	const handleShareTwitter = () => {
+	const handleShareX = () => {
 		const pageUrl = `https://linksy-live.vercel.app/${slug}`
 		const tweetText = `🚀 Check out my #Linksy profile! 🌟\n\n🔗 ${pageUrl}`
 		const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`
@@ -44,15 +44,15 @@ function ShareDropdown({ isOpen, onClose }) {
 			{isOpen && (
 				<div className="animate-slide-in popover absolute right-0 top-full">
 					<div className="flex flex-col items-start gap-2 text-xs font-semibold">
-						<button onClick={handleCopyLink} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+						<button onClick={handleCopy} className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted">
 							<Icon icon="mdi:clipboard-multiple-outline" width={20} height={20} />
 							Copy Link
 						</button>
-						<button onClick={handleShareTwitter} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+						<button onClick={handleShareX} className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted">
 							<Icon icon="simple-icons:x" width={20} height={20} />
 							Share on X
 						</button>
-						<button onClick={handleQRCode} className="flex flex-row items-center gap-2 p-2 hover:bg-muted">
+						<button onClick={handleQRCode} className="flex flex-row items-center gap-2 rounded-2xl p-2 hover:bg-muted">
 							<Icon icon="mdi:qrcode" width={20} height={20} />
 							Get QR Code
 						</button>

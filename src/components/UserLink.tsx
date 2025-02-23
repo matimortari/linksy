@@ -27,7 +27,7 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 
 	return (
 		<li
-			className="flex w-full min-w-32 max-w-72 items-center justify-between px-4 text-center"
+			className="flex w-full min-w-32 max-w-72 flex-row items-center justify-between px-4 text-center"
 			style={{
 				backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
 				boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
@@ -49,7 +49,6 @@ export default function UserLink({ url, title, settings, linkId, userId }) {
 					</span>
 				</button>
 			</Link>
-
 			{settings?.showCopyButton && (
 				<button onClick={handleCopy} className="ml-2 flex-shrink-0">
 					<Icon icon="mdi:content-copy" width={15} height={15} style={{ color: settings.linkTextColor }} />

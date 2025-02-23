@@ -17,20 +17,18 @@ function CarouselLink({ title, settings }) {
 	}
 
 	return (
-		<li className="flex flex-col items-center justify-center gap-4">
-			<button
-				className="flex min-w-32 max-w-72 cursor-pointer items-center justify-center text-center"
-				style={{
-					backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
-					boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
-					borderRadius: settings.linkBorderRadius,
-					padding: settings.linkPadding,
-					transition: "background-color 0.3s ease, box-shadow 0.3s ease"
-				}}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
-				<p
+		<li
+			className="flex w-full min-w-32 max-w-72 flex-row items-center justify-center text-center"
+			style={{
+				backgroundColor: isHovered ? settings.linkHoverBackgroundColor : settings.linkBackgroundColor,
+				boxShadow: settings.isLinkShadow ? shadowStyles[settings.linkShadowWeight] : "none",
+				borderRadius: settings.linkBorderRadius,
+				padding: settings.linkPadding,
+				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
+			}}
+		>
+			<button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+				<span
 					style={{
 						color: settings.linkTextColor,
 						fontWeight: settings?.linkTextWeight,
@@ -38,7 +36,7 @@ function CarouselLink({ title, settings }) {
 					}}
 				>
 					{title}
-				</p>
+				</span>
 			</button>
 		</li>
 	)
@@ -55,17 +53,15 @@ function CarouselButton({ icon, settings }) {
 	}
 
 	return (
-		<li className="flex flex-row items-center justify-center">
-			<button
-				className="flex size-10 cursor-pointer items-center justify-center rounded-full"
-				style={{
-					backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
-					boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
-					transition: "background-color 0.3s ease, box-shadow 0.3s ease"
-				}}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
+		<li
+			className="flex size-10 items-center justify-center rounded-full"
+			style={{
+				backgroundColor: isHovered ? settings.buttonHoverBackgroundColor : settings.buttonBackgroundColor,
+				boxShadow: settings.isButtonShadow ? shadowStyles[settings.buttonShadowWeight] : "none",
+				transition: "background-color 0.3s ease, box-shadow 0.3s ease"
+			}}
+		>
+			<button onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
 				<Icon icon={icon} width={20} height={20} style={{ color: settings.buttonIconColor }} />
 			</button>
 		</li>
@@ -104,16 +100,12 @@ function CarouselCard({ presetId = 0 }) {
 				>
 					{description}
 				</p>
-
-				<ul className="my-2 flex flex-row justify-center gap-2">
+				<ul className="my-2 flex flex-row items-center justify-center gap-2">
 					{buttons.map((button) => (
 						<CarouselButton key={button.id} icon={button.icon} settings={settings} />
 					))}
 				</ul>
-
-				<hr />
-
-				<ul className="space-y-4 overflow-auto">
+				<ul className="flex flex-col items-center space-y-4 overflow-auto">
 					{links.map((link) => (
 						<CarouselLink key={link.id} title={link.title} settings={settings} />
 					))}

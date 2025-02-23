@@ -22,7 +22,7 @@ export default function DeleteAccountForm() {
 				<h6 className="text-danger">This action is irreversible. All data will be lost.</h6>
 			</header>
 
-			<div className="input-group">
+			<div className="input-group justify-end md:justify-start">
 				<button onClick={handleDeleteAccount} title="Delete Account" className="btn bg-danger">
 					<Icon icon="mdi:user-remove" width={20} height={20} />
 					Delete Account

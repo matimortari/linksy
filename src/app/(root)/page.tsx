@@ -10,7 +10,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 
 const bowlby = Bowlby_One({ subsets: ["latin"], weight: "400" })
-const lato = Lato({ subsets: ["latin"], weight: "900" })
+const lato = Lato({ subsets: ["latin"], weight: "700" })
 
 export default function Home() {
 	const { status } = useSession()
@@ -52,11 +52,11 @@ export default function Home() {
 				<Image src="/grid-bg.png" alt="Background" fill />
 			</div>
 
-			<main className="relative z-10 flex flex-col items-center px-4 py-8 md:px-12 md:py-0">
-				<div className="flex w-full flex-col items-center md:flex-row">
+			<main className="relative z-10 flex flex-col items-center px-4 py-12 md:px-12 md:py-0">
+				<div className="flex w-full flex-col md:flex-row">
 					{/* Intro section */}
 					<motion.section
-						className="flex flex-col md:w-1/2"
+						className="flex flex-col md:w-1/2 md:py-24"
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
@@ -65,19 +65,19 @@ export default function Home() {
 							<h3 className={`${lato.className} text-accent`}>Your link-in-bio page 🔗🌐</h3>
 							<h1 className={`${bowlby.className} max-w-md text-4xl md:text-5xl`}>Keep all your stuff together!</h1>
 							<p className={`${lato.className} max-w-lg text-muted-foreground`}>
-								Welcome to <span className="font-bold text-accent">Linksy</span>! Your links, profiles, contact info,
-								and more in one place. Create and customize your page and share it with your audience.
+								Welcome to <span className="text-accent">Linksy</span>! Your links, profiles, contact info, and more in
+								one place. Create and customize your page and share it with your audience.
 							</p>
 
 							<motion.div
-								className="flex max-w-md flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-xl"
+								className="flex max-w-md flex-row items-center rounded-2xl border bg-card p-1 pl-3 text-sm text-muted-foreground shadow-2xl"
 								whileHover={{ scale: 1.05 }}
 								transition={{ type: "spring", stiffness: 400, damping: 10 }}
 							>
 								<span className="hidden cursor-default sm:inline">linksy-live.vercel.app/</span>
 								<span className="cursor-default sm:hidden">@</span>
-								<input type="text" placeholder="your_name" className="w-full flex-1 bg-transparent outline-none" />
-								<Link href="/login" className="btn bg-primary transition-colors">
+								<input type="text" placeholder="your_name" className="flex-1 outline-none" />
+								<Link href="/login" className="btn bg-primary">
 									Get Started!
 								</Link>
 							</motion.div>
@@ -86,7 +86,7 @@ export default function Home() {
 
 					{/* Carousel section */}
 					<motion.section
-						className="mt-20 w-full md:mt-0 md:w-1/2"
+						className="mt-20 md:mt-0 md:w-1/2"
 						initial={{ opacity: 0, scale: 0.8 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.6, delay: 0.2 }}
@@ -96,13 +96,13 @@ export default function Home() {
 				</div>
 
 				{/* Features section */}
-				<section className="mt-20 w-full max-w-6xl">
-					<h2 className={`${bowlby.className} mb-4 text-center`}>Why Choose Linksy?</h2>
+				<section className="mt-24 max-w-6xl">
+					<h2 className={`${bowlby.className} mb-8 text-center`}>Why Choose Linksy?</h2>
 
 					<div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">
 						{features.map((feature) => (
-							<div key={feature.id} className="card flex select-none flex-col gap-2 shadow-xl">
-								<div className="flex items-center gap-2">
+							<div key={feature.id} className="card flex select-none flex-col gap-2 shadow-2xl">
+								<div className="flex flex-row items-center gap-2">
 									<span className="rounded-full bg-muted p-2">
 										<Icon icon={feature.icon} width={20} height={20} />
 									</span>

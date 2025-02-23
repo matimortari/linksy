@@ -26,9 +26,8 @@ export default async function slugPage({ params }: { params: Params }) {
 	if (!user) {
 		return (
 			<div className="flex min-h-screen flex-col items-center justify-between gap-12 p-12">
-				<div className="flex flex-col items-center justify-center gap-12">
-					<p className="text-center text-2xl text-muted-foreground">User `{slug}` not found.</p>
-				</div>
+				<p className="text-center text-xl text-muted-foreground">User `{slug}` not found.</p>
+
 				<Link href="/" className="flex flex-row items-center justify-start gap-2">
 					<Image src="/logo.png" alt="Logo" width={35} height={35} className="icon rounded-full" />
 					<span className={`text-2xl ${chau.className}`}>Linksy</span>
@@ -51,7 +50,7 @@ export default async function slugPage({ params }: { params: Params }) {
 
 	return (
 		<div style={backgroundStyle} className="min-h-screen p-12 pb-24">
-			<div className="flex flex-col items-center justify-center gap-3 text-center">
+			<div className="flex flex-col items-center justify-center gap-2 text-center">
 				{settings && settings.supportBanner !== "NONE" && <SupportBanner bannerType={settings.supportBanner} />}
 				{image && (
 					<Image
